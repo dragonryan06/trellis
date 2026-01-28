@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b060chk8lvhk"]
+
+[ext_resource type="Texture2D" uid="uid://dkyja5sv2j55t" path="res://test-dirt.png" id="1_dxppu"]
+[ext_resource type="Script" uid="uid://dlnnggt0673vk" path="res://pixel_lines_test.gd" id="1_gy3sr"]
+
+[sub_resource type="Curve" id="Curve_gy3sr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_gy3sr"]
+colors = PackedColorArray(0.2, 0.14333335, 0, 1, 0.6, 0.43000004, 0, 1)
+
+[node name="TestWorld" type="Node2D" unique_id=1425755023]
+script = ExtResource("1_gy3sr")
+
+[node name="Backdrop" type="Parallax2D" parent="." unique_id=526665694]
+repeat_size = Vector2(128, 64)
+repeat_times = 8
+
+[node name="TestDirt" type="Sprite2D" parent="Backdrop" unique_id=895730976]
+texture_repeat = 2
+texture = ExtResource("1_dxppu")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=524478451]
+
+[node name="LineBase" type="Line2D" parent="." unique_id=1293073925]
+width = 8.0
+width_curve = SubResource("Curve_gy3sr")
+default_color = Color(0.53, 0.37983334, 0, 1)
+gradient = SubResource("Gradient_gy3sr")
+joint_mode = 2
+end_cap_mode = 2
+round_precision = 16
+
+[node name="Label" type="Label" parent="." unique_id=740516661]
+offset_left = -61.0
+offset_top = -15.0
+offset_right = 24.0
+offset_bottom = 1.0
+theme_override_font_sizes/font_size = 10
+text = "this is some text"
