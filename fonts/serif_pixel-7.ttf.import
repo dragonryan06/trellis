@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://chrvuod120ci2"
-path="res://.godot/imported/serif_pixel-7.ttf-0a90a0c2354df73ff936308b9abb6ff6.fontdata"
+path="res://.godot/imported/serif_pixel-7.ttf-6108880049f80bd346aca6ab3fac7a98.fontdata"
 
 [deps]
 
-source_file="res://Fonts/serif_pixel-7.ttf"
-dest_files=["res://.godot/imported/serif_pixel-7.ttf-0a90a0c2354df73ff936308b9abb6ff6.fontdata"]
+source_file="res://fonts/serif_pixel-7.ttf"
+dest_files=["res://.godot/imported/serif_pixel-7.ttf-6108880049f80bd346aca6ab3fac7a98.fontdata"]
 
 [params]
 
