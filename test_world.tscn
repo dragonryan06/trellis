@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://j0a2ggokrtd4" path="res://meta/test_world.gd" id="1_1lwx6"]
 [ext_resource type="Texture2D" uid="uid://dkyja5sv2j55t" path="res://test-dirt.png" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://dgqsxm6vmlr5g" path="res://rooting/root_system.tscn" id="3_1lwx6"]
+[ext_resource type="Script" uid="uid://b31wlpyc00bk6" path="res://meta/player_camera.gd" id="3_dsnr4"]
 
 [node name="TestWorld" type="Node2D" unique_id=1425755023]
 script = ExtResource("1_1lwx6")
@@ -17,6 +18,7 @@ position = Vector2(288, 144)
 texture = ExtResource("1_dxppu")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=524478451]
+script = ExtResource("3_dsnr4")
 
 [node name="RootSystem" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
 position = Vector2(0, -193)
