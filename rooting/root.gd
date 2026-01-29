@@ -31,7 +31,7 @@ func _on_next_turn() -> void:
 			continue
 		var branch = load("res://rooting/root.tscn").instantiate()
 		branch.add_point(child.origin)
-		add_child(branch)
+		add_sibling(branch)
 		branch.grow_to(child.position)
 		remove_child(child)
 	
