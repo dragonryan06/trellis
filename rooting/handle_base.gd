@@ -25,7 +25,7 @@ var mouse_drag := false:
 	get:
 		return mouse_drag
 	set(value):
-		if (!mouse_drag and value):
+		if (!mouse_drag and value and !was_moved):
 			origin = position
 		
 		mouse_drag = value
@@ -38,7 +38,16 @@ var mouse_drag := false:
 var origin := Vector2(0.0, 0.0)
 var displacement := Vector2(0.0, 0.0)
 
+func _draw() -> void:
+	if (!was_moved):
+		return
+	
+	var start = origin - position
+	var end = start + displacement
+	draw_line(start, end, Color.DARK_MAGENTA)
+
 func _process(_delta: float) -> void:
+	queue_redraw()
 	if (!mouse_drag):
 		return
 	
