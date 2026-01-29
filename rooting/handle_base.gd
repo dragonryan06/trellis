@@ -1,6 +1,9 @@
+class_name HandleBase
 extends Area2D
 
 const MAX_DISPLACEMENT = 64.0
+
+var was_moved := false
 
 var mouse_hover := false:
 	get:
@@ -26,6 +29,7 @@ var mouse_drag := false:
 			origin = position
 		
 		mouse_drag = value
+		was_moved = true
 		
 		if (!mouse_hover and !mouse_drag):
 			$PointLight2D.enabled = false
@@ -34,7 +38,7 @@ var mouse_drag := false:
 var origin := Vector2(0.0, 0.0)
 var displacement := Vector2(0.0, 0.0)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if (!mouse_drag):
 		return
 	
@@ -53,14 +57,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if (mouse_drag and !event.is_pressed()):
 		mouse_drag = false
 
-func _on_mouse_entered() -> void:
-	mouse_hover = true
-
-func _on_mouse_exited() -> void:
-	mouse_hover = false
-
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if (!(event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT)):
 		return
 	
 	mouse_drag = event.is_pressed()
+
+func _on_mouse_entered() -> void:
+	mouse_hover = true
+
+func _on_mouse_exited() -> void:
+	mouse_hover = false

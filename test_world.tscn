@@ -19,7 +19,7 @@ texture = ExtResource("1_dxppu")
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=524478451]
 
 [node name="RootSystem" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
-position = Vector2(0, -134)
+position = Vector2(0, -193)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
 

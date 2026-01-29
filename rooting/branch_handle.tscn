@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://gx6f3aenjsmp"]
+
+[ext_resource type="Script" uid="uid://rcwwhhi8or71" path="res://rooting/branch_handle.gd" id="1_fbet3"]
+[ext_resource type="Texture2D" uid="uid://bwbgctga2c5iy" path="res://rooting/branch_handle.png" id="1_jsup7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fbet3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l86wc"]
+radius = 64.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q38kt"]
+light_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avr28"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(11, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwij8"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(22, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u7gb"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(0, 11, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqdne"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(11, 11, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whffc"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(22, 11, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhe6x"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(0, 22, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfwae"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(0, 0, 11, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s02dw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avr28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwij8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u7gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqdne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whffc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhe6x")
+}],
+"loop": true,
+"name": &"active",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfwae")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_sl3re"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vmdas"]
+gradient = SubResource("Gradient_sl3re")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.9)
+
+[node name="BranchHandle" type="Area2D" unique_id=563496020]
+script = ExtResource("1_fbet3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1714275866]
+shape = SubResource("CircleShape2D_fbet3")
+
+[node name="VisibilityRange" type="Area2D" parent="." unique_id=1285997559]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityRange" unique_id=696148004]
+shape = SubResource("CircleShape2D_l86wc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1457392358]
+material = SubResource("CanvasItemMaterial_q38kt")
+sprite_frames = SubResource("SpriteFrames_s02dw")
+autoplay = "active"
+frame_progress = 0.04691015
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=410855301]
+enabled = false
+color = Color(0, 1, 0.01666665, 1)
+texture = SubResource("GradientTexture2D_vmdas")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="VisibilityRange" to="." method="_on_visibility_range_mouse_entered"]
+[connection signal="mouse_exited" from="VisibilityRange" to="." method="_on_visibility_range_mouse_exited"]

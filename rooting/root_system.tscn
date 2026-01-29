@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dgqsxm6vmlr5g"]
 
 [ext_resource type="Texture2D" uid="uid://8t7cpkft333t" path="res://icon.svg" id="1_dsdun"]
-[ext_resource type="Script" uid="uid://d4lsfvbm0o7dk" path="res://rooting/growth_handle.gd" id="2_kn7e2"]
 [ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://rooting/root.gd" id="2_kvdd2"]
 [ext_resource type="Texture2D" uid="uid://dq7oyd34ucsih" path="res://rooting/grow_handle.png" id="3_kvdd2"]
+[ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://rooting/handle_base.gd" id="3_ky63x"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
@@ -95,7 +95,7 @@ texture = ExtResource("1_dsdun")
 
 [node name="Taproot" type="Line2D" parent="." unique_id=686598111]
 show_behind_parent = true
-points = PackedVector2Array(0, 0, -32, 96, 32, 192)
+points = PackedVector2Array(0, 0, -28, 78, 3, 114)
 width = 8.0
 width_curve = SubResource("Curve_gy3sr")
 default_color = Color(0.53, 0.37983334, 0, 1)
@@ -106,8 +106,8 @@ round_precision = 16
 script = ExtResource("2_kvdd2")
 
 [node name="GrowthHandle" type="Area2D" parent="Taproot" unique_id=2062171075]
-position = Vector2(32, 192)
-script = ExtResource("2_kn7e2")
+position = Vector2(3, 115)
+script = ExtResource("3_ky63x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Taproot/GrowthHandle" unique_id=2005075403]
 shape = SubResource("CircleShape2D_wsw62")
