@@ -4,24 +4,111 @@
 [ext_resource type="Texture2D" uid="uid://dkyja5sv2j55t" path="res://test-dirt.png" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://dgqsxm6vmlr5g" path="res://rooting/root_system.tscn" id="3_1lwx6"]
 [ext_resource type="Script" uid="uid://b31wlpyc00bk6" path="res://meta/player_camera.gd" id="3_dsnr4"]
+[ext_resource type="Texture2D" uid="uid://cmxnj3c8a1xvt" path="res://sky.png" id="3_lf0gk"]
+[ext_resource type="Texture2D" uid="uid://btyfaptwwurb5" path="res://sun.png" id="3_ud3vi"]
+[ext_resource type="Texture2D" uid="uid://di510fmcccij5" path="res://dirt_surface.png" id="4_cnaw2"]
+[ext_resource type="Texture2D" uid="uid://dh3k7vctrojla" path="res://dirt_surface_2.png" id="4_kt6p6"]
+[ext_resource type="Texture2D" uid="uid://c2xvty6q1f2dq" path="res://dirt_surface_3.png" id="4_uu1iw"]
+[ext_resource type="Texture2D" uid="uid://bigjmp61udysq" path="res://hills.png" id="5_4tg7h"]
+[ext_resource type="Shader" uid="uid://dbdnslk1ok0i2" path="res://vignette.gdshader" id="9_5457m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivea3"]
+shader = ExtResource("9_5457m")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = 0.535
+shader_parameter/outer_radius = 1.5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5457m"]
+fractal_octaves = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ivea3"]
+width = 2304
+height = 1296
+noise = SubResource("FastNoiseLite_5457m")
 
 [node name="TestWorld" type="Node2D" unique_id=1425755023]
 script = ExtResource("1_1lwx6")
 
-[node name="Backdrop" type="Parallax2D" parent="." unique_id=526665694]
-repeat_size = Vector2(128, 64)
-repeat_times = 8
+[node name="Backdrop" type="Node2D" parent="." unique_id=930784402]
 
-[node name="TestDirt" type="Sprite2D" parent="Backdrop" unique_id=895730976]
+[node name="Sky" type="Parallax2D" parent="Backdrop" unique_id=58231424]
+scroll_offset = Vector2(56, -816)
+repeat_size = Vector2(1152, 0)
+repeat_times = 2
+
+[node name="DaySky" type="Sprite2D" parent="Backdrop/Sky" unique_id=517094088]
+position = Vector2(304, 192)
+texture = ExtResource("3_lf0gk")
+
+[node name="Celestial" type="Parallax2D" parent="Backdrop" unique_id=1473716456]
+scroll_scale = Vector2(0, 0)
+
+[node name="Sun" type="Sprite2D" parent="Backdrop/Celestial" unique_id=1949706152]
+position = Vector2(64, 56)
+texture = ExtResource("3_ud3vi")
+
+[node name="SurfaceBack" type="Parallax2D" parent="Backdrop" unique_id=450972583]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(0, 32)
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="Hills" type="Sprite2D" parent="Backdrop/SurfaceBack" unique_id=1180989466]
+position = Vector2(296, -64)
+texture = ExtResource("5_4tg7h")
+
+[node name="SurfaceMiddle1" type="Parallax2D" parent="Backdrop" unique_id=439222716]
+scroll_scale = Vector2(0.75, 0.75)
+scroll_offset = Vector2(128, 24)
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="DirtSurface3" type="Sprite2D" parent="Backdrop/SurfaceMiddle1" unique_id=1423458205]
+position = Vector2(296, -64)
+texture = ExtResource("4_uu1iw")
+
+[node name="SurfaceMiddle2" type="Parallax2D" parent="Backdrop" unique_id=72339134]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(0, 32)
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="DirtSurface2" type="Sprite2D" parent="Backdrop/SurfaceMiddle2" unique_id=1887127055]
+position = Vector2(296, -64)
+texture = ExtResource("4_kt6p6")
+
+[node name="Subsoil" type="Parallax2D" parent="Backdrop" unique_id=526665694]
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="TestDirt" type="Sprite2D" parent="Backdrop/Subsoil" unique_id=895730976]
 texture_repeat = 2
-position = Vector2(288, 144)
+position = Vector2(296, 192)
 texture = ExtResource("1_dxppu")
 
+[node name="SurfaceFront" type="Parallax2D" parent="Backdrop" unique_id=403710990]
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="DirtSurface" type="Sprite2D" parent="Backdrop/SurfaceFront" unique_id=1059153274]
+position = Vector2(296, -32)
+texture = ExtResource("4_cnaw2")
+
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=524478451]
+position = Vector2(0, 128)
 script = ExtResource("3_dsnr4")
 
 [node name="RootSystem" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
-position = Vector2(0, -193)
+
+[node name="Vignette" type="Sprite2D" parent="." unique_id=899710562]
+material = SubResource("ShaderMaterial_ivea3")
+texture = SubResource("NoiseTexture2D_ivea3")
+
+[node name="Polygon2D" type="Polygon2D" parent="Vignette" unique_id=1759154550]
+color = Color(0, 0, 0, 1)
+invert_enabled = true
+invert_border = 1024.0
+polygon = PackedVector2Array(-1152, 648, -1152, -648, 1152, -648, 1152, 648)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
 
