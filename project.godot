@@ -13,7 +13,7 @@ config_version=5
 config/name="Trellis"
 run/main_scene="uid://b060chk8lvhk"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://c62mlv2o0ndlw"
 
 [autoload]
 
