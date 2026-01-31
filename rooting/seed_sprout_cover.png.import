@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bigjmp61udysq"
-path="res://.godot/imported/hills.png-c42a04111dff140497bfb6e7c49dd085.ctex"
+uid="uid://ne8ul6110gl"
+path="res://.godot/imported/seed_sprout_cover.png-4935806839fee81955146b44936b778c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hills.png"
-dest_files=["res://.godot/imported/hills.png-c42a04111dff140497bfb6e7c49dd085.ctex"]
+source_file="res://rooting/seed_sprout_cover.png"
+dest_files=["res://.godot/imported/seed_sprout_cover.png-4935806839fee81955146b44936b778c.ctex"]
 
 [params]
 

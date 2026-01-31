@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di510fmcccij5"
-path="res://.godot/imported/dirt_surface.png-f1b66fe5067b67a0019492da5c73101a.ctex"
+uid="uid://btyfaptwwurb5"
+path="res://.godot/imported/sun.png-7a9397cef69407fa1e22644f7bef1948.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dirt_surface.png"
-dest_files=["res://.godot/imported/dirt_surface.png-f1b66fe5067b67a0019492da5c73101a.ctex"]
+source_file="res://backdrop/sun.png"
+dest_files=["res://.godot/imported/sun.png-7a9397cef69407fa1e22644f7bef1948.ctex"]
 
 [params]
 

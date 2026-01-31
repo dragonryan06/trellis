@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh3k7vctrojla"
-path="res://.godot/imported/dirt_surface_2.png-a51efa37c8219ec400125345ad88314f.ctex"
+uid="uid://dkyja5sv2j55t"
+path="res://.godot/imported/test-dirt.png-730b99794a31431abb3f059e23452ad4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dirt_surface_2.png"
-dest_files=["res://.godot/imported/dirt_surface_2.png-a51efa37c8219ec400125345ad88314f.ctex"]
+source_file="res://backdrop/test-dirt.png"
+dest_files=["res://.godot/imported/test-dirt.png-730b99794a31431abb3f059e23452ad4.ctex"]
 
 [params]
 
