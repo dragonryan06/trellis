@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dgqsxm6vmlr5g"]
 
-[ext_resource type="Texture2D" uid="uid://crx3gigsc3i5i" path="res://rooting/seed_whole.png" id="1_kvdd2"]
-[ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://rooting/root.gd" id="2_kvdd2"]
-[ext_resource type="Texture2D" uid="uid://dq7oyd34ucsih" path="res://rooting/grow_handle.png" id="3_kvdd2"]
-[ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://rooting/handle_base.gd" id="3_ky63x"]
-[ext_resource type="Texture2D" uid="uid://bfqv4wk176lro" path="res://rooting/seed_root_cover.png" id="5_ky63x"]
-[ext_resource type="Texture2D" uid="uid://ne8ul6110gl" path="res://rooting/seed_sprout_cover.png" id="6_0u8kd"]
+[ext_resource type="Texture2D" uid="uid://crx3gigsc3i5i" path="res://plants/seed_whole.png" id="1_kvdd2"]
+[ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://growing/root.gd" id="2_kvdd2"]
+[ext_resource type="Texture2D" uid="uid://dq7oyd34ucsih" path="res://growing/ui/grow_handle.png" id="3_kvdd2"]
+[ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://growing/ui/handle_base.gd" id="3_ky63x"]
+[ext_resource type="Texture2D" uid="uid://bfqv4wk176lro" path="res://plants/seed_root_cover.png" id="5_ky63x"]
+[ext_resource type="Texture2D" uid="uid://ne8ul6110gl" path="res://plants/seed_sprout_cover.png" id="6_0u8kd"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
@@ -92,7 +92,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.9)
 
-[node name="RootSystem" type="Sprite2D" unique_id=435886559]
+[node name="PlayerCore" type="Sprite2D" unique_id=435886559]
 texture = ExtResource("1_kvdd2")
 
 [node name="Taproot" type="Line2D" parent="." unique_id=686598111]

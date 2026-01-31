@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfqv4wk176lro"
-path="res://.godot/imported/seed_root_cover.png-4766bafc1bb0bac3c8016df87f4d8fc8.ctex"
+uid="uid://crx3gigsc3i5i"
+path="res://.godot/imported/seed_whole.png-2b552f6e613b8dc97787009c14234baf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooting/seed_root_cover.png"
-dest_files=["res://.godot/imported/seed_root_cover.png-4766bafc1bb0bac3c8016df87f4d8fc8.ctex"]
+source_file="res://plants/seed_whole.png"
+dest_files=["res://.godot/imported/seed_whole.png-2b552f6e613b8dc97787009c14234baf.ctex"]
 
 [params]
 

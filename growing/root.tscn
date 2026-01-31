@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://0nt8blcx0ock"]
 
-[ext_resource type="Texture2D" uid="uid://dq7oyd34ucsih" path="res://rooting/grow_handle.png" id="1_q38kt"]
-[ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://rooting/root.gd" id="1_sl3re"]
-[ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://rooting/handle_base.gd" id="2_sl3re"]
+[ext_resource type="Texture2D" uid="uid://dq7oyd34ucsih" path="res://growing/ui/grow_handle.png" id="1_q38kt"]
+[ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://growing/root.gd" id="1_sl3re"]
+[ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://growing/ui/handle_base.gd" id="2_sl3re"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]

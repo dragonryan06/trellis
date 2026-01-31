@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwbgctga2c5iy"
-path="res://.godot/imported/branch_handle.png-59b45c37dcd1474049b16a5bc3a3ca32.ctex"
+uid="uid://dq7oyd34ucsih"
+path="res://.godot/imported/grow_handle.png-eb37729fbd91e6d7281535f01545809b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooting/branch_handle.png"
-dest_files=["res://.godot/imported/branch_handle.png-59b45c37dcd1474049b16a5bc3a3ca32.ctex"]
+source_file="res://growing/ui/grow_handle.png"
+dest_files=["res://.godot/imported/grow_handle.png-eb37729fbd91e6d7281535f01545809b.ctex"]
 
 [params]
 

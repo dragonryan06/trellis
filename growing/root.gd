@@ -2,7 +2,7 @@ class_name Root
 extends Line2D
 
 @onready
-var BranchHandleScene = preload("res://rooting/branch_handle.tscn")
+var BranchHandleScene = preload("res://growing/branch_handle.tscn")
 
 var root_tip_position: Vector2:
 	get:
@@ -29,7 +29,7 @@ func _on_next_turn() -> void:
 	for child in get_children():
 		if (!(child is BranchHandle and child.was_moved)):
 			continue
-		var branch = load("res://rooting/root.tscn").instantiate()
+		var branch = load("res://growing/root.tscn").instantiate()
 		branch.add_point(child.origin)
 		add_sibling(branch)
 		branch.grow_to(child.position)

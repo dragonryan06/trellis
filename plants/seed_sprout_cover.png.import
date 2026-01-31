@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ne8ul6110gl"
-path="res://.godot/imported/seed_sprout_cover.png-4935806839fee81955146b44936b778c.ctex"
+path="res://.godot/imported/seed_sprout_cover.png-7d3ae0d3eb4b8474f7ac837500bb9ce0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rooting/seed_sprout_cover.png"
-dest_files=["res://.godot/imported/seed_sprout_cover.png-4935806839fee81955146b44936b778c.ctex"]
+source_file="res://plants/seed_sprout_cover.png"
+dest_files=["res://.godot/imported/seed_sprout_cover.png-7d3ae0d3eb4b8474f7ac837500bb9ce0.ctex"]
 
 [params]
 

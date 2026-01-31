@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://gx6f3aenjsmp"]
 
-[ext_resource type="Script" uid="uid://rcwwhhi8or71" path="res://rooting/branch_handle.gd" id="1_fbet3"]
-[ext_resource type="Texture2D" uid="uid://bwbgctga2c5iy" path="res://rooting/branch_handle.png" id="1_jsup7"]
+[ext_resource type="Script" uid="uid://rcwwhhi8or71" path="res://growing/ui/branch_handle.gd" id="1_fbet3"]
+[ext_resource type="Texture2D" uid="uid://bwbgctga2c5iy" path="res://growing/ui/branch_handle.png" id="1_jsup7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbet3"]
 
