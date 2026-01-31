@@ -98,7 +98,7 @@ texture = ExtResource("4_cnaw2")
 position = Vector2(0, 128)
 script = ExtResource("3_dsnr4")
 
-[node name="RootSystem" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
+[node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
 
 [node name="Vignette" type="Sprite2D" parent="." unique_id=899710562]
 material = SubResource("ShaderMaterial_ivea3")
