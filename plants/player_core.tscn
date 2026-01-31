@@ -2,17 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://crx3gigsc3i5i" path="res://plants/seed_whole.png" id="1_kvdd2"]
 [ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://growing/root.gd" id="2_kvdd2"]
+[ext_resource type="Script" uid="uid://cesqwx18015de" path="res://growing/stem.gd" id="2_xyx62"]
 [ext_resource type="Texture2D" uid="uid://dq7oyd34ucsih" path="res://growing/ui/grow_handle.png" id="3_kvdd2"]
 [ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://growing/ui/handle_base.gd" id="3_ky63x"]
 [ext_resource type="Texture2D" uid="uid://bfqv4wk176lro" path="res://plants/seed_root_cover.png" id="5_ky63x"]
 [ext_resource type="Texture2D" uid="uid://ne8ul6110gl" path="res://plants/seed_sprout_cover.png" id="6_0u8kd"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50299394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.15730333), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_gy3sr"]
-colors = PackedColorArray(0.2, 0.14333335, 0, 1, 0.6, 0.43000004, 0, 1)
+colors = PackedColorArray(0.007843138, 0.5294118, 0, 1, 0.47966498, 0.69, 0.4761, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsw62"]
 
@@ -81,10 +82,95 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_sl3re"]
+[sub_resource type="Gradient" id="Gradient_ft56i"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ft56i"]
+gradient = SubResource("Gradient_ft56i")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.9)
+
+[sub_resource type="Curve" id="Curve_x5cou"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_gyadc"]
+colors = PackedColorArray(0.2, 0.14333335, 0, 1, 0.6, 0.43000004, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwewk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5ab6v"]
+light_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmkfa"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1w4d"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1l5k"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80nk5"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0842"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmer0"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(0, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4of86"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjrwy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmkfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1w4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1l5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80nk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0842")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmer0")
+}],
+"loop": true,
+"name": &"active",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4of86")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_sl3re"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbayi"]
 gradient = SubResource("Gradient_sl3re")
 width = 32
 height = 32
@@ -95,32 +181,60 @@ fill_to = Vector2(0.9, 0.9)
 [node name="PlayerCore" type="Sprite2D" unique_id=435886559]
 texture = ExtResource("1_kvdd2")
 
+[node name="Stem" type="Line2D" parent="." unique_id=171563387]
+points = PackedVector2Array(12, -26, 24, -48)
+width = 8.0
+width_curve = SubResource("Curve_gy3sr")
+default_color = Color(0.008833325, 0.53, 0, 1)
+gradient = SubResource("Gradient_gy3sr")
+joint_mode = 2
+end_cap_mode = 2
+round_precision = 16
+script = ExtResource("2_xyx62")
+metadata/_custom_type_script = "uid://cesqwx18015de"
+
+[node name="GrowthHandle" type="Area2D" parent="Stem" unique_id=2062171075]
+position = Vector2(24, -48)
+script = ExtResource("3_ky63x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stem/GrowthHandle" unique_id=2005075403]
+shape = SubResource("CircleShape2D_wsw62")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stem/GrowthHandle" unique_id=1741486146]
+material = SubResource("CanvasItemMaterial_q38kt")
+sprite_frames = SubResource("SpriteFrames_d8a3x")
+
+[node name="PointLight2D" type="PointLight2D" parent="Stem/GrowthHandle" unique_id=781616667]
+enabled = false
+color = Color(0, 1, 0.01666665, 1)
+texture = SubResource("GradientTexture2D_ft56i")
+
 [node name="Taproot" type="Line2D" parent="." unique_id=686598111]
 points = PackedVector2Array(-8, 24, 16, 64)
 width = 8.0
-width_curve = SubResource("Curve_gy3sr")
+width_curve = SubResource("Curve_x5cou")
 default_color = Color(0.53, 0.37983334, 0, 1)
-gradient = SubResource("Gradient_gy3sr")
+gradient = SubResource("Gradient_gyadc")
 joint_mode = 2
 end_cap_mode = 2
 round_precision = 16
 script = ExtResource("2_kvdd2")
 
-[node name="GrowthHandle" type="Area2D" parent="Taproot" unique_id=2062171075]
+[node name="GrowthHandle" type="Area2D" parent="Taproot" unique_id=1517133041]
 position = Vector2(16, 64)
 script = ExtResource("3_ky63x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Taproot/GrowthHandle" unique_id=2005075403]
-shape = SubResource("CircleShape2D_wsw62")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Taproot/GrowthHandle" unique_id=652007077]
+shape = SubResource("CircleShape2D_kwewk")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Taproot/GrowthHandle" unique_id=1741486146]
-material = SubResource("CanvasItemMaterial_q38kt")
-sprite_frames = SubResource("SpriteFrames_d8a3x")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Taproot/GrowthHandle" unique_id=1960426586]
+material = SubResource("CanvasItemMaterial_5ab6v")
+sprite_frames = SubResource("SpriteFrames_rjrwy")
 
-[node name="PointLight2D" type="PointLight2D" parent="Taproot/GrowthHandle" unique_id=781616667]
+[node name="PointLight2D" type="PointLight2D" parent="Taproot/GrowthHandle" unique_id=1451522860]
 enabled = false
 color = Color(0, 1, 0.01666665, 1)
-texture = SubResource("GradientTexture2D_ft56i")
+texture = SubResource("GradientTexture2D_rbayi")
 
 [node name="SeedRootCover" type="Sprite2D" parent="." unique_id=872298083]
 position = Vector2(-4, 33)
@@ -131,6 +245,9 @@ position = Vector2(-4, -46)
 texture = ExtResource("6_0u8kd")
 centered = false
 
+[connection signal="input_event" from="Stem/GrowthHandle" to="Stem/GrowthHandle" method="_on_input_event"]
+[connection signal="mouse_entered" from="Stem/GrowthHandle" to="Stem/GrowthHandle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Stem/GrowthHandle" to="Stem/GrowthHandle" method="_on_mouse_exited"]
 [connection signal="input_event" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_input_event"]
 [connection signal="mouse_entered" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_mouse_exited"]
