@@ -182,7 +182,7 @@ fill_to = Vector2(0.9, 0.9)
 texture = ExtResource("1_kvdd2")
 
 [node name="Stem" type="Line2D" parent="." unique_id=171563387]
-points = PackedVector2Array(12, -26, 24, -48)
+points = PackedVector2Array(12, -26, 16, -32)
 width = 8.0
 width_curve = SubResource("Curve_gy3sr")
 default_color = Color(0.008833325, 0.53, 0, 1)
@@ -194,7 +194,7 @@ script = ExtResource("2_xyx62")
 metadata/_custom_type_script = "uid://cesqwx18015de"
 
 [node name="GrowthHandle" type="Area2D" parent="Stem" unique_id=2062171075]
-position = Vector2(24, -48)
+position = Vector2(16, -32)
 script = ExtResource("3_ky63x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stem/GrowthHandle" unique_id=2005075403]
@@ -210,7 +210,7 @@ color = Color(0, 1, 0.01666665, 1)
 texture = SubResource("GradientTexture2D_ft56i")
 
 [node name="Taproot" type="Line2D" parent="." unique_id=686598111]
-points = PackedVector2Array(-8, 24, 16, 64)
+points = PackedVector2Array(-8, 24, 0, 32)
 width = 8.0
 width_curve = SubResource("Curve_x5cou")
 default_color = Color(0.53, 0.37983334, 0, 1)
@@ -221,7 +221,7 @@ round_precision = 16
 script = ExtResource("2_kvdd2")
 
 [node name="GrowthHandle" type="Area2D" parent="Taproot" unique_id=1517133041]
-position = Vector2(16, 64)
+position = Vector2(0, 32)
 script = ExtResource("3_ky63x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Taproot/GrowthHandle" unique_id=652007077]

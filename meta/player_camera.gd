@@ -4,6 +4,8 @@ const KEY_MOVE_MAX_VELOCITY := 500.0
 const KEY_MOVE_ACCELERATION := 25.0
 const KEY_MOVE_DAMPING := 1000.0
 
+var locked := false
+
 var dragging: bool:
 	get():
 		return dragging
@@ -21,12 +23,18 @@ var key_move_velocity: Vector2:
 		key_move_velocity = value.limit_length(KEY_MOVE_MAX_VELOCITY)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if (locked):
+		return
+	
 	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE):
 		dragging = event.is_pressed()
 	elif (dragging and event is InputEventMouseMotion):
 		position -= event.relative
 
 func _process(delta: float) -> void:
+	if (locked):
+		return
+	
 	if (Input.is_action_pressed(&"camera_pan_up")):
 		key_move_velocity += KEY_MOVE_ACCELERATION * Vector2.UP
 	if (Input.is_action_pressed(&"camera_pan_down")):

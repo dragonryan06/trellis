@@ -10,21 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dh3k7vctrojla" path="res://backdrop/dirt_surface_2.png" id="4_kt6p6"]
 [ext_resource type="Texture2D" uid="uid://c2xvty6q1f2dq" path="res://backdrop/dirt_surface_3.png" id="4_uu1iw"]
 [ext_resource type="Texture2D" uid="uid://bigjmp61udysq" path="res://backdrop/hills.png" id="5_4tg7h"]
-[ext_resource type="Shader" uid="uid://dbdnslk1ok0i2" path="res://backdrop/vignette.gdshader" id="9_5457m"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivea3"]
-shader = ExtResource("9_5457m")
-shader_parameter/alpha = 1.0
-shader_parameter/inner_radius = 0.535
-shader_parameter/outer_radius = 1.5
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_5457m"]
-fractal_octaves = 6
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ivea3"]
-width = 2304
-height = 1296
-noise = SubResource("FastNoiseLite_5457m")
 
 [node name="TestWorld" type="Node2D" unique_id=1425755023]
 script = ExtResource("1_1lwx6")
@@ -37,7 +22,7 @@ repeat_size = Vector2(1152, 0)
 repeat_times = 2
 
 [node name="DaySky" type="Sprite2D" parent="Backdrop/Sky" unique_id=517094088]
-position = Vector2(304, 192)
+position = Vector2(1395, 166)
 texture = ExtResource("3_lf0gk")
 
 [node name="Celestial" type="Parallax2D" parent="Backdrop" unique_id=1473716456]
@@ -95,20 +80,9 @@ position = Vector2(296, -32)
 texture = ExtResource("4_cnaw2")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=524478451]
-position = Vector2(0, 128)
 script = ExtResource("3_dsnr4")
 
 [node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
-
-[node name="Vignette" type="Sprite2D" parent="." unique_id=899710562]
-material = SubResource("ShaderMaterial_ivea3")
-texture = SubResource("NoiseTexture2D_ivea3")
-
-[node name="Polygon2D" type="Polygon2D" parent="Vignette" unique_id=1759154550]
-color = Color(0, 0, 0, 1)
-invert_enabled = true
-invert_border = 1024.0
-polygon = PackedVector2Array(-1152, 648, -1152, -648, 1152, -648, 1152, 648)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
 

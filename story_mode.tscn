@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://btmja0llhdwdq"]
+
+[ext_resource type="Script" uid="uid://brcd4fbs5row2" path="res://story_mode.gd" id="1_w5sv0"]
+[ext_resource type="Texture2D" uid="uid://cmxnj3c8a1xvt" path="res://backdrop/sky.png" id="1_w257u"]
+[ext_resource type="Texture2D" uid="uid://btyfaptwwurb5" path="res://backdrop/sun.png" id="2_ien35"]
+[ext_resource type="Texture2D" uid="uid://bigjmp61udysq" path="res://backdrop/hills.png" id="3_n35gv"]
+[ext_resource type="Texture2D" uid="uid://c2xvty6q1f2dq" path="res://backdrop/dirt_surface_3.png" id="4_ilrng"]
+[ext_resource type="Texture2D" uid="uid://dh3k7vctrojla" path="res://backdrop/dirt_surface_2.png" id="5_w5sv0"]
+[ext_resource type="Texture2D" uid="uid://dkyja5sv2j55t" path="res://backdrop/test-dirt.png" id="6_q7dcy"]
+[ext_resource type="Texture2D" uid="uid://di510fmcccij5" path="res://backdrop/dirt_surface.png" id="7_mfdh4"]
+[ext_resource type="Script" uid="uid://b31wlpyc00bk6" path="res://meta/player_camera.gd" id="8_ilrng"]
+[ext_resource type="PackedScene" uid="uid://dgqsxm6vmlr5g" path="res://plants/player_core.tscn" id="9_w5sv0"]
+[ext_resource type="Shader" uid="uid://dbdnslk1ok0i2" path="res://backdrop/vignette.gdshader" id="10_q7dcy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfdh4"]
+shader = ExtResource("10_q7dcy")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = -3.0
+shader_parameter/outer_radius = 0.0
+
+[sub_resource type="Animation" id="Animation_5457m"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-3, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/outer_radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_jvck6"]
+resource_name = "initial_loop"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0, 0),
+"points": PackedFloat32Array(-3, -0.25, 0, 0.1, 0.005522728, -3, -0.5666667, -0.18463892, 0.43333334, 0.14119445, -1.045, -1.2383904, 0.7889951, 0.16666667, 0, -3, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 3.0666666, 6, 8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/outer_radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.2, 0.027896551, 0.1, -0.099999905, -0.15316299, 0, 0, 0, -0.0673399, 0.09212064, 0, 0),
+"times": PackedFloat32Array(0, 4, 8)
+}
+
+[sub_resource type="Animation" id="Animation_ivea3"]
+resource_name = "game_start"
+length = 6.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 0, 2),
+"points": PackedFloat32Array(-3, -0.25, 0, 0.25, 0, -2.4794805, -0.31111112, -0.21753219, 0.5222222, 0.3651433, -0.100688785, -0.082119435, -0.47841766, 0.04630375, 0.26975992, 0.50422734, 0, 0, 0, 0, 0.75, -0.16666667, -0.04096211, 0, 0),
+"times": PackedFloat32Array(0, 2.8, 4.4, 5, 6)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/outer_radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2, 2, 2, 2),
+"points": PackedFloat32Array(0, 0, 0, 0.33333334, 0, 0.07915115, -0.23333335, 0.30245802, 0.18604577, -0.24116156, 0.25081658, -0.21666667, -0.00987456, 0.41111112, 0.018736346, 0.25081658, -0.3277778, -0.0054496927, 0, 0, 0.33, -0.16666667, -0.013197239, 0, 0),
+"times": PackedFloat32Array(0, 1.2333333, 2.7666667, 5, 6)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vmgwr"]
+_data = {
+&"RESET": SubResource("Animation_5457m"),
+&"initial_loop": SubResource("Animation_jvck6"),
+&"wake_up": SubResource("Animation_ivea3")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w5sv0"]
+radius = 28.777784
+height = 109.414024
+
+[node name="StoryMode" type="Node2D" unique_id=625761473]
+script = ExtResource("1_w5sv0")
+
+[node name="Backdrop" type="Node2D" parent="." unique_id=2124302673]
+
+[node name="Sky" type="Parallax2D" parent="Backdrop" unique_id=2053441996]
+scroll_offset = Vector2(56, -816)
+repeat_size = Vector2(1152, 0)
+repeat_times = 2
+
+[node name="DaySky" type="Sprite2D" parent="Backdrop/Sky" unique_id=1832665248]
+position = Vector2(1395, 166)
+texture = ExtResource("1_w257u")
+
+[node name="Celestial" type="Parallax2D" parent="Backdrop" unique_id=1074943658]
+scroll_scale = Vector2(0, 0)
+
+[node name="Sun" type="Sprite2D" parent="Backdrop/Celestial" unique_id=93905477]
+position = Vector2(64, 56)
+texture = ExtResource("2_ien35")
+
+[node name="SurfaceBack" type="Parallax2D" parent="Backdrop" unique_id=278450385]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(0, 32)
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="Hills" type="Sprite2D" parent="Backdrop/SurfaceBack" unique_id=59908908]
+position = Vector2(296, -64)
+texture = ExtResource("3_n35gv")
+
+[node name="SurfaceMiddle1" type="Parallax2D" parent="Backdrop" unique_id=413234498]
+scroll_scale = Vector2(0.75, 0.75)
+scroll_offset = Vector2(128, 24)
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="DirtSurface3" type="Sprite2D" parent="Backdrop/SurfaceMiddle1" unique_id=195391739]
+position = Vector2(296, -64)
+texture = ExtResource("4_ilrng")
+
+[node name="SurfaceMiddle2" type="Parallax2D" parent="Backdrop" unique_id=2105341113]
+scroll_scale = Vector2(0.9, 0.9)
+scroll_offset = Vector2(0, 32)
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="DirtSurface2" type="Sprite2D" parent="Backdrop/SurfaceMiddle2" unique_id=1848310164]
+position = Vector2(296, -64)
+texture = ExtResource("5_w5sv0")
+
+[node name="Subsoil" type="Parallax2D" parent="Backdrop" unique_id=870141642]
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="TestDirt" type="Sprite2D" parent="Backdrop/Subsoil" unique_id=595497285]
+texture_repeat = 2
+position = Vector2(296, 192)
+texture = ExtResource("6_q7dcy")
+
+[node name="SurfaceFront" type="Parallax2D" parent="Backdrop" unique_id=147186482]
+repeat_size = Vector2(128, 0)
+repeat_times = 6
+
+[node name="DirtSurface" type="Sprite2D" parent="Backdrop/SurfaceFront" unique_id=370893966]
+position = Vector2(296, -32)
+texture = ExtResource("7_mfdh4")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1966599484]
+script = ExtResource("8_ilrng")
+
+[node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("9_w5sv0")]
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=583866795]
+material = SubResource("ShaderMaterial_mfdh4")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1152.0
+offset_top = -648.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+color = Color(1, 0, 1, 1)
+
+[node name="OuterBuffer" type="Polygon2D" parent="Vignette" unique_id=1566366889]
+color = Color(0, 0, 0, 1)
+invert_enabled = true
+invert_border = 512.0
+polygon = PackedVector2Array(0, 0, 2304, 0, 2304, 1296, 0, 1296)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Vignette" unique_id=337301874]
+libraries/ = SubResource("AnimationLibrary_vmgwr")
+autoplay = &"initial_loop"
+
+[node name="WakeUpClickArea" type="Area2D" parent="." unique_id=1013320738]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WakeUpClickArea" unique_id=360403252]
+rotation = 0.3228859
+shape = SubResource("CapsuleShape2D_w5sv0")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1632697337]
+
+[node name="Next Turn" type="Button" parent="HUD" unique_id=2031954349]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7, 0, 0.7, 1)
+theme_override_colors/font_pressed_color = Color(0.2, 0, 0.2, 1)
+theme_override_colors/font_hover_color = Color(0.69803923, 0, 0.69803923, 1)
+theme_override_font_sizes/font_size = 10
+text = "Next"
+
+[connection signal="input_event" from="WakeUpClickArea" to="." method="_on_wake_up_click_area_input_event"]
+[connection signal="pressed" from="HUD/Next Turn" to="." method="_on_next_turn_pressed"]
