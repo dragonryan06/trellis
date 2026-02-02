@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://growing/ui/handle_base.gd" id="3_ky63x"]
 [ext_resource type="Texture2D" uid="uid://bfqv4wk176lro" path="res://plants/seed_root_cover.png" id="5_ky63x"]
 [ext_resource type="Texture2D" uid="uid://ne8ul6110gl" path="res://plants/seed_sprout_cover.png" id="6_0u8kd"]
+[ext_resource type="Texture2D" uid="uid://drr0b5v5v8f2r" path="res://growing/dirt_crumbles.png" id="6_x5cou"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50299394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.15730333), 0.0, 0.0, 0, 0]
@@ -248,6 +249,30 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.9)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x5cou"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_gyadc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1478261, 1), 0.0, 0.0, 0, 0, Vector2(0.7478261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_kwewk"]
+curve = SubResource("Curve_gyadc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gyadc"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 5.0
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kwewk")
+anim_offset_max = 1.0
+
 [node name="PlayerCore" type="Sprite2D" unique_id=435886559]
 texture = ExtResource("1_kvdd2")
 
@@ -307,6 +332,15 @@ animation = &"invalid"
 enabled = false
 color = Color(0, 1, 0.01666665, 1)
 texture = SubResource("GradientTexture2D_rbayi")
+
+[node name="DirtParticles" type="GPUParticles2D" parent="Taproot" unique_id=975280585]
+material = SubResource("CanvasItemMaterial_x5cou")
+emitting = false
+amount = 64
+texture = ExtResource("6_x5cou")
+lifetime = 8.0
+speed_scale = 5.0
+process_material = SubResource("ParticleProcessMaterial_gyadc")
 
 [node name="SeedRootCover" type="Sprite2D" parent="." unique_id=872298083]
 position = Vector2(-4, 33)

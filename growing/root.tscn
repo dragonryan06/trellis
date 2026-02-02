@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dq7oyd34ucsih" path="res://growing/ui/grow_handle.png" id="1_q38kt"]
 [ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://growing/root.gd" id="1_sl3re"]
 [ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://growing/ui/handle_base.gd" id="2_sl3re"]
+[ext_resource type="Texture2D" uid="uid://drr0b5v5v8f2r" path="res://growing/dirt_crumbles.png" id="4_441om"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
@@ -136,6 +137,30 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.9)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_441om"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_t6j0r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1478261, 1), 0.0, 0.0, 0, 0, Vector2(0.7478261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_kwewk"]
+curve = SubResource("Curve_t6j0r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ff14e"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 5.0
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kwewk")
+anim_offset_max = 1.0
+
 [node name="Root" type="Line2D" unique_id=49831813]
 show_behind_parent = true
 width = 8.0
@@ -162,6 +187,15 @@ sprite_frames = SubResource("SpriteFrames_d8a3x")
 enabled = false
 color = Color(0, 1, 0.01666665, 1)
 texture = SubResource("GradientTexture2D_ft56i")
+
+[node name="DirtParticles" type="GPUParticles2D" parent="." unique_id=930172455]
+material = SubResource("CanvasItemMaterial_441om")
+emitting = false
+amount = 64
+texture = ExtResource("4_441om")
+lifetime = 8.0
+speed_scale = 5.0
+process_material = SubResource("ParticleProcessMaterial_ff14e")
 
 [connection signal="input_event" from="GrowthHandle" to="GrowthHandle" method="_on_input_event"]
 [connection signal="mouse_entered" from="GrowthHandle" to="GrowthHandle" method="_on_mouse_entered"]

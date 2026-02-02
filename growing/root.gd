@@ -4,6 +4,13 @@ extends GrowableLineBase
 @onready
 var BranchHandleScene = preload("res://growing/ui/branch_handle.tscn")
 
+func grow_to(location: Vector2) -> void:
+	super.grow_to(location)
+	$DirtParticles.emitting = true
+	var tween = get_tree().create_tween()
+	tween.tween_property($DirtParticles, ^"position", location, 1.0)
+	tween.tween_callback($DirtParticles.set.bind(&"emitting", false))
+
 func _on_next_turn() -> void:
 	super._on_next_turn()
 	
@@ -20,3 +27,8 @@ func _on_next_turn() -> void:
 		var new_handle = BranchHandleScene.instantiate()
 		new_handle.position = points[len(points) - 2]
 		add_child(new_handle)
+
+func _ready() -> void:
+	super._ready()
+	
+	$DirtParticles.position = endpoint_position
