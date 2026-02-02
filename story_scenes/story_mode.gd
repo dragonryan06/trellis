@@ -9,6 +9,12 @@ func _ready() -> void:
 	seed_wiggle_tween = get_tree().create_tween().set_loops().set_trans(Tween.TRANS_SINE)
 	seed_wiggle_tween.tween_property($PlayerCore, ^"rotation", 0.1, 1.0)
 	seed_wiggle_tween.tween_property($PlayerCore, ^"rotation", -0.1, 2.0)
+	$Vignette/AnimationPlayer.play(&"blackout")
+	$HUD/StartupMovie.play()
+	
+	await $HUD/StartupMovie.finished
+	
+	$Vignette/AnimationPlayer.play(&"initial_loop")
 
 func wake_up_effect() -> void:
 	$WakeUpClickArea.queue_free()

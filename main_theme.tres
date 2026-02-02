@@ -49,3 +49,5 @@ Button/styles/hover = SubResource("StyleBoxFlat_470mv")
 Button/styles/normal = SubResource("StyleBoxFlat_gsqoc")
 Button/styles/normal_mirrored = null
 Button/styles/pressed = SubResource("StyleBoxFlat_a2l2q")
+Label/font_sizes/font_size = 10
+RichTextLabel/font_sizes/normal_font_size = 10

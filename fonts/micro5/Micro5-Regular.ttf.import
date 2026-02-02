@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://chrvuod120ci2"
-path="res://.godot/imported/serif_pixel-7.ttf-6108880049f80bd346aca6ab3fac7a98.fontdata"
+uid="uid://hcp0y0wmjhs0"
+path="res://.godot/imported/Micro5-Regular.ttf-25cf6df4693e368c6d9cceb4649fb9fb.fontdata"
 
 [deps]
 
-source_file="res://fonts/serif_pixel-7.ttf"
-dest_files=["res://.godot/imported/serif_pixel-7.ttf-6108880049f80bd346aca6ab3fac7a98.fontdata"]
+source_file="res://fonts/micro5/Micro5-Regular.ttf"
+dest_files=["res://.godot/imported/Micro5-Regular.ttf-25cf6df4693e368c6d9cceb4649fb9fb.fontdata"]
 
 [params]
 
@@ -30,13 +30,7 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=true
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-&"size": Vector2i(10, 0),
-&"variation_embolden": 0.0
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}

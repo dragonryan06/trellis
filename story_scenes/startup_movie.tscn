@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://c37iygpjpjrj1"]
+
+[ext_resource type="Script" uid="uid://ha8rhbaqy1ey" path="res://story_scenes/startup_movie.gd" id="1_wyb0r"]
+
+[node name="StartupMovie" type="Control" unique_id=110414407]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wyb0r")
+
+[node name="Message1" type="RichTextLabel" parent="." unique_id=577314040]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.6725
+offset_top = -48.0
+offset_right = 85.6725
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "With a thundering [shake]crack[/shake], a branch found itself freed from the tree of life."
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Message2" type="RichTextLabel" parent="." unique_id=1504168405]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.672485
+offset_top = -48.0
+offset_right = 85.672485
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Down and down it fell, in silhouette against the unfeeling fractals of constellations curving, bowing..."
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Message3" type="RichTextLabel" parent="." unique_id=606712682]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.672485
+offset_top = -48.0
+offset_right = 85.672485
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "...to a new form, a form you now find yourself to hold- back to the infinity before and front to the newness of  [wave]sensation[/wave]"
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Message4" type="RichTextLabel" parent="." unique_id=256628027]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.672485
+offset_top = -48.0
+offset_right = 85.672485
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "By the leaves of [color=dark_orange]Helia[/color] and the flowers of [color=dark_violet]Selene[/color], root yourself here, child. This is good earth. Form yourself wisely, and in soft rains may you grow beyond regret."
+scroll_active = false
+vertical_alignment = 1
