@@ -4,6 +4,7 @@ var seed_wiggle_tween: Tween
 
 func _ready() -> void:
 	$PlayerCamera.locked = true
+	$HUD/NextTurn.hide()
 	$PlayerCore/Stem/GrowthHandle.hide()
 	$PlayerCore/Taproot/GrowthHandle.hide()
 	seed_wiggle_tween = get_tree().create_tween().set_loops().set_trans(Tween.TRANS_SINE)
@@ -19,7 +20,7 @@ func _ready() -> void:
 func wake_up_effect() -> void:
 	$WakeUpClickArea.queue_free()
 	seed_wiggle_tween.kill()
-	$Vignette/AnimationPlayer.play(&"wake_up")
+	$Vignette/AnimationPlayer.play(&"wake_up", 1.0)
 	
 	var stem = $PlayerCore/Stem
 	var taproot = $PlayerCore/Taproot
@@ -33,6 +34,7 @@ func wake_up_effect() -> void:
 	stem.get_node(^"GrowthHandle").position = stem.endpoint_position
 	taproot.get_node(^"GrowthHandle").show()
 	taproot.get_node(^"GrowthHandle").position = taproot.endpoint_position
+	$HUD/NextTurn.show()
 	$PlayerCamera.locked = false
 
 func _on_next_turn_pressed() -> void:

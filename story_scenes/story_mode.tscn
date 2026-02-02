@@ -244,7 +244,7 @@ shape = SubResource("CapsuleShape2D_w5sv0")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1632697337]
 
-[node name="Next Turn" type="Button" parent="HUD" unique_id=2031954349]
+[node name="NextTurn" type="Button" parent="HUD" unique_id=2031954349]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -263,4 +263,4 @@ text = "Next"
 [node name="StartupMovie" parent="HUD" unique_id=110414407 instance=ExtResource("12_agbrk")]
 
 [connection signal="input_event" from="WakeUpClickArea" to="." method="_on_wake_up_click_area_input_event"]
-[connection signal="pressed" from="HUD/Next Turn" to="." method="_on_next_turn_pressed"]
+[connection signal="pressed" from="HUD/NextTurn" to="." method="_on_next_turn_pressed"]
