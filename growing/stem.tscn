@@ -44,6 +44,30 @@ region = Rect2(0, 16, 8, 8)
 atlas = ExtResource("3_sjfrf")
 region = Rect2(0, 0, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7ccv"]
+atlas = ExtResource("3_sjfrf")
+region = Rect2(8, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibkcw"]
+atlas = ExtResource("3_sjfrf")
+region = Rect2(16, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjfrf"]
+atlas = ExtResource("3_sjfrf")
+region = Rect2(0, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw23e"]
+atlas = ExtResource("3_sjfrf")
+region = Rect2(8, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktk31"]
+atlas = ExtResource("3_sjfrf")
+region = Rect2(16, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4leh"]
+atlas = ExtResource("3_sjfrf")
+region = Rect2(0, 32, 8, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_d8a3x"]
 animations = [{
 "frames": [{
@@ -75,6 +99,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ccv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibkcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjfrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw23e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktk31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4leh")
+}],
+"loop": true,
+"name": &"invalid",
 "speed": 6.0
 }]
 
@@ -110,6 +157,7 @@ shape = SubResource("CircleShape2D_wsw62")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GrowthHandle" unique_id=1741486146]
 material = SubResource("CanvasItemMaterial_q38kt")
 sprite_frames = SubResource("SpriteFrames_d8a3x")
+frame_progress = 0.2767171
 
 [node name="PointLight2D" type="PointLight2D" parent="GrowthHandle" unique_id=781616667]
 enabled = false

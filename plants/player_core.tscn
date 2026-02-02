@@ -48,6 +48,30 @@ region = Rect2(0, 16, 8, 8)
 atlas = ExtResource("3_kvdd2")
 region = Rect2(0, 0, 8, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7ccv"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(8, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibkcw"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(16, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjfrf"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(0, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw23e"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(8, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktk31"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(16, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4leh"]
+atlas = ExtResource("3_kvdd2")
+region = Rect2(0, 32, 8, 8)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_d8a3x"]
 animations = [{
 "frames": [{
@@ -79,6 +103,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ccv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibkcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjfrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw23e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktk31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4leh")
+}],
+"loop": true,
+"name": &"invalid",
 "speed": 6.0
 }]
 
@@ -165,6 +212,29 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ccv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibkcw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjfrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw23e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktk31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4leh")
+}],
+"loop": true,
+"name": &"invalid",
+"speed": 6.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_sl3re"]
@@ -203,6 +273,7 @@ shape = SubResource("CircleShape2D_wsw62")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stem/GrowthHandle" unique_id=1741486146]
 material = SubResource("CanvasItemMaterial_q38kt")
 sprite_frames = SubResource("SpriteFrames_d8a3x")
+animation = &"invalid"
 
 [node name="PointLight2D" type="PointLight2D" parent="Stem/GrowthHandle" unique_id=781616667]
 enabled = false
@@ -230,6 +301,7 @@ shape = SubResource("CircleShape2D_kwewk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Taproot/GrowthHandle" unique_id=1960426586]
 material = SubResource("CanvasItemMaterial_5ab6v")
 sprite_frames = SubResource("SpriteFrames_rjrwy")
+animation = &"invalid"
 
 [node name="PointLight2D" type="PointLight2D" parent="Taproot/GrowthHandle" unique_id=1451522860]
 enabled = false

@@ -86,7 +86,7 @@ script = ExtResource("3_dsnr4")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
 
-[node name="Next Turn" type="Button" parent="HUD" unique_id=563725011]
+[node name="NextTurn" type="Button" parent="HUD" unique_id=563725011]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -102,4 +102,4 @@ theme_override_colors/font_hover_color = Color(0.69803923, 0, 0.69803923, 1)
 theme_override_font_sizes/font_size = 10
 text = "Next"
 
-[connection signal="pressed" from="HUD/Next Turn" to="." method="_on_next_turn_pressed"]
+[connection signal="pressed" from="HUD/NextTurn" to="." method="_on_next_turn_pressed"]

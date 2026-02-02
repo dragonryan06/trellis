@@ -1,9 +1,27 @@
 class_name HandleBase
 extends Area2D
 
-const MAX_DISPLACEMENT = 64.0
+const MAX_DISPLACEMENT := 64.0
+const INVALID_COLOR := Color("#ff0000")
+const VALID_COLOR := Color("#00ff00")
 
 var was_moved := false
+
+var invalid := false:
+	get:
+		return invalid
+	set(value):
+		invalid = value
+		
+		if (invalid):
+			GameState.hold(self)
+			$PointLight2D.color = INVALID_COLOR
+			$AnimatedSprite2D.play(&"invalid")
+		else:
+			GameState.release_hold(self)
+			$PointLight2D.color = VALID_COLOR
+			# Surely the only way it can become valid again is if the mouse is over it actively.
+			$AnimatedSprite2D.play(&"active")
 
 var mouse_hover := false:
 	get:
@@ -15,6 +33,9 @@ var mouse_hover := false:
 			return
 		
 		$PointLight2D.enabled = mouse_hover
+		
+		if (invalid):
+			return
 		
 		if (mouse_hover):
 			$AnimatedSprite2D.play(&"active")
@@ -31,7 +52,7 @@ var mouse_drag := false:
 		mouse_drag = value
 		was_moved = true
 		
-		if (!mouse_hover and !mouse_drag):
+		if (!mouse_hover and !mouse_drag and !invalid):
 			$PointLight2D.enabled = false
 			$AnimatedSprite2D.play(&"default")
 
@@ -51,13 +72,18 @@ func _process(_delta: float) -> void:
 	if (!mouse_drag):
 		return
 	
-	position = get_parent().get_local_mouse_position()
+	var parent = get_parent() as GrowableLineBase
+	assert(parent != null, "HandleBase must be child of GrowableLineBase!")
+	
+	position = parent.get_local_mouse_position()
 	displacement = position - origin
 	
 	if (displacement.length() > MAX_DISPLACEMENT):
 		var clamped_displacement = displacement.limit_length(MAX_DISPLACEMENT)
 		position -= displacement - clamped_displacement
 		displacement = clamped_displacement
+	
+	invalid = displacement.dot(parent.previous_displacement) <= 0
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (!(event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT)):

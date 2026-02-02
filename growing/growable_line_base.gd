@@ -7,6 +7,10 @@ var endpoint_position: Vector2:
 	set(value):
 		points[-1] = value
 
+var previous_displacement: Vector2:
+	get:
+		return points[-1] - points[-2]
+
 func grow_to(location: Vector2) -> void:
 	assert(is_inside_tree(), "Must be inside tree!")
 	add_point(endpoint_position)

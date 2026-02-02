@@ -39,6 +39,30 @@ region = Rect2(0, 22, 11, 11)
 atlas = ExtResource("1_jsup7")
 region = Rect2(0, 0, 11, 11)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dycm2"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(11, 22, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ka4u"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(22, 22, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6y50y"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(0, 33, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60o1q"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(11, 33, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt3hi"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(22, 33, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb2g8"]
+atlas = ExtResource("1_jsup7")
+region = Rect2(0, 44, 11, 11)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_s02dw"]
 animations = [{
 "frames": [{
@@ -71,6 +95,29 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dycm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ka4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6y50y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60o1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt3hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb2g8")
+}],
+"loop": true,
+"name": &"invalid",
+"speed": 6.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_sl3re"]
@@ -98,8 +145,8 @@ shape = SubResource("CircleShape2D_l86wc")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1457392358]
 material = SubResource("CanvasItemMaterial_q38kt")
 sprite_frames = SubResource("SpriteFrames_s02dw")
+animation = &"invalid"
 autoplay = "active"
-frame_progress = 0.04691015
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=410855301]
 enabled = false
