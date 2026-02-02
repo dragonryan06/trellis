@@ -93,10 +93,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		mouse_drag = false
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if (!(event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT)):
+	if (!(event is InputEventMouseButton)):
 		return
 	
-	mouse_drag = event.is_pressed()
+	match (event.button_index):
+		MOUSE_BUTTON_LEFT:
+			mouse_drag = event.is_pressed()
+		MOUSE_BUTTON_RIGHT when event.is_pressed():
+			position = origin
+			displacement = Vector2.ZERO
+			invalid = false
+			was_moved = false
 
 func _on_mouse_entered() -> void:
 	mouse_hover = true
