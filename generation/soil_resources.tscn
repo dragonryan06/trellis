@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://is0paf2w24vv"]
+
+[ext_resource type="Script" uid="uid://b37sy0e12uf3s" path="res://generation/soil_resources.gd" id="1_umswf"]
+[ext_resource type="Script" uid="uid://b31wlpyc00bk6" path="res://meta/player_camera.gd" id="2_obntx"]
+
+[node name="SoilResources" type="Node2D" unique_id=1074567782]
+script = ExtResource("1_umswf")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1110551286]
+script = ExtResource("2_obntx")

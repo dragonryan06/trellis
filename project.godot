@@ -18,6 +18,7 @@ config/icon="uid://c62mlv2o0ndlw"
 [autoload]
 
 GameState="*uid://qsji6mfua05b"
+RandomHelper="*uid://bfqads2and2tn"
 
 [display]
 
