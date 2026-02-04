@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dh3k7vctrojla" path="res://backdrop/dirt_surface_2.png" id="4_kt6p6"]
 [ext_resource type="Texture2D" uid="uid://c2xvty6q1f2dq" path="res://backdrop/dirt_surface_3.png" id="4_uu1iw"]
 [ext_resource type="Texture2D" uid="uid://bigjmp61udysq" path="res://backdrop/hills.png" id="5_4tg7h"]
+[ext_resource type="PackedScene" uid="uid://is0paf2w24vv" path="res://generation/soil_resources.tscn" id="11_5457m"]
 
 [node name="TestWorld" type="Node2D" unique_id=1425755023]
 script = ExtResource("1_1lwx6")
@@ -81,6 +82,8 @@ texture = ExtResource("4_cnaw2")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=524478451]
 script = ExtResource("3_dsnr4")
+
+[node name="SoilResources" parent="." unique_id=1074567782 instance=ExtResource("11_5457m")]
 
 [node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
 
