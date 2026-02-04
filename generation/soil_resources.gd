@@ -19,10 +19,10 @@ const SEED_WEIGHTS: Dictionary[String, float] = {
 
 func _ready() -> void:
 	var sprite = Sprite2D.new()
-	sprite.texture = ImageTexture.create_from_image(_generate_voronoi_regions())
+	sprite.texture = ImageTexture.create_from_image(_generate_resources())
 	add_child(sprite)
 
-func _generate_voronoi_regions() -> Image:
+func _generate_resources() -> Image:
 	var image := Image.create(IMAGE_DIM.x, IMAGE_DIM.y, false, Image.FORMAT_RGBA8) # format doesn't necessarily have to be this internally
 	var seeds: Dictionary[Vector2i, String]
 	@warning_ignore("integer_division")
@@ -36,6 +36,10 @@ func _generate_voronoi_regions() -> Image:
 				randi_range(y * chunk_size.y, y * chunk_size.y + chunk_size.y)
 			)] = voronoi_seed
 	
+	var noise = FastNoiseLite.new()
+	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	noise.frequency = 0.005
+	
 	# It's technically only necessary to check this chunk and its neighbors, come back and fix this once its working.
 	for y in range(IMAGE_DIM.y):
 		for x in range(IMAGE_DIM.x):
@@ -48,6 +52,10 @@ func _generate_voronoi_regions() -> Image:
 					nearest_distance = dist
 					nearest = seeds[voronoi_seed]
 			
-			image.set_pixel(x, y, VORONOI_SEEDS[nearest])
+			image.set_pixel(x, y, Color(
+				VORONOI_SEEDS[nearest].r,
+				VORONOI_SEEDS[nearest].g,
+				VORONOI_SEEDS[nearest].b,
+				VORONOI_SEEDS[nearest].a * snapped(noise.get_noise_2d(x,y) + 0.75, 0.25)))
 	
 	return image
