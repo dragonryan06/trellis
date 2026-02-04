@@ -54,11 +54,18 @@ func _generate_resources() -> Image:
 		for x in range(IMAGE_DIM.x):
 			var vein = _get_containing_resource_vein(Vector2i(x, y))
 			
+			if (vein.type == "nothing"):
+				image.set_pixel(x, y, vein.color)
+				continue
+			
+			var richness = snapped(noise.get_noise_2d(x,y) + 0.75, 0.25)
+			
+			vein.volume += int(round(4 * richness))
 			image.set_pixel(x, y, Color(
 				vein.color.r,
 				vein.color.g,
 				vein.color.b,
-				vein.color.a * snapped(noise.get_noise_2d(x,y) + 0.75, 0.25)))
+				vein.color.a * richness))
 	
 	print("...done (%.2fs)" % (Time.get_unix_time_from_system() - t_start))
 	
