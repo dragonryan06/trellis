@@ -2,39 +2,22 @@ extends Node2D
 
 const IMAGE_DIM := Vector2i(1024, 512)
 const GRID_DIM := Vector2i(8, 8)
-const RESOURCE_TYPES: Dictionary[String, Color] = {
-	"nothing" : Color("transparent"),
-	"water" : Color("blue"),
-	"ichor" : Color("green"),
-	"phosphor" : Color("red"),
-	"ambrose" : Color("orange")
-}
-const RESOURCE_WEIGHTS: Dictionary[String, float] = {
-	"nothing" : 0.75, 
-	"water" : 0.0625, 
-	"ichor" : 0.0625,
-	"phosphor" : 0.0625,
-	"ambrose" : 0.0625
-}
 
-## Every "chunk" spawns one voronoi seed, which later becomes a resource node.
-## To find what resource node you lie in the voronoi region of, first find the
+## Every "chunk" spawns one voronoi seed, which later becomes a resource vein.
+## To find what resource vein you lie in the voronoi region of, first find the
 ## chunk you're in, and then compare distances of that chunk's and each of its
-## neighbors' nodes with your position.
+## neighbors' veins with your position.
 
-# Pairing of chunk position to node (voronoi seed) position
-var _chunks: Dictionary[Vector2i, Vector2i]
-
-# Pairing of node (voronoi seed) position to resource type
-var _resource_nodes: Dictionary[Vector2i, String]
+# Key should be a chunk position
+var _resource_veins: Dictionary[Vector2i, ResourceVein]
 
 var _resource_data: Image
 
-func get_resource_at(local_pos: Vector2) -> String:
+func get_resource_at(local_pos: Vector2) -> ResourceVein:
 	if (local_pos.x < 0 or local_pos.x > IMAGE_DIM.x or local_pos.y < 0 or local_pos.y > IMAGE_DIM.y):
-		return "nothing"
+		return null
 	
-	return _get_nearest_resource_node(local_pos)
+	return _get_containing_resource_vein(local_pos)
 
 func _process(_delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
@@ -55,60 +38,59 @@ func _generate_resources() -> Image:
 	
 	for y in range(GRID_DIM.y):
 		for x in range(GRID_DIM.x):
-			var resource = RandomHelper.get_weighted_random_key(RESOURCE_WEIGHTS)
-			var location = Vector2i(
+			var vein = ResourceVein.new()
+			vein.type = RandomHelper.get_weighted_random_key(ResourceVein.WEIGHT_TABLE)
+			vein.position = Vector2i(
 				randi_range(x * chunk_size.x, x * chunk_size.x + chunk_size.x),
 				randi_range(y * chunk_size.y, y * chunk_size.y + chunk_size.y)
 			)
-			_chunks[Vector2i(x, y)] = location
-			_resource_nodes[location] = resource
+			_resource_veins[Vector2i(x, y)] = vein
 	
 	var noise = FastNoiseLite.new()
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.frequency = 0.005
 	
-	# It's technically only necessary to check this chunk and its neighbors, come back and fix this once its working.
 	for y in range(IMAGE_DIM.y):
 		for x in range(IMAGE_DIM.x):
-			var nearest = _get_nearest_resource_node(Vector2i(x, y))
+			var vein = _get_containing_resource_vein(Vector2i(x, y))
 			
 			image.set_pixel(x, y, Color(
-				RESOURCE_TYPES[nearest].r,
-				RESOURCE_TYPES[nearest].g,
-				RESOURCE_TYPES[nearest].b,
-				RESOURCE_TYPES[nearest].a * snapped(noise.get_noise_2d(x,y) + 0.75, 0.25)))
+				vein.color.r,
+				vein.color.g,
+				vein.color.b,
+				vein.color.a * snapped(noise.get_noise_2d(x,y) + 0.75, 0.25)))
 	
 	print("...done (%.2fs)" % (Time.get_unix_time_from_system() - t_start))
 	
 	return image
 
-func _get_nearest_resource_node(to: Vector2i) -> String:
+func _get_containing_resource_vein(of: Vector2i) -> ResourceVein:
 	@warning_ignore("integer_division")
 	var chunk_pos = Vector2i(
-		to.x / (IMAGE_DIM.x / GRID_DIM.x), 
-		to.y / (IMAGE_DIM.y / GRID_DIM.y)
+		of.x / (IMAGE_DIM.x / GRID_DIM.x), 
+		of.y / (IMAGE_DIM.y / GRID_DIM.y)
 	)
 	var neighbors = [
-		_chunks.get(chunk_pos),
-		_chunks.get(chunk_pos + Vector2i.UP),
-		_chunks.get(chunk_pos + Vector2i.UP + Vector2i.LEFT),
-		_chunks.get(chunk_pos + Vector2i.UP + Vector2i.RIGHT),
-		_chunks.get(chunk_pos + Vector2i.DOWN),
-		_chunks.get(chunk_pos + Vector2i.DOWN + Vector2i.LEFT),
-		_chunks.get(chunk_pos + Vector2i.DOWN + Vector2i.RIGHT),
-		_chunks.get(chunk_pos + Vector2i.LEFT),
-		_chunks.get(chunk_pos + Vector2i.RIGHT)
+		_resource_veins.get(chunk_pos),
+		_resource_veins.get(chunk_pos + Vector2i.UP),
+		_resource_veins.get(chunk_pos + Vector2i.UP + Vector2i.LEFT),
+		_resource_veins.get(chunk_pos + Vector2i.UP + Vector2i.RIGHT),
+		_resource_veins.get(chunk_pos + Vector2i.DOWN),
+		_resource_veins.get(chunk_pos + Vector2i.DOWN + Vector2i.LEFT),
+		_resource_veins.get(chunk_pos + Vector2i.DOWN + Vector2i.RIGHT),
+		_resource_veins.get(chunk_pos + Vector2i.LEFT),
+		_resource_veins.get(chunk_pos + Vector2i.RIGHT)
 	]
 	var nearest_distance := INF
-	var nearest: String
+	var nearest: ResourceVein
 	
-	for resource_node in neighbors:
-		if (resource_node == null):
+	for vein in neighbors:
+		if (vein == null):
 			continue
 		
-		var dist = resource_node.distance_squared_to(to)
+		var dist = vein.position.distance_squared_to(of)
 		if (dist < nearest_distance):
 			nearest_distance = dist
-			nearest = _resource_nodes[resource_node]
+			nearest = vein
 	
 	return nearest
