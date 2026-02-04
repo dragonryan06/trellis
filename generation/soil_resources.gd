@@ -1,6 +1,6 @@
 extends Node2D
 
-const IMAGE_DIM := Vector2i(512, 512)
+const IMAGE_DIM := Vector2i(1024, 512)
 const GRID_DIM := Vector2i(8, 8)
 const RESOURCE_TYPES: Dictionary[String, Color] = {
 	"nothing" : Color("transparent"),
@@ -28,17 +28,26 @@ var _chunks: Dictionary[Vector2i, Vector2i]
 # Pairing of node (voronoi seed) position to resource type
 var _resource_nodes: Dictionary[Vector2i, String]
 
+var _resource_data: Image
+
+func get_resource_at(local_pos: Vector2) -> String:
+	if (local_pos.x < 0 or local_pos.x > IMAGE_DIM.x or local_pos.y < 0 or local_pos.y > IMAGE_DIM.y):
+		return "nothing"
+	
+	return _get_nearest_resource_node(local_pos)
+
+func _process(_delta: float) -> void:
+	var mouse_pos = get_local_mouse_position()
+	$Label.position = mouse_pos
+	$Label.text = "(%d, %d): %s" % [mouse_pos.x, mouse_pos.y, get_resource_at(mouse_pos)]
+
 func _ready() -> void:
-	var sprite = Sprite2D.new()
-	sprite.texture = ImageTexture.create_from_image(_generate_resources())
-	@warning_ignore("integer_division")
-	sprite.position.y = IMAGE_DIM.y / 2
-	add_child(sprite)
+	_resource_data = _generate_resources()
+	$Visualization.texture.set_image(_resource_data)
 
 func _generate_resources() -> Image:
 	print("Generating soil resources...")
 	var t_start = Time.get_unix_time_from_system()
-	
 	var image := Image.create(IMAGE_DIM.x, IMAGE_DIM.y, false, Image.FORMAT_RGBA8) # format doesn't necessarily have to be this internally
 	
 	@warning_ignore("integer_division")
@@ -61,17 +70,7 @@ func _generate_resources() -> Image:
 	# It's technically only necessary to check this chunk and its neighbors, come back and fix this once its working.
 	for y in range(IMAGE_DIM.y):
 		for x in range(IMAGE_DIM.x):
-			var nearest_distance := INF
-			var nearest: String
-			
-			for voronoi_seed in _get_local_and_neighboring_voronoi_seeds(Vector2i(x, y)):
-				if (voronoi_seed == null):
-					continue
-				
-				var dist = voronoi_seed.distance_squared_to(Vector2i(x, y))
-				if (dist < nearest_distance):
-					nearest_distance = dist
-					nearest = _resource_nodes[voronoi_seed]
+			var nearest = _get_nearest_resource_node(Vector2i(x, y))
 			
 			image.set_pixel(x, y, Color(
 				RESOURCE_TYPES[nearest].r,
@@ -83,16 +82,33 @@ func _generate_resources() -> Image:
 	
 	return image
 
-func _get_local_and_neighboring_voronoi_seeds(location: Vector2i) -> Array:
+func _get_nearest_resource_node(to: Vector2i) -> String:
 	@warning_ignore("integer_division")
 	var chunk_pos = Vector2i(
-		location.x / (IMAGE_DIM.x / GRID_DIM.x), 
-		location.y / (IMAGE_DIM.y / GRID_DIM.y)
+		to.x / (IMAGE_DIM.x / GRID_DIM.x), 
+		to.y / (IMAGE_DIM.y / GRID_DIM.y)
 	)
-	return [
+	var neighbors = [
 		_chunks.get(chunk_pos),
 		_chunks.get(chunk_pos + Vector2i.UP),
+		_chunks.get(chunk_pos + Vector2i.UP + Vector2i.LEFT),
+		_chunks.get(chunk_pos + Vector2i.UP + Vector2i.RIGHT),
 		_chunks.get(chunk_pos + Vector2i.DOWN),
+		_chunks.get(chunk_pos + Vector2i.DOWN + Vector2i.LEFT),
+		_chunks.get(chunk_pos + Vector2i.DOWN + Vector2i.RIGHT),
 		_chunks.get(chunk_pos + Vector2i.LEFT),
 		_chunks.get(chunk_pos + Vector2i.RIGHT)
 	]
+	var nearest_distance := INF
+	var nearest: String
+	
+	for resource_node in neighbors:
+		if (resource_node == null):
+			continue
+		
+		var dist = resource_node.distance_squared_to(to)
+		if (dist < nearest_distance):
+			nearest_distance = dist
+			nearest = _resource_nodes[resource_node]
+	
+	return nearest

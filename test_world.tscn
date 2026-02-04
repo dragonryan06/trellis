@@ -84,6 +84,7 @@ texture = ExtResource("4_cnaw2")
 script = ExtResource("3_dsnr4")
 
 [node name="SoilResources" parent="." unique_id=1074567782 instance=ExtResource("11_5457m")]
+position = Vector2(-512, 0)
 
 [node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
 
