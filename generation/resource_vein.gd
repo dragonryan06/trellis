@@ -1,4 +1,5 @@
 class_name ResourceVein
+extends Sprite2D
 
 const COLOR_TABLE: Dictionary[String, Color] = {
 	"nothing" : Color("transparent"),
@@ -18,20 +19,46 @@ const WEIGHT_TABLE: Dictionary[String, float] = {
 var type: String
 
 # The position of the voronoi seed that spawned this vein.
-var position: Vector2i:
-	get():
-		return positions[0]
-	set(value):
-		positions[0] = value
+var origin: Vector2i
 
-# All voronoi seed positions in this vein, including merged neighbors.
-var positions: Array[Vector2i] = [Vector2i(-1, -1)]
+## The position of the voronoi seed that spawned this vein.
+#var position: Vector2i:
+	#get():
+		#return positions[0]
+	#set(value):
+		#positions[0] = value
+#
+## All voronoi seed positions in this vein, including merged neighbors.
+#var positions: Array[Vector2i] = [Vector2i(-1, -1)]
 
 var color: Color:
 	get():
 		return COLOR_TABLE[type]
 
+var image: Image
+
+var bounds := Rect2i(0, 0, 0, 0)
+
 var volume := 0
+
+func update_bounds(to_include: Vector2i) -> void:
+	if (to_include.x < bounds.position.x):
+		bounds.position.x = to_include.x
+	if (to_include.y < bounds.position.y):
+		bounds.position.y = to_include.y
+	if (to_include.x > bounds.position.x + bounds.size.x):
+		bounds.size.x = to_include.x - bounds.position.x
+	if (to_include.y > bounds.position.y + bounds.size.y):
+		bounds.size.y = to_include.y - bounds.position.y
+
+func _ready() -> void:
+	if (bounds.size.x > 0 and bounds.size.y > 0):
+		image.crop(bounds.size.x, bounds.size.y)
+	texture = ImageTexture.new()
+	texture.set_image(image)
+	position = bounds.position
+	centered = false
+	name = type
 
 func _to_string() -> String:
 	return "%s (%d)" % [type, volume]

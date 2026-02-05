@@ -11,8 +11,6 @@ const GRID_DIM := Vector2i(10, 10)
 # Key should be a chunk position
 var _resource_veins: Dictionary[Vector2i, ResourceVein]
 
-var _resource_data: Image
-
 func get_resource_at(local_pos: Vector2) -> ResourceVein:
 	if (local_pos.x < 0 or local_pos.x > IMAGE_DIM.x or local_pos.y < 0 or local_pos.y > IMAGE_DIM.y):
 		return null
@@ -25,13 +23,15 @@ func _process(_delta: float) -> void:
 	$Label.text = "(%d, %d): %s" % [mouse_pos.x, mouse_pos.y, get_resource_at(mouse_pos)]
 
 func _ready() -> void:
-	_resource_data = _generate_resources()
-	$Visualization.texture.set_image(_resource_data)
+	_generate_resources()
+	for vein in _resource_veins.values():
+		if (vein.type == "nothing"):
+			continue
+		add_child(vein)
 
-func _generate_resources() -> Image:
+func _generate_resources() -> void:
 	print("Generating soil resources...")
 	var t_start = Time.get_unix_time_from_system()
-	var image := Image.create(IMAGE_DIM.x, IMAGE_DIM.y, false, Image.FORMAT_RGBA8) # format doesn't necessarily have to be this internally
 	
 	@warning_ignore("integer_division")
 	var chunk_size := IMAGE_DIM / GRID_DIM
@@ -40,11 +40,17 @@ func _generate_resources() -> Image:
 		for x in range(GRID_DIM.x):
 			var vein = ResourceVein.new()
 			vein.type = RandomHelper.get_weighted_random_key(ResourceVein.WEIGHT_TABLE)
-			vein.position = Vector2i(
+			vein.origin = Vector2i(
 				randi_range(x * chunk_size.x, x * chunk_size.x + chunk_size.x),
 				randi_range(y * chunk_size.y, y * chunk_size.y + chunk_size.y)
 			)
 			_resource_veins[Vector2i(x, y)] = vein
+			
+			if (vein.type == "nothing"):
+				continue
+			
+			vein.image = Image.create_empty(IMAGE_DIM.x, IMAGE_DIM.y, false, Image.FORMAT_RGBA8)
+			vein.image.fill(Color("transparent"))
 	
 	var noise = FastNoiseLite.new()
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
@@ -55,21 +61,20 @@ func _generate_resources() -> Image:
 			var vein = _get_containing_resource_vein(Vector2i(x, y))
 			
 			if (vein.type == "nothing"):
-				image.set_pixel(x, y, vein.color)
 				continue
 			
 			var richness = snapped(noise.get_noise_2d(x,y) + 0.75, 0.25)
 			
 			vein.volume += int(round(4 * richness))
-			image.set_pixel(x, y, Color(
+			vein.update_bounds(Vector2i(x, y))
+			
+			vein.image.set_pixel(x, y, Color(
 				vein.color.r,
 				vein.color.g,
 				vein.color.b,
 				vein.color.a * richness))
 	
 	print("...done (%.2fs)" % (Time.get_unix_time_from_system() - t_start))
-	
-	return image
 
 func _get_containing_resource_vein(of: Vector2i) -> ResourceVein:
 	@warning_ignore("integer_division")
@@ -95,7 +100,7 @@ func _get_containing_resource_vein(of: Vector2i) -> ResourceVein:
 		if (vein == null):
 			continue
 		
-		var dist = vein.position.distance_squared_to(of)
+		var dist = vein.origin.distance_squared_to(of)
 		if (dist < nearest_distance):
 			nearest_distance = dist
 			nearest = vein
