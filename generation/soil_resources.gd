@@ -63,16 +63,19 @@ func _generate_resources() -> void:
 			if (vein.type == "nothing"):
 				continue
 			
-			var richness = snapped(noise.get_noise_2d(x,y) + 0.75, 0.25)
+			var normalized_richness = clamp(snapped(noise.get_noise_2d(x,y) + 0.75, 0.25), 0.0, 1.0)
+			var richness := int(round(4 * normalized_richness))
 			
-			vein.volume += int(round(4 * richness))
+			vein.volume += richness
 			vein.update_bounds(Vector2i(x, y))
+			if (richness > vein.peak_richness):
+				vein.peak_richness = richness
 			
 			vein.image.set_pixel(x, y, Color(
 				vein.color.r,
 				vein.color.g,
 				vein.color.b,
-				vein.color.a * richness))
+				vein.color.a * normalized_richness))
 	
 	print("...done (%.2fs)" % (Time.get_unix_time_from_system() - t_start))
 
