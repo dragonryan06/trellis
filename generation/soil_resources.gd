@@ -1,7 +1,7 @@
 extends Node2D
 
 const IMAGE_DIM := Vector2i(1024, 512)
-const GRID_DIM := Vector2i(8, 8)
+const GRID_DIM := Vector2i(10, 10)
 
 ## Every "chunk" spawns one voronoi seed, which later becomes a resource vein.
 ## To find what resource vein you lie in the voronoi region of, first find the
