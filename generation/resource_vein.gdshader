@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+instance uniform bool mouse_hover = false;
 // Highest level of the material in the resource_vein, so that 50% depletion doesn't hide a 2-leveled vein.
 instance uniform int levels = 4;
 // Percentage of the material that is depleted.
@@ -26,4 +27,8 @@ void fragment() {
 	vec4 color = texture(TEXTURE, UV);
 	color.a -= snap(depletion);
 	COLOR = color;
+	
+	if (mouse_hover) {
+		COLOR.rgb += vec3(0.25*abs(sin(TIME*4.0)));
+	}
 }

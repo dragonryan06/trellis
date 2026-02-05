@@ -11,6 +11,8 @@ const GRID_DIM := Vector2i(10, 10)
 # Key should be a chunk position
 var _resource_veins: Dictionary[Vector2i, ResourceVein]
 
+var _last_mouse_hover: ResourceVein
+
 func get_resource_at(local_pos: Vector2) -> ResourceVein:
 	if (local_pos.x < 0 or local_pos.x > IMAGE_DIM.x or local_pos.y < 0 or local_pos.y > IMAGE_DIM.y):
 		return null
@@ -20,7 +22,16 @@ func get_resource_at(local_pos: Vector2) -> ResourceVein:
 func _process(_delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
 	$Label.position = mouse_pos
-	$Label.text = "(%d, %d): %s" % [mouse_pos.x, mouse_pos.y, get_resource_at(mouse_pos)]
+	var vein = get_resource_at(mouse_pos)
+	$Label.text = "(%d, %d): %s" % [mouse_pos.x, mouse_pos.y, vein]
+	
+	if (vein == null):
+		return
+	
+	vein.mouse_hover = true
+	if (_last_mouse_hover != vein and _last_mouse_hover != null):
+		_last_mouse_hover.mouse_hover = false
+	_last_mouse_hover = vein
 
 func _ready() -> void:
 	_generate_resources()
@@ -103,9 +114,10 @@ func _get_containing_resource_vein(of: Vector2i) -> ResourceVein:
 		if (vein == null):
 			continue
 		
-		var dist = vein.origin.distance_squared_to(of)
-		if (dist < nearest_distance):
-			nearest_distance = dist
-			nearest = vein
+		for origin in vein.origins:
+			var dist = origin.distance_squared_to(of)
+			if (dist < nearest_distance):
+				nearest_distance = dist
+				nearest = vein
 	
 	return nearest

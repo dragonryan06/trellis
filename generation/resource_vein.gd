@@ -16,20 +16,25 @@ const WEIGHT_TABLE: Dictionary[String, float] = {
 	"ambrose" : 0.0416
 }
 
+var mouse_hover := false:
+	get():
+		return mouse_hover
+	set(value):
+		mouse_hover = value
+		set_instance_shader_parameter(&"mouse_hover", value)
+
 var type: String
 
 # The position of the voronoi seed that spawned this vein.
-var origin: Vector2i
+var origin: Vector2i:
+	get():
+		return origins[0]
+	set(value):
+		origins[0] = value
 
-## The position of the voronoi seed that spawned this vein.
-#var position: Vector2i:
-	#get():
-		#return positions[0]
-	#set(value):
-		#positions[0] = value
-#
-## All voronoi seed positions in this vein, including merged neighbors.
-#var positions: Array[Vector2i] = [Vector2i(-1, -1)]
+# The positions of all voronoi seeds in this vein, including ones merged in from neighborhood.
+# NOTE: Merging is not implemented yet lmao
+var origins: Array[Vector2i] = [Vector2i(-1, -1)]
 
 var color: Color:
 	get():
