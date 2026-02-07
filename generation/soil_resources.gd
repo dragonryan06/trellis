@@ -34,6 +34,10 @@ func _process(_delta: float) -> void:
 	_last_mouse_hover = vein
 
 func _ready() -> void:
+	# Just set SoilResources invisible if you dont want to wait on it generating.
+	if (!visible):
+		return
+	
 	_generate_resources()
 	for vein in _resource_veins.values():
 		if (vein.type == "nothing"):

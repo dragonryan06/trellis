@@ -12,8 +12,221 @@
 [ext_resource type="Texture2D" uid="uid://bigjmp61udysq" path="res://backdrop/hills.png" id="5_4tg7h"]
 [ext_resource type="PackedScene" uid="uid://is0paf2w24vv" path="res://generation/soil_resources.tscn" id="11_5457m"]
 
+[sub_resource type="Animation" id="Animation_jvck6"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.79499996, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.7, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ivea3"]
+resource_name = "dawn"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0.34649998, 0, 0, 0.6666667, 0.20425543, 1.5720325, -0.6666667, -0.20425543, 0, 0),
+"times": PackedFloat32Array(0, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0.25199997, 0, 0, 0.6666667, 0.11719137, 0.74952, -0.6666667, -0.08292001, 0, 0),
+"times": PackedFloat32Array(0, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0.63, 0, 0, 0.6666667, 0.0027843118, 0.33826372, -0.6666667, 0.048622712, 0, 0),
+"times": PackedFloat32Array(0, 4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(1, 0, 0, 0.6666667, 0, 1, -0.6666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 4)
+}
+
+[sub_resource type="Animation" id="Animation_5457m"]
+resource_name = "dusk"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.33333334, 0, 0, 0, 1.157429, -0.16666667, 0.0422205, 0.33333334, -0.084441, 0.24003097, -0.33333334, 0.12666151, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.9411765, -0.33333334, 0.009803921, 0, 0, 0.6132242, -0.16666667, 0.036430895, 0.33333334, -0.07286179, 0.2854204, -0.33333334, 0.109292686, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.7019608, -0.33333334, 0.0496732, 0, 0, 0.49105573, -0.16666667, 0.004048775, 0.33333334, -0.00809755, 0.62908286, -0.33333334, 0.012146324, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.33333334, 0, 0, 0, 1, -0.16666667, 0, 0.33333334, 0, 1, -0.33333334, 0, 0, 0),
+"times": PackedFloat32Array(0, 1, 2, 4)
+}
+
+[sub_resource type="Animation" id="Animation_07jwy"]
+resource_name = "noon"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(1.5720325, -0.25, 0, 0.25, 0, 1, -0.6666667, 0.09533875, 0, 0, 1, -0.33333334, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(0.74952, -0.25, 0, 0.25, 0, 0.9411765, -0.6666667, -0.031942748, 0, 0, 1, -0.33333334, -0.009803921, 0, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(0.33826372, -0.25, 0, 0.25, 0, 0.7019608, -0.6666667, -0.06061618, 0, 0, 1, -0.33333334, -0.0496732, 0, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.6666667, 0, 0, 0, 1, -0.33333334, 0, 0, 0),
+"times": PackedFloat32Array(0, 2, 4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jvck6"]
+_data = {
+&"RESET": SubResource("Animation_jvck6"),
+&"dawn": SubResource("Animation_ivea3"),
+&"dusk": SubResource("Animation_5457m"),
+&"noon": SubResource("Animation_07jwy")
+}
+
+[sub_resource type="InputEventKey" id="InputEventKey_5457m"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_ivea3"]
+events = [SubResource("InputEventKey_5457m")]
+
 [node name="TestWorld" type="Node2D" unique_id=1425755023]
 script = ExtResource("1_1lwx6")
+
+[node name="AmbientLighting" type="CanvasModulate" parent="." unique_id=1842319712]
+color = Color(1, 0.79499996, 0.7, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AmbientLighting" unique_id=1312057350]
+libraries/ = SubResource("AnimationLibrary_jvck6")
+autoplay = &"dawn"
 
 [node name="Backdrop" type="Node2D" parent="." unique_id=930784402]
 
@@ -84,6 +297,7 @@ texture = ExtResource("4_cnaw2")
 script = ExtResource("3_dsnr4")
 
 [node name="SoilResources" parent="." unique_id=1074567782 instance=ExtResource("11_5457m")]
+visible = false
 position = Vector2(-512, 0)
 
 [node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
@@ -104,6 +318,7 @@ theme_override_colors/font_color = Color(0.7, 0, 0.7, 1)
 theme_override_colors/font_pressed_color = Color(0.2, 0, 0.2, 1)
 theme_override_colors/font_hover_color = Color(0.69803923, 0, 0.69803923, 1)
 theme_override_font_sizes/font_size = 10
+shortcut = SubResource("Shortcut_ivea3")
 text = "Next"
 
 [connection signal="pressed" from="HUD/NextTurn" to="." method="_on_next_turn_pressed"]
