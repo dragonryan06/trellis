@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bnmy137bcgfqg"]
+
+[ext_resource type="Texture2D" uid="uid://dyn7pvia170av" path="res://hud/turn_indicator.png" id="1_by1wf"]
+[ext_resource type="Shader" uid="uid://bppuj1cw7qx3m" path="res://hud/circle_mask.gdshader" id="2_boec7"]
+[ext_resource type="Script" uid="uid://qttdus02d156" path="res://hud/next_turn_button.gd" id="2_r64sh"]
+[ext_resource type="Texture2D" uid="uid://bqmk7w2ija2tp" path="res://hud/stars.png" id="4_boec7"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_boec7"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_r64sh"]
+events = [SubResource("InputEventKey_boec7")]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ht4nn"]
+shader = ExtResource("2_boec7")
+
+[node name="NextTurnButton" type="TextureButton" unique_id=1448396172]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "Dawn 1"
+shortcut = SubResource("Shortcut_r64sh")
+shortcut_in_tooltip = false
+texture_normal = ExtResource("1_by1wf")
+script = ExtResource("2_r64sh")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=460282746]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_ht4nn")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=752412047]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(64, 64)
+render_target_update_mode = 4
+
+[node name="Icon" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1760147962]
+position = Vector2(33, 64)
+texture = ExtResource("4_boec7")

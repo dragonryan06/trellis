@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c2xvty6q1f2dq" path="res://backdrop/dirt_surface_3.png" id="4_uu1iw"]
 [ext_resource type="Texture2D" uid="uid://bigjmp61udysq" path="res://backdrop/hills.png" id="5_4tg7h"]
 [ext_resource type="PackedScene" uid="uid://is0paf2w24vv" path="res://generation/soil_resources.tscn" id="11_5457m"]
+[ext_resource type="PackedScene" uid="uid://bnmy137bcgfqg" path="res://hud/next_turn_button.tscn" id="12_ivea3"]
 
 [sub_resource type="Animation" id="Animation_jvck6"]
 length = 0.001
@@ -305,6 +306,7 @@ position = Vector2(-512, 0)
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
 
 [node name="NextTurn" type="Button" parent="HUD" unique_id=563725011]
+visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -320,5 +322,7 @@ theme_override_colors/font_hover_color = Color(0.69803923, 0, 0.69803923, 1)
 theme_override_font_sizes/font_size = 10
 shortcut = SubResource("Shortcut_ivea3")
 text = "Next"
+
+[node name="NextTurnButton" parent="HUD" unique_id=1448396172 instance=ExtResource("12_ivea3")]
 
 [connection signal="pressed" from="HUD/NextTurn" to="." method="_on_next_turn_pressed"]
