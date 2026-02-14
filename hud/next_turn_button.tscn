@@ -15,20 +15,169 @@ events = [SubResource("InputEventKey_boec7")]
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ht4nn"]
 shader = ExtResource("2_boec7")
 
-[node name="NextTurnButton" type="TextureButton" unique_id=1448396172]
+[sub_resource type="AtlasTexture" id="AtlasTexture_boec7"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk07o"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r64sh"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht4nn"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l047v"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_672qp"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cspd8"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv8qd"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ykfl"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g3ig"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m528h"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4ju7"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r374"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fogy6"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(256, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xin5"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qngf"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwwwp"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuw21"]
+atlas = ExtResource("1_by1wf")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r64sh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boec7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk07o")
+}],
+"loop": true,
+"name": &"disabled",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r64sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht4nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l047v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_672qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cspd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv8qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ykfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g3ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m528h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4ju7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r374")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fogy6")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xin5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qngf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwwwp")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_yuw21")
+}],
+"loop": true,
+"name": &"pressed",
+"speed": 5.0
+}]
+
+[node name="NextTurnButton" type="Button" unique_id=1005106190]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
+offset_left = -64.0
+offset_top = -64.0
 grow_horizontal = 0
 grow_vertical = 0
 tooltip_text = "Dawn 1"
 shortcut = SubResource("Shortcut_r64sh")
 shortcut_in_tooltip = false
-texture_normal = ExtResource("1_by1wf")
+flat = true
 script = ExtResource("2_r64sh")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=460282746]
@@ -56,3 +205,12 @@ render_target_update_mode = 4
 [node name="Icon" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1760147962]
 position = Vector2(33, 64)
 texture = ExtResource("4_boec7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=208264487]
+sprite_frames = SubResource("SpriteFrames_r64sh")
+centered = false
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

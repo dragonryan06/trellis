@@ -212,13 +212,6 @@ _data = {
 &"noon": SubResource("Animation_07jwy")
 }
 
-[sub_resource type="InputEventKey" id="InputEventKey_5457m"]
-device = -1
-keycode = 4194309
-
-[sub_resource type="Shortcut" id="Shortcut_ivea3"]
-events = [SubResource("InputEventKey_5457m")]
-
 [node name="TestWorld" type="Node2D" unique_id=1425755023]
 script = ExtResource("1_1lwx6")
 
@@ -305,24 +298,6 @@ position = Vector2(-512, 0)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
 
-[node name="NextTurn" type="Button" parent="HUD" unique_id=563725011]
-visible = false
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -38.0
-offset_top = -13.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.7, 0, 0.7, 1)
-theme_override_colors/font_pressed_color = Color(0.2, 0, 0.2, 1)
-theme_override_colors/font_hover_color = Color(0.69803923, 0, 0.69803923, 1)
-theme_override_font_sizes/font_size = 10
-shortcut = SubResource("Shortcut_ivea3")
-text = "Next"
-
 [node name="NextTurnButton" parent="HUD" unique_id=1448396172 instance=ExtResource("12_ivea3")]
 
-[connection signal="pressed" from="HUD/NextTurn" to="." method="_on_next_turn_pressed"]
+[connection signal="pressed" from="HUD/NextTurnButton" to="." method="_on_next_turn_button_pressed"]
