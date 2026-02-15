@@ -1,12 +1,9 @@
 [gd_scene format=3 uid="uid://gx6f3aenjsmp"]
 
-[ext_resource type="Script" uid="uid://rcwwhhi8or71" path="res://growing/ui/branch_handle.gd" id="1_fbet3"]
+[ext_resource type="Script" uid="uid://bjh1ytmi0io4y" path="res://growing/ui/branch_handle.gd" id="1_fbet3"]
 [ext_resource type="Texture2D" uid="uid://bwbgctga2c5iy" path="res://growing/ui/branch_handle.png" id="1_jsup7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fbet3"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_l86wc"]
-radius = 64.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q38kt"]
 light_mode = 1
@@ -137,13 +134,6 @@ script = ExtResource("1_fbet3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1714275866]
 shape = SubResource("CircleShape2D_fbet3")
 
-[node name="VisibilityRange" type="Area2D" parent="." unique_id=1285997559]
-top_level = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityRange" unique_id=696148004]
-top_level = true
-shape = SubResource("CircleShape2D_l86wc")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1457392358]
 material = SubResource("CanvasItemMaterial_q38kt")
 sprite_frames = SubResource("SpriteFrames_s02dw")
@@ -158,5 +148,3 @@ texture = SubResource("GradientTexture2D_vmdas")
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="VisibilityRange" to="." method="_on_visibility_range_mouse_entered"]
-[connection signal="mouse_exited" from="VisibilityRange" to="." method="_on_visibility_range_mouse_exited"]

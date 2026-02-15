@@ -60,8 +60,9 @@ var origin := Vector2(0.0, 0.0)
 var displacement := Vector2(0.0, 0.0)
 
 func _ready() -> void:
-	GameState.next_phase.connect(_on_next_phase)
-	_on_next_phase()
+	var update_visibility = func(): visible = GameState.phase_name == "Noon"
+	GameState.next_phase.connect(update_visibility)
+	update_visibility.call()
 
 func _draw() -> void:
 	if (!was_moved):
@@ -95,9 +96,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if (mouse_drag and !event.is_pressed()):
 		mouse_drag = false
-
-func _on_next_phase() -> void:
-	visible = GameState.phase_name == "Noon"
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if (!(event is InputEventMouseButton)):
