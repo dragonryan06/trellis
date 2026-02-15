@@ -33,3 +33,10 @@ func _on_button_up() -> void:
 	if (!_pressed_played_once):
 		await $AnimatedSprite2D.animation_looped
 	$AnimatedSprite2D.play(&"hover")
+
+func _on_pressed() -> void:
+	# Still blink if key shortcut was used instead:
+	if (!is_hovered()):
+		$AnimatedSprite2D.play(&"pressed")
+		await $AnimatedSprite2D.animation_looped
+		$AnimatedSprite2D.play(&"default")
