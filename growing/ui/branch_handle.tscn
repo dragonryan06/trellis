@@ -137,8 +137,7 @@ shape = SubResource("CircleShape2D_fbet3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1457392358]
 material = SubResource("CanvasItemMaterial_q38kt")
 sprite_frames = SubResource("SpriteFrames_s02dw")
-animation = &"invalid"
-autoplay = "active"
+autoplay = "default"
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=410855301]
 enabled = false

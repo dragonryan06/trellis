@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dyn7pvia170av" path="res://hud/turn_indicator.png" id="1_by1wf"]
 [ext_resource type="Shader" uid="uid://bppuj1cw7qx3m" path="res://hud/circle_mask.gdshader" id="2_boec7"]
 [ext_resource type="Script" uid="uid://qttdus02d156" path="res://hud/next_turn_button.gd" id="2_r64sh"]
-[ext_resource type="Texture2D" uid="uid://bqmk7w2ija2tp" path="res://hud/stars.png" id="4_boec7"]
+[ext_resource type="Texture2D" uid="uid://dqe2fqnslia43" path="res://hud/times_of_day.png" id="3_boec7"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_boec7"]
 device = -1
@@ -14,6 +14,10 @@ events = [SubResource("InputEventKey_boec7")]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ht4nn"]
 shader = ExtResource("2_boec7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blr4a"]
+atlas = ExtResource("3_boec7")
+region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boec7"]
 atlas = ExtResource("1_by1wf")
@@ -202,9 +206,9 @@ handle_input_locally = false
 size = Vector2i(64, 64)
 render_target_update_mode = 4
 
-[node name="Icon" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1760147962]
+[node name="TimeOfDay" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1760147962]
 position = Vector2(33, 64)
-texture = ExtResource("4_boec7")
+texture = SubResource("AtlasTexture_blr4a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=208264487]
 sprite_frames = SubResource("SpriteFrames_r64sh")
