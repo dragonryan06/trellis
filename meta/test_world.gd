@@ -1,10 +1,21 @@
 extends Node2D
 
 func _ready() -> void:
-	GameState.hold_state_changed.connect(_on_hold_state_changed)
+	GameState.hold_state_changed.connect($HUD/NextTurnButton.disable)
+	GameState.next_phase.connect(_show_missing_feature_hint)
 
 func _on_next_turn_button_pressed() -> void:
 	GameState.advance_phase()
 
-func _on_hold_state_changed(state: bool) -> void:
-	$HUD/NextTurnButton.disable(state)
+func _show_missing_feature_hint() -> void:
+	await get_tree().create_timer(1.0).timeout
+	var label = FloatyLabel.new()
+	match GameState.phase_name:
+		"Dawn":
+			label.text = "[WIP] Soil resources harvest, events trigger..."
+		"Noon":
+			label.text = "[WIP] Some soil resources expended to survive..."
+		"Dusk":
+			label.text = "[WIP] Sensing abilities available..."
+	label.position = get_local_mouse_position()
+	add_child(label)

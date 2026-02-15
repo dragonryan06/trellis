@@ -138,8 +138,10 @@ script = ExtResource("1_fbet3")
 shape = SubResource("CircleShape2D_fbet3")
 
 [node name="VisibilityRange" type="Area2D" parent="." unique_id=1285997559]
+top_level = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisibilityRange" unique_id=696148004]
+top_level = true
 shape = SubResource("CircleShape2D_l86wc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1457392358]
