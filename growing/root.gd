@@ -11,8 +11,11 @@ func grow_to(location: Vector2) -> void:
 	tween.tween_property($DirtParticles, ^"position", location, 1.0)
 	tween.tween_callback($DirtParticles.set.bind(&"emitting", false))
 
-func _on_next_turn() -> void:
-	super._on_next_turn()
+func _on_next_phase() -> void:
+	super._on_next_phase()
+	
+	if (GameState.phase_name != "Dusk"):
+		return
 	
 	for child in get_children():
 		if (!(child is BranchHandle and child.was_moved)):

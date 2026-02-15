@@ -7,6 +7,11 @@ func disable(state: bool) -> void:
 	disabled = state
 	$AnimatedSprite2D.play(&"disabled" if state else &"default")
 
+func _ready() -> void:
+	GameState.next_phase.connect(
+		func(): tooltip_text = "%s %d" % [GameState.phase_name, GameState.turn_number]
+	)
+
 func _process(delta: float) -> void:
 	$SubViewportContainer/SubViewport/Icon.rotation += 0.01
 

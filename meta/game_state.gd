@@ -1,23 +1,42 @@
 extends Node
 
+const TURN_PHASES : Array[String] = [
+	"Dawn",
+	"Noon",
+	"Dusk"
+]
+
+signal next_phase
 signal next_turn
 signal hold_state_changed(state: bool)
 
-var turn_count : int
+var turn_number : int:
+	get():
+		@warning_ignore(&"integer_division")
+		return (_phase_count / 3) + 1
 
+var phase_name : String:
+	get():
+		return TURN_PHASES[_phase_count % 3]
+
+var _phase_count : int
 var _holds: Array[Node] = []
 
-func advance_turn() -> bool:
+func advance_phase() -> bool:
 	if (!_holds.is_empty()):
-		print("Can't advance turn, one or more nodes is holding: " + str(_holds))
+		print("Can't advance phase, one or more nodes is holding: " + str(_holds))
 		return false
 	
-	next_turn.emit()
-	turn_count += 1
-	print("==== Turn %d ====" % (turn_count + 1))
+	_phase_count += 1
+	next_phase.emit()
+	
+	if (_phase_count % 3 == 0):
+		next_turn.emit()
+	
+	print("==== %s of Turn %d ====" % [phase_name, turn_number])
 	return true
 
-## Request that turn advances be denied until you release_hold(self)
+## Request that phase advances be denied until you release_hold(self)
 func hold(caller: Node) -> void:
 	if (_holds.find(caller) == -1):
 		_holds.append(caller)
@@ -33,4 +52,4 @@ func release_hold(caller: Node) -> void:
 		hold_state_changed.emit(false)
 
 func _ready() -> void:
-	print("==== Turn 1 ====")
+	print("==== Dawn of Turn 1 ====")

@@ -20,9 +20,12 @@ func grow_to(location: Vector2) -> void:
 	$GrowthHandle.position = location
 
 func _ready() -> void:
-	GameState.next_turn.connect(_on_next_turn)
+	GameState.next_phase.connect(_on_next_phase)
 
-func _on_next_turn() -> void:
+func _on_next_phase() -> void:
+	if (GameState.phase_name != "Dusk"):
+		return
+	
 	if ($GrowthHandle.was_moved):
 		grow_to($GrowthHandle.position)
 		$GrowthHandle.was_moved = false
