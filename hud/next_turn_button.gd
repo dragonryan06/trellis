@@ -7,7 +7,7 @@ const ATLAS_REGIONS := {
 	"Night": Rect2(128, 128, 128, 128)
 }
 
-var _pressed_played_once := false
+var _pressed_played_once := true
 
 ## Please use this method instead of setting .disabled
 func disable(state: bool) -> void:
@@ -35,11 +35,18 @@ func _on_next_phase() -> void:
 	sprite.texture.region = ATLAS_REGIONS[GameState.phase_name]
 
 func _on_mouse_entered() -> void:
+	if (disabled):
+		return
+	
 	$AnimatedSprite2D.play(&"hover")
 
 func _on_mouse_exited() -> void:
+	if (disabled):
+		return
+	
 	if (!_pressed_played_once):
 		await $AnimatedSprite2D.animation_looped
+	
 	$AnimatedSprite2D.play(&"default")
 
 func _on_button_down() -> void:
