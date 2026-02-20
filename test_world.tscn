@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bigjmp61udysq" path="res://backdrop/hills.png" id="5_4tg7h"]
 [ext_resource type="PackedScene" uid="uid://is0paf2w24vv" path="res://generation/soil_resources.tscn" id="11_5457m"]
 [ext_resource type="PackedScene" uid="uid://bnmy137bcgfqg" path="res://hud/next_turn_button.tscn" id="12_ivea3"]
+[ext_resource type="PackedScene" uid="uid://cpl4cwub4nj87" path="res://hud/resource_info.tscn" id="13_07jwy"]
 
 [sub_resource type="Animation" id="Animation_ivea3"]
 resource_name = "dawn"
@@ -298,6 +299,8 @@ position = Vector2(-512, 0)
 [node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
+
+[node name="ResourceCounts" parent="HUD" unique_id=1159859721 instance=ExtResource("13_07jwy")]
 
 [node name="NextTurnButton" parent="HUD" unique_id=1448396172 instance=ExtResource("12_ivea3")]
 

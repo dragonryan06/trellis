@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://cpl4cwub4nj87"]
+
+[ext_resource type="Script" uid="uid://iudweqijtgqs" path="res://hud/resource_info.gd" id="1_01j20"]
+[ext_resource type="Texture2D" uid="uid://8t7cpkft333t" path="res://icon.svg" id="2_go5x2"]
+[ext_resource type="FontFile" uid="uid://hcp0y0wmjhs0" path="res://fonts/micro5/Micro5-Regular.ttf" id="3_cr18n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w68ds"]
+bg_color = Color(0.2, 0, 0.2, 0.7058824)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="FontVariation" id="FontVariation_w68ds"]
+spacing_top = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7mir3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mir3"]
+bg_color = Color(0, 0, 0, 0.39215687)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icjfq"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39215687)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6i76"]
+bg_color = Color(0, 0, 0, 0.39215687)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0ujl"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39215687)
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+
+[sub_resource type="FontVariation" id="FontVariation_cr18n"]
+base_font = ExtResource("3_cr18n")
+spacing_top = -4
+baseline_offset = 0.1
+
+[node name="ResourceInfo" type="VBoxContainer" unique_id=340157982]
+offset_right = 184.0
+offset_bottom = 20.0
+theme_override_constants/separation = 0
+script = ExtResource("1_01j20")
+
+[node name="ResourceCounts" type="PanelContainer" parent="." unique_id=204348837]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w68ds")
+
+[node name="MarginContainer" type="MarginContainer" parent="ResourceCounts" unique_id=1024539522]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ResourceCounts/MarginContainer" unique_id=1904652447]
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_w68ds")
+bbcode_enabled = true
+text = "[color=blue]$[/color] 123   [color=green]%[/color] 123   [color=red]@[/color] 123   [color=orange]#[/color] 123"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourceCounts" unique_id=995951728]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Water" type="Button" parent="ResourceCounts/HBoxContainer" unique_id=273162932]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7mir3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7mir3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_icjfq")
+toggle_mode = true
+
+[node name="Ichor" type="Button" parent="ResourceCounts/HBoxContainer" unique_id=1082791610]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7mir3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7mir3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_icjfq")
+toggle_mode = true
+
+[node name="Phosphor" type="Button" parent="ResourceCounts/HBoxContainer" unique_id=598734826]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7mir3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7mir3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_icjfq")
+toggle_mode = true
+
+[node name="Ambrose" type="Button" parent="ResourceCounts/HBoxContainer" unique_id=2049181954]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7mir3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n6i76")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f0ujl")
+toggle_mode = true
+
+[node name="ResourceBank" type="PanelContainer" parent="." unique_id=311882558]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w68ds")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResourceBank" unique_id=1705360334]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ResourceBank/HBoxContainer" unique_id=162861106]
+layout_mode = 2
+texture = ExtResource("2_go5x2")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="ResourceBank/HBoxContainer" unique_id=138541453]
+layout_mode = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResourceBank/HBoxContainer/MarginContainer" unique_id=1900876912]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ResourceBank/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1348432573]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 2
+text = "Water"
+
+[node name="Data" type="RichTextLabel" parent="ResourceBank/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1175340544]
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_cr18n")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = " Storing: 123 [color=gray]drams[/color]
+ Intake: 12 [color=gray]drams/day[/color]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[connection signal="toggled" from="ResourceCounts/HBoxContainer/Water" to="." method="_on_button_toggled" binds= [0]]
+[connection signal="toggled" from="ResourceCounts/HBoxContainer/Ichor" to="." method="_on_button_toggled" binds= [1]]
+[connection signal="toggled" from="ResourceCounts/HBoxContainer/Phosphor" to="." method="_on_button_toggled" binds= [2]]
+[connection signal="toggled" from="ResourceCounts/HBoxContainer/Ambrose" to="." method="_on_button_toggled" binds= [3]]
