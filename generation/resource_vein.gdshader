@@ -1,4 +1,5 @@
 shader_type canvas_item;
+render_mode unshaded;
 
 instance uniform bool mouse_hover = false;
 // Highest level of the material in the resource_vein, so that 50% depletion doesn't hide a 2-leveled vein.

@@ -1,3 +1,4 @@
+class_name SoilResources
 extends Node2D
 
 const IMAGE_DIM := Vector2i(1024, 512)
@@ -34,6 +35,8 @@ func _process(_delta: float) -> void:
 	_last_mouse_hover = vein
 
 func _ready() -> void:
+	GlobalLookups.soil_resources = get_path()
+	
 	# Just set SoilResources invisible if you dont want to wait on it generating.
 	if (!visible):
 		return

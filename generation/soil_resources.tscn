@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://b37sy0e12uf3s" path="res://generation/soil_resources.gd" id="1_umswf"]
 [ext_resource type="Script" uid="uid://b31wlpyc00bk6" path="res://meta/player_camera.gd" id="2_obntx"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_obntx"]
+light_mode = 1
+
 [node name="SoilResources" type="Node2D" unique_id=1074567782]
 script = ExtResource("1_umswf")
 
@@ -11,5 +14,6 @@ script = ExtResource("2_obntx")
 
 [node name="Label" type="Label" parent="." unique_id=1907031695]
 z_index = 1
+material = SubResource("CanvasItemMaterial_obntx")
 offset_right = 40.0
 offset_bottom = 11.0
