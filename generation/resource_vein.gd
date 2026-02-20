@@ -44,9 +44,21 @@ var image: Image
 
 var bounds := Rect2i(0, 0, 0, 0)
 
-var volume := 0
+var pixel_volume := 0
 
 var peak_richness := 0
+
+var volume: int:
+	get():
+		@warning_ignore("integer_division")
+		return pixel_volume / 1000
+
+var remaining: int:
+	get():
+		return remaining
+	set(value):
+		remaining = value
+		set_instance_shader_parameter(&"depletion", 1.0 - (float(remaining) / float(volume)))
 
 func update_bounds(to_include: Vector2i) -> void:
 	if (to_include.x < bounds.position.x):
@@ -69,6 +81,7 @@ func _ready() -> void:
 	material = ShaderMaterial.new()
 	material.shader = load("res://generation/resource_vein.gdshader")
 	set_instance_shader_parameter(&"levels", peak_richness)
+	remaining = volume
 
 func _to_string() -> String:
-	return "%s (%d)" % [type, volume]
+	return "%s (%d/%d)" % [type, remaining, volume] if volume != 0 else type

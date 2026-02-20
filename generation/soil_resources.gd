@@ -84,7 +84,7 @@ func _generate_resources() -> void:
 			var normalized_richness = clamp(snapped(noise.get_noise_2d(x,y) + 0.75, 0.25), 0.0, 1.0)
 			var richness := int(round(4 * normalized_richness))
 			
-			vein.volume += richness
+			vein.pixel_volume += richness
 			vein.update_bounds(Vector2i(x, y))
 			if (richness > vein.peak_richness):
 				vein.peak_richness = richness
