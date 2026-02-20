@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://is0paf2w24vv" path="res://generation/soil_resources.tscn" id="11_5457m"]
 [ext_resource type="PackedScene" uid="uid://bnmy137bcgfqg" path="res://hud/next_turn_button.tscn" id="12_ivea3"]
 [ext_resource type="PackedScene" uid="uid://cpl4cwub4nj87" path="res://hud/resource_info.tscn" id="13_07jwy"]
+[ext_resource type="Script" uid="uid://cxu14kpjyrqet" path="res://meta/player.gd" id="13_urhrq"]
 
 [sub_resource type="Animation" id="Animation_ivea3"]
 resource_name = "dawn"
@@ -297,6 +298,7 @@ script = ExtResource("3_dsnr4")
 position = Vector2(-512, 0)
 
 [node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
+script = ExtResource("13_urhrq")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
 

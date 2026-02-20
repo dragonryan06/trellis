@@ -18,6 +18,8 @@ func _on_next_phase() -> void:
 		return
 	
 	vein.remaining -= 1
+	var player = get_node(GlobalLookups.player) as Player
+	player.increment_stored_resource(vein.type, 1)
 	
 	var pellet = Sprite2D.new()
 	pellet.material = CanvasItemMaterial.new()

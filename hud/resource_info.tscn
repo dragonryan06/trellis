@@ -53,11 +53,11 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ResourceCounts/MarginContainer" unique_id=1904652447]
+[node name="TextBar" type="RichTextLabel" parent="ResourceCounts/MarginContainer" unique_id=1904652447]
 layout_mode = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_w68ds")
 bbcode_enabled = true
-text = "[color=blue]$[/color] 123   [color=green]%[/color] 123   [color=red]@[/color] 123   [color=orange]#[/color] 123"
+text = "[color=blue]$[/color]   0   [color=green]%[/color]   0   [color=red]@[/color]   0   [color=orange]#[/color]   0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

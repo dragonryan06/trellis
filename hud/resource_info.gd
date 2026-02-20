@@ -1,10 +1,10 @@
 extends VBoxContainer
 
-const TITLES: Array[String] = [
-	"Water",
-	"Ichor",
-	"Phosphor",
-	"Ambrose"
+const TYPES: Array[String] = [
+	"water",
+	"ichor",
+	"phosphor",
+	"ambrose"
 ]
 const COLORS: Array[Color] = [
 	Color("blue"),
@@ -12,19 +12,37 @@ const COLORS: Array[Color] = [
 	Color("red"),
 	Color("orange")
 ]
+const UNITS: Array[String] = [
+	"drams",
+	"drams",
+	"motes",
+	"motes"
+]
+
+@onready
+var player = get_node(GlobalLookups.player) as Player
 
 func _ready() -> void:
 	# Wait for container sizing to set in before going top level.
 	await get_tree().process_frame
 	$ResourceBank.top_level = true
 	$ResourceBank.position.x = -$ResourceBank.size.x
+	player.resources_changed.connect(_on_player_resources_changed)
 
 func _fly_resource_bank_in(button_idx: int) -> void:
 	var resource_bank = $ResourceBank
 	
 	var title = resource_bank.get_node(^"HBoxContainer/MarginContainer/VBoxContainer/Title")
-	title.text = TITLES[button_idx]
+	title.text = TYPES[button_idx].capitalize()
 	title.modulate = COLORS[button_idx]
+	var data = resource_bank.get_node(^"HBoxContainer/MarginContainer/VBoxContainer/Data")
+	data.text = " Storing: %2d [color=gray]%s[/color]
+ Intake: %3d [color=gray]%s/d[/color]" % [
+		player.count_stored_resource(TYPES[button_idx]),
+		UNITS[button_idx],
+		0,
+		UNITS[button_idx]
+	]
 	
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(resource_bank, ^"position:x", 0.0, 0.25)
@@ -55,3 +73,6 @@ func _on_button_toggled(toggled_on: bool, button_idx: int) -> void:
 			return
 	
 	_fly_resource_bank_in(button_idx)
+
+func _on_player_resources_changed() -> void:
+	$ResourceCounts/MarginContainer/TextBar.text = "[color=blue]$[/color] %3d   [color=green]%%[/color] %3d   [color=red]@[/color] %3d   [color=orange]#[/color] %3d" % player.get_stored_resources()
