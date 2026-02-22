@@ -32,10 +32,10 @@ func _ready() -> void:
 func _fly_resource_bank_in(button_idx: int) -> void:
 	var resource_bank = $ResourceBank
 	
-	var title = resource_bank.get_node(^"HBoxContainer/MarginContainer/VBoxContainer/Title")
+	var title = resource_bank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Title")
 	title.text = TYPES[button_idx].capitalize()
 	title.modulate = COLORS[button_idx]
-	var data = resource_bank.get_node(^"HBoxContainer/MarginContainer/VBoxContainer/Data")
+	var data = resource_bank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Data")
 	data.text = " Storing: %2d [color=gray]%s[/color]
  Intake: %3d [color=gray]%s/d[/color]" % [
 		player.count_stored_resource(TYPES[button_idx]),

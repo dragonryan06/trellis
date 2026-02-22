@@ -1,0 +1,2 @@
+class_name FallingSand
+extends Sprite2D
