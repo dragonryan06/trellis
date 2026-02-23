@@ -2,7 +2,7 @@ class_name FallingSand
 extends Sprite2D
 
 const TICK_LENGTH := 0.05
-const MIN_VALUE := 100
+const MIN_VALUE := 127
 
 @export
 var image_size := Vector2i(16, 16)
@@ -18,6 +18,24 @@ var _sim_state: Array[PackedByteArray]
 var _dirty := false
 
 var _frozen: Array[Vector2i] = []
+
+var _queue_added_this_frame := false
+var _add_queue := 0
+
+## Add a particle immediately.
+func add_particle() -> void:
+	_sim_state[0][randi_range(0, image_size.x - 1)] = randi_range(MIN_VALUE, 255)
+	_dirty = true
+
+## Add 'count' particles to the queue, to be introduced a tick at a time.
+## It's okay and actually generally preferred to call this with count=1.
+func queue_add_particles(count: int) -> void:
+	if (_add_queue == 0 and !_queue_added_this_frame):
+		add_particle()
+		_queue_added_this_frame = true
+		_add_queue = count - 1
+	else:
+		_add_queue += count
 
 func _ready() -> void:
 	centered = false
@@ -52,15 +70,13 @@ func _process(_delta: float) -> void:
 	
 	texture.update(_image)
 	_dirty = false
-
-func _input(event: InputEvent) -> void:
-	if (!event.is_action_pressed(&"TEST_spawn_particle")):
-		return
-	
-	_sim_state[0][randi_range(0, image_size.x - 1)] = randi_range(MIN_VALUE, 255)
-	_dirty = true
+	_queue_added_this_frame = false
 
 func _tick() -> void:
+	if (_add_queue > 0):
+		add_particle()
+		_add_queue -= 1
+	
 	for y in range(image_size.y):
 		for x in range(image_size.x):
 			if (_frozen.has(Vector2i(x, y))):

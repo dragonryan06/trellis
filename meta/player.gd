@@ -13,6 +13,11 @@ var _stored_resources: Dictionary[String, int] = {
 func increment_stored_resource(type: String, by: int) -> void:
 	_stored_resources[type] += by
 	resources_changed.emit()
+	
+	if (by > 0):
+		get_parent().get_node(^"HUD/ResourceCounts").add_resource_particles(type, by)
+	else:
+		print("Removing from stored resource sandbox not implemented!!!")
 
 func count_stored_resource(type: String) -> int:
 	return _stored_resources[type]
