@@ -44,6 +44,16 @@ func _fly_resource_bank_in(button_idx: int) -> void:
 		UNITS[button_idx]
 	]
 	
+	var viewport = resource_bank.get_node(^"HBoxContainer/LeftSide/SubViewportContainer/SubViewport")
+	for child in viewport.get_children():
+		if (child is not FallingSand):
+			continue
+		
+		if (child.get_index() == button_idx):
+			child.visible = true
+		else:
+			child.visible = false
+	
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(resource_bank, ^"position:x", 0.0, 0.25)
 	tween.tween_callback(func(): resource_bank.top_level = false)

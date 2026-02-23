@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cpl4cwub4nj87"]
 
 [ext_resource type="Script" uid="uid://iudweqijtgqs" path="res://hud/resource_info.gd" id="1_01j20"]
-[ext_resource type="Shader" uid="uid://hfdqifbfiecw" path="res://hud/glass_ui.gdshader" id="2_01j20"]
+[ext_resource type="Shader" uid="uid://dk0d708kiipbt" path="res://hud/texture_mask.gdshader" id="2_y6kle"]
 [ext_resource type="Texture2D" uid="uid://hyi6ipxyjoel" path="res://resources/resource_tank.png" id="3_01j20"]
 [ext_resource type="Script" uid="uid://cm5vsk3wigqhr" path="res://resources/falling_sand.gd" id="3_bf7vx"]
 [ext_resource type="FontFile" uid="uid://hcp0y0wmjhs0" path="res://fonts/micro5/Micro5-Regular.ttf" id="3_cr18n"]
+[ext_resource type="Texture2D" uid="uid://bguhtypaxx30e" path="res://resources/resource_tank_mask.bmp" id="3_fh6ir"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w68ds"]
 bg_color = Color(0.2, 0, 0.2, 0.7058824)
@@ -32,13 +33,9 @@ bg_color = Color(0.6, 0.6, 0.6, 0.39215687)
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_01j20"]
-shader = ExtResource("2_01j20")
-shader_parameter/distortion_strength = 10.0
-shader_parameter/distortion_radius = 20.0
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bf7vx"]
-size = Vector2(12, 16)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifba4"]
+shader = ExtResource("2_y6kle")
+shader_parameter/mask = ExtResource("3_fh6ir")
 
 [sub_resource type="FontVariation" id="FontVariation_cr18n"]
 base_font = ExtResource("3_cr18n")
@@ -125,20 +122,13 @@ theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="ResourceBank/HBoxContainer/LeftSide" unique_id=306850753]
-layout_mode = 2
-theme_override_constants/margin_left = -8
-theme_override_constants/margin_top = -8
-theme_override_constants/margin_right = -8
-theme_override_constants/margin_bottom = -8
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="ResourceBank/HBoxContainer/LeftSide/MarginContainer" unique_id=1533000383]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ResourceBank/HBoxContainer/LeftSide" unique_id=1533000383]
 show_behind_parent = true
-material = SubResource("ShaderMaterial_01j20")
+material = SubResource("ShaderMaterial_ifba4")
 custom_minimum_size = Vector2(96, 128)
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="ResourceBank/HBoxContainer/LeftSide/MarginContainer/SubViewportContainer" unique_id=942802456]
+[node name="SubViewport" type="SubViewport" parent="ResourceBank/HBoxContainer/LeftSide/SubViewportContainer" unique_id=942802456]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
@@ -146,11 +136,42 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(96, 128)
 render_target_update_mode = 4
 
-[node name="FallingSand" type="Sprite2D" parent="ResourceBank/HBoxContainer/LeftSide/MarginContainer/SubViewportContainer/SubViewport" unique_id=1847650913]
-scale = Vector2(8, 8)
-texture = SubResource("PlaceholderTexture2D_bf7vx")
+[node name="Water" type="Sprite2D" parent="ResourceBank/HBoxContainer/LeftSide/SubViewportContainer/SubViewport" unique_id=1847650913]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(0, -3)
+scale = Vector2(10.667, 10.667)
 centered = false
 script = ExtResource("3_bf7vx")
+image_size = Vector2i(9, 12)
+movement_type = 1
+metadata/_custom_type_script = "uid://cm5vsk3wigqhr"
+
+[node name="Ichor" type="Sprite2D" parent="ResourceBank/HBoxContainer/LeftSide/SubViewportContainer/SubViewport" unique_id=2123998216]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(0, -3)
+scale = Vector2(10.667, 10.667)
+centered = false
+script = ExtResource("3_bf7vx")
+image_size = Vector2i(9, 12)
+movement_type = 1
+metadata/_custom_type_script = "uid://cm5vsk3wigqhr"
+
+[node name="Phosphor" type="Sprite2D" parent="ResourceBank/HBoxContainer/LeftSide/SubViewportContainer/SubViewport" unique_id=2037935395]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, -3)
+scale = Vector2(10.667, 10.667)
+centered = false
+script = ExtResource("3_bf7vx")
+image_size = Vector2i(9, 12)
+metadata/_custom_type_script = "uid://cm5vsk3wigqhr"
+
+[node name="Ambrose" type="Sprite2D" parent="ResourceBank/HBoxContainer/LeftSide/SubViewportContainer/SubViewport" unique_id=1735312866]
+modulate = Color(1, 0.49803922, 0, 1)
+position = Vector2(0, -3)
+scale = Vector2(10.667, 10.667)
+centered = false
+script = ExtResource("3_bf7vx")
+image_size = Vector2i(9, 12)
 metadata/_custom_type_script = "uid://cm5vsk3wigqhr"
 
 [node name="TextureRect" type="TextureRect" parent="ResourceBank/HBoxContainer/LeftSide" unique_id=1389734214]

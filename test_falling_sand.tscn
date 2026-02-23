@@ -8,6 +8,7 @@
 [node name="FallingSand" type="Sprite2D" parent="." unique_id=245380838]
 scale = Vector2(16, 16)
 script = ExtResource("1_0dajj")
+movement_type = 1
 metadata/_custom_type_script = "uid://cm5vsk3wigqhr"
 
 [node name="Border" type="Polygon2D" parent="." unique_id=1893284939]
