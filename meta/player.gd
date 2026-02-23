@@ -10,14 +10,12 @@ var _stored_resources: Dictionary[String, int] = {
 	"ambrose" : 0
 }
 
-func increment_stored_resource(type: String, by: int) -> void:
+func modify_stored_resource(type: String, by: int) -> void:
+	assert(_stored_resources[type] + by >= 0, "Please don't take more resource than is present!")
 	_stored_resources[type] += by
 	resources_changed.emit()
 	
-	if (by > 0):
-		get_parent().get_node(^"HUD/ResourceCounts").add_resource_particles(type, by)
-	else:
-		print("Removing from stored resource sandbox not implemented!!!")
+	get_parent().get_node(^"HUD/ResourceInfo").modify_resource_particles(type, by)
 
 func count_stored_resource(type: String) -> int:
 	return _stored_resources[type]
@@ -27,3 +25,18 @@ func get_stored_resources() -> Array[int]:
 
 func _ready() -> void:
 	GlobalLookups.player = get_path()
+	GameState.next_phase.connect(_on_next_phase)
+	
+	# Wait for the whole resources system to ready before setting gamestart resources
+	await get_tree().process_frame
+	
+	modify_stored_resource("water", 5)
+
+func _on_next_phase() -> void:
+	if (GameState.phase_name != "Noon"):
+		return
+	
+	if (count_stored_resource("water") > 0):
+		modify_stored_resource("water", -1)
+	else:
+		get_parent().spawn_floaty_hint("[WIP] You are dehydrated!!", Color("Red"))

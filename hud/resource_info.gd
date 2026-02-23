@@ -24,18 +24,23 @@ var player = get_node(GlobalLookups.player) as Player
 
 var active_tab := -1
 
-func add_resource_particles(of_type: String, count: int) -> void:
+func modify_resource_particles(of_type: String, by: int) -> void:
 	var sand = $ResourceBank/HBoxContainer/LeftSide/SubViewportContainer/SubViewport.get_child(
 		TYPES.find(of_type)
 	) as FallingSand
-	sand.queue_add_particles(count)
+	
+	if (by > 0):
+		sand.queue_add_particles(by)
+	else:
+		sand.queue_remove_particles(-by)
 
 func _ready() -> void:
+	player.resources_changed.connect(_on_player_resources_changed)
+	
 	# Wait for container sizing to set in before going top level.
 	await get_tree().process_frame
 	$ResourceBank.top_level = true
 	$ResourceBank.position.x = -$ResourceBank.size.x
-	player.resources_changed.connect(_on_player_resources_changed)
 
 func _fly_resource_bank_in() -> void:
 	var resource_bank = $ResourceBank

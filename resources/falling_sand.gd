@@ -32,25 +32,32 @@ func add_particle() -> void:
 ## Add 'count' particles to the queue, to be introduced a tick at a time.
 ## It's okay and actually generally preferred to call this with count=1.
 func queue_add_particles(count: int) -> void:
+	assert(count > 0, "I can't add %d particles, silly" % count)
 	if (_add_queue == 0 and !_queue_added_this_frame):
 		add_particle()
 		_queue_added_this_frame = true
-		_add_queue = count - 1
+		_add_queue += count - 1
 	else:
 		_add_queue += count
 
 ## Remove a particle immediately.
 func remove_particle() -> void:
-	_sim_state[image_size.y - 1][randi_range(0, image_size.x - 1)] = 0
+	var nonzero_cols: Array[int] = []
+	for x in range(image_size.x): # TODO a similar loop to this could be added to add() to ensure we're not overwriting the top row.
+		if (_sim_state[image_size.y - 1][x] != 0):
+			nonzero_cols.append(x)
+	
+	_sim_state[image_size.y - 1][nonzero_cols.pick_random()] = 0
 	_dirty = true
 
 ## Add 'count' particles to the queue, to be removed a tick at a time.
 ## It's okay and actually generally preferred to call this with count=1.
 func queue_remove_particles(count: int) -> void:
+	assert(count > 0, "I can't remove %d particles, silly" % count)
 	if (_remove_queue == 0 and !_queue_removed_this_frame):
 		remove_particle()
 		_queue_removed_this_frame = true
-		_remove_queue = count - 1
+		_remove_queue += count - 1
 	else:
 		_remove_queue += count
 
@@ -94,6 +101,10 @@ func _tick() -> void:
 	if (_add_queue > 0):
 		add_particle()
 		_add_queue -= 1
+	
+	if (_remove_queue > 0):
+		remove_particle()
+		_remove_queue -= 1
 	
 	for y in range(image_size.y):
 		for x in range(image_size.x):

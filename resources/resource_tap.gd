@@ -19,7 +19,7 @@ func _on_next_phase() -> void:
 	
 	vein.remaining -= 1
 	var player = get_node(GlobalLookups.player) as Player
-	var increment = player.increment_stored_resource.bind(vein.type, 1)
+	var increment = player.modify_stored_resource.bind(vein.type, 1)
 	
 	var pellet = Sprite2D.new()
 	pellet.material = CanvasItemMaterial.new()
@@ -31,4 +31,4 @@ func _on_next_phase() -> void:
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(pellet, ^"position", make_canvas_position_local(Vector2.ZERO), 0.5)
 	tween.tween_callback(pellet.queue_free)
-	tween.tween_callback(increment)
+	tween.tween_callback(increment) # TODO bug somewhere around here where increment can end up called twice...?

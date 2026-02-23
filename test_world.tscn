@@ -302,7 +302,7 @@ script = ExtResource("13_urhrq")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=830647743]
 
-[node name="ResourceCounts" parent="HUD" unique_id=1159859721 instance=ExtResource("13_07jwy")]
+[node name="ResourceInfo" parent="HUD" unique_id=1159859721 instance=ExtResource("13_07jwy")]
 
 [node name="NextTurnButton" parent="HUD" unique_id=1448396172 instance=ExtResource("12_ivea3")]
 
