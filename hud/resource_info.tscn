@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://hyi6ipxyjoel" path="res://resources/resource_tank.png" id="3_01j20"]
 [ext_resource type="Script" uid="uid://cm5vsk3wigqhr" path="res://resources/falling_sand.gd" id="3_bf7vx"]
 [ext_resource type="FontFile" uid="uid://hcp0y0wmjhs0" path="res://fonts/micro5/Micro5-Regular.ttf" id="3_cr18n"]
-[ext_resource type="Texture2D" uid="uid://bguhtypaxx30e" path="res://resources/resource_tank_mask.bmp" id="3_fh6ir"]
+[ext_resource type="Texture2D" uid="uid://cg2kcn2pvmxxw" path="res://resources/resource_tank_mask.png" id="3_y6kle"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w68ds"]
 bg_color = Color(0.2, 0, 0.2, 0.7058824)
@@ -35,7 +35,7 @@ corner_radius_bottom_right = 8
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifba4"]
 shader = ExtResource("2_y6kle")
-shader_parameter/mask = ExtResource("3_fh6ir")
+shader_parameter/mask = ExtResource("3_y6kle")
 
 [sub_resource type="FontVariation" id="FontVariation_cr18n"]
 base_font = ExtResource("3_cr18n")

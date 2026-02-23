@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bguhtypaxx30e"
-path="res://.godot/imported/resource_tank_mask.bmp-63d516ce2a59cabf7efbb46cd9be811a.ctex"
+uid="uid://cg2kcn2pvmxxw"
+path="res://.godot/imported/resource_tank_mask.png-974be6b3f0117b0f1cddbe61dfcedf7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/resource_tank_mask.bmp"
-dest_files=["res://.godot/imported/resource_tank_mask.bmp-63d516ce2a59cabf7efbb46cd9be811a.ctex"]
+source_file="res://resources/resource_tank_mask.png"
+dest_files=["res://.godot/imported/resource_tank_mask.png-974be6b3f0117b0f1cddbe61dfcedf7a.ctex"]
 
 [params]
 
