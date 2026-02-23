@@ -21,6 +21,8 @@ var _frozen: Array[Vector2i] = []
 
 var _queue_added_this_frame := false
 var _add_queue := 0
+var _queue_removed_this_frame := false
+var _remove_queue := 0
 
 ## Add a particle immediately.
 func add_particle() -> void:
@@ -36,6 +38,21 @@ func queue_add_particles(count: int) -> void:
 		_add_queue = count - 1
 	else:
 		_add_queue += count
+
+## Remove a particle immediately.
+func remove_particle() -> void:
+	_sim_state[image_size.y - 1][randi_range(0, image_size.x - 1)] = 0
+	_dirty = true
+
+## Add 'count' particles to the queue, to be removed a tick at a time.
+## It's okay and actually generally preferred to call this with count=1.
+func queue_remove_particles(count: int) -> void:
+	if (_remove_queue == 0 and !_queue_removed_this_frame):
+		remove_particle()
+		_queue_removed_this_frame = true
+		_remove_queue = count - 1
+	else:
+		_remove_queue += count
 
 func _ready() -> void:
 	centered = false
@@ -71,6 +88,7 @@ func _process(_delta: float) -> void:
 	texture.update(_image)
 	_dirty = false
 	_queue_added_this_frame = false
+	_queue_removed_this_frame = false
 
 func _tick() -> void:
 	if (_add_queue > 0):
