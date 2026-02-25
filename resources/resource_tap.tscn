@@ -116,9 +116,23 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_sl3re"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d6fsi"]
+gradient = SubResource("Gradient_sl3re")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.9, 0.9)
+
 [node name="ResourceTap" type="AnimatedSprite2D" unique_id=1125991819]
 sprite_frames = SubResource("SpriteFrames_ukcai")
 autoplay = "default"
 frame_progress = 0.26598722
 script = ExtResource("1_o44to")
 metadata/_custom_type_script = "uid://s0dicwgv8sag"
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=22864654]
+texture = SubResource("GradientTexture2D_d6fsi")

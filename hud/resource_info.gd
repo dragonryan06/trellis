@@ -42,6 +42,10 @@ func modify_resource_particles(of_type: String, by: int) -> void:
 
 func _ready() -> void:
 	player.resources_changed.connect(_on_player_resources_changed)
+	player.roots_changed.connect(
+		func(): if active_tab != -1: _update_bank_data(),
+		ConnectFlags.CONNECT_DEFERRED
+	)
 	
 	# Wait for container sizing to set in before going top level.
 	await get_tree().process_frame
@@ -56,12 +60,6 @@ func _fly_resource_bank_in() -> void:
 	title.modulate = COLORS[active_tab]
 	_update_bank_data()
 	resource_bank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Flavor").text = FLAVORTEXT[active_tab]
-	
-	var resource_taps = get_tree().get_nodes_in_group(&"resource_taps")
-	for tap: ResourceTap in resource_taps:
-		if (tap.tapped_vein.type == TYPES[active_tab]):
-			tap.visible = true
-			tap.modulate = COLORS[active_tab]
 	
 	var viewport = resource_bank.get_node(^"HBoxContainer/LeftSide/SubViewportContainer/SubViewport")
 	for child in viewport.get_children():
@@ -81,9 +79,8 @@ func _fly_resource_bank_out() -> void:
 	var resource_bank = $ResourceBank
 	resource_bank.top_level = true
 	
-	var resource_taps = get_tree().get_nodes_in_group(&"resource_taps")
-	for tap: ResourceTap in resource_taps:
-		tap.visible = false
+	for tap: ResourceTap in get_tree().get_nodes_in_group(&"resource_taps"):
+		tap.hide()
 	
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(resource_bank, ^"position:x", -resource_bank.size.x, 0.25)
@@ -91,12 +88,23 @@ func _fly_resource_bank_out() -> void:
 	return
 
 func _update_bank_data() -> void:
+	var intake := 0
+	for tap: ResourceTap in get_tree().get_nodes_in_group(&"resource_taps"):
+		var vein = tap.tapped_vein
+		if (vein.type == TYPES[active_tab] and vein.remaining > 0):
+			intake += 1
+			tap.show()
+			tap.modulate = COLORS[active_tab]
+			tap.get_node("PointLight2D").color = COLORS[active_tab]
+		else:
+			tap.hide()
+	
 	var data = $ResourceBank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Data")
 	data.text = "Storing: %2d [color=gray]%s[/color]
 Intake: %3d [color=gray]%s/d[/color]" % [
 		player.count_stored_resource(TYPES[active_tab]),
 		UNITS[active_tab],
-		0,
+		intake,
 		UNITS[active_tab]
 	]
 

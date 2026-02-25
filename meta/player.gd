@@ -2,6 +2,7 @@ class_name Player
 extends Sprite2D
 
 signal resources_changed
+signal roots_changed
 
 var _stored_resources: Dictionary[String, int] = {
 	"water" : 0,
@@ -40,3 +41,9 @@ func _on_next_phase() -> void:
 		modify_stored_resource("water", -1)
 	else:
 		get_parent().spawn_floaty_hint("[WIP] You are dehydrated!!", Color("Red"))
+
+func _on_child_entered_tree(node: Node) -> void:
+	if (node is not Root):
+		return
+	
+	node.shape_changed.connect(roots_changed.emit)
