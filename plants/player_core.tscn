@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bfqv4wk176lro" path="res://plants/seed_root_cover.png" id="5_ky63x"]
 [ext_resource type="Texture2D" uid="uid://ne8ul6110gl" path="res://plants/seed_sprout_cover.png" id="6_0u8kd"]
 [ext_resource type="Texture2D" uid="uid://drr0b5v5v8f2r" path="res://growing/dirt_crumbles.png" id="6_x5cou"]
-[ext_resource type="Script" uid="uid://s0dicwgv8sag" path="res://resources/resource_tap.gd" id="7_gyadc"]
+[ext_resource type="PackedScene" uid="uid://b17i1t0ysbjky" path="res://resources/resource_tap.tscn" id="7_gyadc"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50299394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.15730333), 0.0, 0.0, 0, 0]
@@ -343,9 +343,8 @@ lifetime = 8.0
 speed_scale = 5.0
 process_material = SubResource("ParticleProcessMaterial_gyadc")
 
-[node name="ResourceTap" type="Marker2D" parent="Taproot" unique_id=1551722313]
-script = ExtResource("7_gyadc")
-metadata/_custom_type_script = "uid://s0dicwgv8sag"
+[node name="ResourceTap" parent="Taproot" unique_id=1125991819 instance=ExtResource("7_gyadc")]
+visible = false
 
 [node name="SeedRootCover" type="Sprite2D" parent="." unique_id=872298083]
 position = Vector2(-4, 33)

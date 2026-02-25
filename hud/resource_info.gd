@@ -18,6 +18,12 @@ const UNITS: Array[String] = [
 	"motes",
 	"motes"
 ]
+const FLAVORTEXT: Array[String] = [
+	"[color=gray]Essence of life and sculptor of soils. Of all things, it is first.",
+	"[color=gray]Sanguine drops fallen from Helia's leaves and scattered so that all her subjects may prosper.",
+	"[color=gray]Musky humor of earth & soil. Makes strong the root and beautiful the petal.",
+	"[color=gray]Mineral of vitality and longevity. Emboldens the body and makes cowardly her enemies."
+]
 
 @onready
 var player = get_node(GlobalLookups.player) as Player
@@ -49,6 +55,13 @@ func _fly_resource_bank_in() -> void:
 	title.text = TYPES[active_tab].capitalize()
 	title.modulate = COLORS[active_tab]
 	_update_bank_data()
+	resource_bank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Flavor").text = FLAVORTEXT[active_tab]
+	
+	var resource_taps = get_tree().get_nodes_in_group(&"resource_taps")
+	for tap: ResourceTap in resource_taps:
+		if (tap.tapped_vein.type == TYPES[active_tab]):
+			tap.visible = true
+			tap.modulate = COLORS[active_tab]
 	
 	var viewport = resource_bank.get_node(^"HBoxContainer/LeftSide/SubViewportContainer/SubViewport")
 	for child in viewport.get_children():
@@ -68,6 +81,10 @@ func _fly_resource_bank_out() -> void:
 	var resource_bank = $ResourceBank
 	resource_bank.top_level = true
 	
+	var resource_taps = get_tree().get_nodes_in_group(&"resource_taps")
+	for tap: ResourceTap in resource_taps:
+		tap.visible = false
+	
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(resource_bank, ^"position:x", -resource_bank.size.x, 0.25)
 	await tween.finished
@@ -77,10 +94,10 @@ func _update_bank_data() -> void:
 	var data = $ResourceBank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Data")
 	data.text = "Storing: %2d [color=gray]%s[/color]
 Intake: %3d [color=gray]%s/d[/color]" % [
-	player.count_stored_resource(TYPES[active_tab]),
-	UNITS[active_tab],
-	0,
-	UNITS[active_tab]
+		player.count_stored_resource(TYPES[active_tab]),
+		UNITS[active_tab],
+		0,
+		UNITS[active_tab]
 	]
 
 func _on_button_toggled(toggled_on: bool, button_idx: int) -> void:

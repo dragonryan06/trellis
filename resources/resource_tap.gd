@@ -1,17 +1,24 @@
 class_name ResourceTap
-extends Marker2D
+extends AnimatedSprite2D
 
 @onready
 var pellet_texture = preload("res://resources/resource_pellet.png")
 
+@onready
+var soil_resources := get_node(GlobalLookups.soil_resources) as SoilResources
+
+var tapped_vein: ResourceVein:
+	get():
+		return soil_resources.get_resource_at(soil_resources.to_local(global_position))
+
 func _ready() -> void:
 	GameState.next_phase.connect(_on_next_phase)
+	add_to_group(&"resource_taps")
 
 func _on_next_phase() -> void:
 	if (GameState.phase_name != "Dawn"):
 		return
 	
-	var soil_resources = get_node(GlobalLookups.soil_resources) as SoilResources
 	var vein = soil_resources.get_resource_at(soil_resources.to_local(global_position))
 	
 	if (vein.remaining == 0):

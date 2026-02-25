@@ -60,6 +60,7 @@ var origin := Vector2(0.0, 0.0)
 var displacement := Vector2(0.0, 0.0)
 
 func _ready() -> void:
+	top_level = true
 	var update_visibility = func(): visible = GameState.phase_name == "Noon"
 	GameState.next_phase.connect(update_visibility)
 	update_visibility.call()

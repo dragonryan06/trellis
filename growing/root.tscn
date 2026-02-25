@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://growing/root.gd" id="1_sl3re"]
 [ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://growing/ui/handle_base.gd" id="2_sl3re"]
 [ext_resource type="Texture2D" uid="uid://drr0b5v5v8f2r" path="res://growing/dirt_crumbles.png" id="4_441om"]
-[ext_resource type="Script" uid="uid://s0dicwgv8sag" path="res://resources/resource_tap.gd" id="5_t6j0r"]
+[ext_resource type="PackedScene" uid="uid://b17i1t0ysbjky" path="res://resources/resource_tap.tscn" id="5_t6j0r"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
@@ -198,9 +198,8 @@ lifetime = 8.0
 speed_scale = 5.0
 process_material = SubResource("ParticleProcessMaterial_ff14e")
 
-[node name="ResourceTap" type="Marker2D" parent="." unique_id=1542446085]
-script = ExtResource("5_t6j0r")
-metadata/_custom_type_script = "uid://s0dicwgv8sag"
+[node name="ResourceTap" parent="." unique_id=1125991819 instance=ExtResource("5_t6j0r")]
+visible = false
 
 [connection signal="input_event" from="GrowthHandle" to="GrowthHandle" method="_on_input_event"]
 [connection signal="mouse_entered" from="GrowthHandle" to="GrowthHandle" method="_on_mouse_entered"]

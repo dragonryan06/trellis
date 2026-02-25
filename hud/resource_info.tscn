@@ -42,6 +42,9 @@ base_font = ExtResource("3_cr18n")
 spacing_top = -4
 baseline_offset = 0.1
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_y6kle"]
+color = Color(1, 1, 1, 1)
+
 [node name="ResourceInfo" type="VBoxContainer" unique_id=340157982]
 offset_right = 184.0
 offset_bottom = 20.0
@@ -201,6 +204,21 @@ text = " Storing: 123 [color=gray]drams[/color]
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="ResourceBank/HBoxContainer/RightSide/VBoxContainer" unique_id=746988461]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_y6kle")
+
+[node name="Flavor" type="RichTextLabel" parent="ResourceBank/HBoxContainer/RightSide/VBoxContainer" unique_id=403561623]
+layout_mode = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_cr18n")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "[color=gray]Flavortext here"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
 
 [connection signal="toggled" from="ResourceCounts/HBoxContainer/Water" to="." method="_on_button_toggled" binds= [0]]
 [connection signal="toggled" from="ResourceCounts/HBoxContainer/Ichor" to="." method="_on_button_toggled" binds= [1]]
