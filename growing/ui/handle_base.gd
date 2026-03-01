@@ -5,7 +5,16 @@ const MAX_DISPLACEMENT := 64.0
 const INVALID_COLOR := Color("#ff0000")
 const VALID_COLOR := Color("#00ff00")
 
-var was_moved := false
+var was_moved := false:
+	get():
+		return was_moved
+	set(value):
+		was_moved = value
+		_update_cost_display()
+		if (was_moved):
+			get_parent().add_to_group(&"to_be_grown")
+		else:
+			get_parent().remove_from_group(&"to_be_grown")
 
 var invalid := false:
 	get:
@@ -22,6 +31,8 @@ var invalid := false:
 			$PointLight2D.color = VALID_COLOR
 			# Surely the only way it can become valid again is if the mouse is over it actively.
 			$AnimatedSprite2D.play(&"active")
+		
+		_update_cost_display()
 
 var mouse_hover := false:
 	get:
@@ -97,6 +108,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if (mouse_drag and !event.is_pressed()):
 		mouse_drag = false
+
+func _update_cost_display() -> void:
+	var display_string := "[shake][color=#990000] " if invalid else " "
+	display_string += get_parent().cost_string
+	$CostDisplay.text = display_string
+	
+	if (was_moved):
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
+		tween.tween_property($CostDisplay, ^"modulate:a", 1.0, 0.25)
+	else:
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
+		tween.tween_property($CostDisplay, ^"modulate:a", 0.0, 0.25)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if (!(event is InputEventMouseButton)):

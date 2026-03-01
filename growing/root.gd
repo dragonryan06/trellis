@@ -35,4 +35,5 @@ func _on_next_phase() -> void:
 func _ready() -> void:
 	super._ready()
 	
+	cost_string = " 1[color=red]@"
 	$DirtParticles.position = endpoint_position

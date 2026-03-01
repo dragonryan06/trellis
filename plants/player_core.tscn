@@ -143,6 +143,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.9)
 
+[sub_resource type="FontVariation" id="FontVariation_5ab6v"]
+spacing_top = 2
+
 [sub_resource type="Curve" id="Curve_x5cou"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -251,6 +254,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.9, 0.9)
 
+[sub_resource type="FontVariation" id="FontVariation_kwewk"]
+spacing_top = 2
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x5cou"]
 particles_animation = true
 particles_anim_h_frames = 4
@@ -301,12 +307,21 @@ shape = SubResource("CircleShape2D_wsw62")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stem/GrowthHandle" unique_id=1741486146]
 material = SubResource("CanvasItemMaterial_q38kt")
 sprite_frames = SubResource("SpriteFrames_d8a3x")
-animation = &"invalid"
 
 [node name="PointLight2D" type="PointLight2D" parent="Stem/GrowthHandle" unique_id=781616667]
 enabled = false
 color = Color(0, 1, 0.01666665, 1)
 texture = SubResource("GradientTexture2D_ft56i")
+
+[node name="CostDisplay" type="RichTextLabel" parent="Stem/GrowthHandle" unique_id=737094568]
+modulate = Color(1, 1, 1, 0)
+offset_top = -13.0
+offset_right = 24.0
+theme_override_fonts/normal_font = SubResource("FontVariation_5ab6v")
+bbcode_enabled = true
+text = " Free :P "
+fit_content = true
+autowrap_mode = 0
 
 [node name="Taproot" type="Line2D" parent="." unique_id=686598111]
 points = PackedVector2Array(-8, 24, 0, 32)
@@ -329,12 +344,21 @@ shape = SubResource("CircleShape2D_kwewk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Taproot/GrowthHandle" unique_id=1960426586]
 material = SubResource("CanvasItemMaterial_5ab6v")
 sprite_frames = SubResource("SpriteFrames_rjrwy")
-animation = &"invalid"
 
 [node name="PointLight2D" type="PointLight2D" parent="Taproot/GrowthHandle" unique_id=1451522860]
 enabled = false
 color = Color(0, 1, 0.01666665, 1)
 texture = SubResource("GradientTexture2D_rbayi")
+
+[node name="CostDisplay" type="RichTextLabel" parent="Taproot/GrowthHandle" unique_id=933383297]
+modulate = Color(1, 1, 1, 0)
+offset_top = -13.0
+offset_right = 24.0
+theme_override_fonts/normal_font = SubResource("FontVariation_kwewk")
+bbcode_enabled = true
+text = " X[color=red]@ "
+fit_content = true
+autowrap_mode = 0
 
 [node name="DirtParticles" type="GPUParticles2D" parent="Taproot" unique_id=975280585]
 material = SubResource("CanvasItemMaterial_x5cou")

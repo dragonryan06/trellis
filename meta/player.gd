@@ -32,6 +32,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	
 	modify_stored_resource("water", 5)
+	modify_stored_resource("phosphor", 5)
 
 func _on_next_phase() -> void:
 	if (GameState.phase_name != "Noon"):
@@ -41,6 +42,10 @@ func _on_next_phase() -> void:
 		modify_stored_resource("water", -1)
 	else:
 		get_parent().spawn_floaty_hint("[WIP] You are dehydrated!!", Color("Red"))
+	
+	for growable: GrowableLineBase in get_tree().get_nodes_in_group(&"to_be_grown"):
+		
+		growable.remove_from_group(&"to_be_grown")
 
 func _on_child_entered_tree(node: Node) -> void:
 	if (node is not Root):
