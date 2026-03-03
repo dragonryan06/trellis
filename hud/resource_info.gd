@@ -1,38 +1,13 @@
 extends VBoxContainer
 
-const TYPES: Array[String] = [
-	"water",
-	"ichor",
-	"phosphor",
-	"ambrose"
-]
-const COLORS: Array[Color] = [
-	Color("blue"),
-	Color("green"),
-	Color("red"),
-	Color("orange")
-]
-const UNITS: Array[String] = [
-	"drams",
-	"drams",
-	"motes",
-	"motes"
-]
-const FLAVORTEXT: Array[String] = [
-	"[color=gray]Essence of life and sculptor of soils. Of all things, it is first.",
-	"[color=gray]Sanguine drops fallen from Helia's leaves and scattered so that all her subjects may prosper.",
-	"[color=gray]Musky humor of earth & soil. Makes strong the root and beautiful the petal.",
-	"[color=gray]Mineral of vitality and longevity. Emboldens the body and makes cowardly her enemies."
-]
-
 @onready
 var player = get_node(GlobalLookups.player) as Player
 
 var active_tab := -1
 
-func modify_resource_particles(of_type: String, by: int) -> void:
+func modify_resource_particles(of_type: SoilResources.Types, by: int) -> void:
 	var sand = $ResourceBank/HBoxContainer/LeftSide/SubViewportContainer/SubViewport.get_child(
-		TYPES.find(of_type)
+		of_type
 	) as FallingSand
 	
 	if (by > 0):
@@ -56,10 +31,10 @@ func _fly_resource_bank_in() -> void:
 	var resource_bank = $ResourceBank
 	
 	var title = resource_bank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Title")
-	title.text = TYPES[active_tab].capitalize()
-	title.modulate = COLORS[active_tab]
+	title.text = SoilResources.NAMES[active_tab]
+	title.modulate = SoilResources.COLORS[active_tab]
 	_update_bank_data()
-	resource_bank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Flavor").text = FLAVORTEXT[active_tab]
+	resource_bank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Flavor").text = SoilResources.FLAVORTEXT[active_tab]
 	
 	var viewport = resource_bank.get_node(^"HBoxContainer/LeftSide/SubViewportContainer/SubViewport")
 	for child in viewport.get_children():
@@ -91,21 +66,21 @@ func _update_bank_data() -> void:
 	var intake := 0
 	for tap: ResourceTap in get_tree().get_nodes_in_group(&"resource_taps"):
 		var vein = tap.tapped_vein
-		if (vein.type == TYPES[active_tab] and vein.remaining > 0):
+		if (vein.type == active_tab and vein.remaining > 0):
 			intake += 1
 			tap.show()
-			tap.modulate = COLORS[active_tab]
-			tap.get_node("PointLight2D").color = COLORS[active_tab]
+			tap.modulate = SoilResources.COLORS[active_tab]
+			tap.get_node("PointLight2D").color = SoilResources.COLORS[active_tab]
 		else:
 			tap.hide()
 	
 	var data = $ResourceBank.get_node(^"HBoxContainer/RightSide/VBoxContainer/Data")
 	data.text = "Storing: %2d [color=gray]%s[/color]
 Intake: %3d [color=gray]%s/d[/color]" % [
-		player.count_stored_resource(TYPES[active_tab]),
-		UNITS[active_tab],
+		player.count_stored_resource(active_tab),
+		SoilResources.UNITS[active_tab],
 		intake,
-		UNITS[active_tab]
+		SoilResources.UNITS[active_tab]
 	]
 
 func _on_button_toggled(toggled_on: bool, button_idx: int) -> void:

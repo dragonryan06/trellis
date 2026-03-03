@@ -1,21 +1,6 @@
 class_name ResourceVein
 extends Sprite2D
 
-const COLOR_TABLE: Dictionary[String, Color] = {
-	"nothing" : Color("transparent"),
-	"water" : Color("blue"),
-	"ichor" : Color("green"),
-	"phosphor" : Color("red"),
-	"ambrose" : Color("orange")
-}
-const WEIGHT_TABLE: Dictionary[String, float] = {
-	"nothing" : 0.75, 
-	"water" : 0.125, 
-	"ichor" : 0.0416,
-	"phosphor" : 0.0416,
-	"ambrose" : 0.0416
-}
-
 var mouse_hover := false:
 	get():
 		return mouse_hover
@@ -23,7 +8,7 @@ var mouse_hover := false:
 		mouse_hover = value
 		set_instance_shader_parameter(&"mouse_hover", value)
 
-var type: String
+var type: SoilResources.Types
 
 # The position of the voronoi seed that spawned this vein.
 var origin: Vector2i:
@@ -38,7 +23,7 @@ var origins: Array[Vector2i] = [Vector2i(-1, -1)]
 
 var color: Color:
 	get():
-		return COLOR_TABLE[type]
+		return SoilResources.COLORS[type]
 
 var image: Image
 
@@ -84,4 +69,4 @@ func _ready() -> void:
 	remaining = volume
 
 func _to_string() -> String:
-	return "%s (%d/%d)" % [type, remaining, volume] if volume != 0 else type
+	return "%s (%d/%d)" % [SoilResources.NAMES[type], remaining, volume] if volume != 0 else SoilResources.NAMES[type]

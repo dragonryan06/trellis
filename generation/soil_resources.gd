@@ -1,6 +1,57 @@
 class_name SoilResources
 extends Node2D
 
+## Note that Types.NOTHING should only appear in purposes of worldgen, nowhere else please!!
+enum Types { NOTHING = -1, WATER, ICHOR, PHOSPHOR, AMBROSE }
+
+const NAMES: Dictionary[Types, String] = {
+	Types.NOTHING : "Nothing",
+	Types.WATER : "Water",
+	Types.ICHOR : "Ichor",
+	Types.PHOSPHOR : "Phosphor",
+	Types.AMBROSE : "Ambrose"
+}
+
+const COLORS: Dictionary[Types, Color] = {
+	Types.NOTHING : Color("transparent"),
+	Types.WATER : Color("blue"),
+	Types.ICHOR : Color("green"),
+	Types.PHOSPHOR : Color("red"),
+	Types.AMBROSE : Color("orange")
+}
+
+const SYMBOLS: Dictionary[Types, String] = {
+	Types.NOTHING : "",
+	Types.WATER : "$",
+	Types.ICHOR : "%",
+	Types.PHOSPHOR : "@",
+	Types.AMBROSE : "#"
+}
+
+const UNITS: Dictionary[Types, String] = {
+	Types.NOTHING : "",
+	Types.WATER : "drams",
+	Types.ICHOR : "drams",
+	Types.PHOSPHOR : "motes",
+	Types.AMBROSE : "motes"
+}
+
+const FLAVORTEXT: Dictionary[Types, String] = {
+	Types.NOTHING : "[color=gray]There is nothing there.",
+	Types.WATER : "[color=gray]Essence of life and sculptor of soils. Of all things, it is first.",
+	Types.ICHOR : "[color=gray]Sanguine drops fallen from Helia's leaves and scattered so that all her subjects may prosper.",
+	Types.PHOSPHOR : "[color=gray]Musky humor of earth & soil. Makes strong the root and beautiful the petal.",
+	Types.AMBROSE : "[color=gray]Mineral of vitality and longevity. Emboldens the body and makes cowardly her enemies."
+}
+
+const GENERATION_WEIGHTS: Dictionary[Types, float] = {
+	Types.NOTHING : 0.75, 
+	Types.WATER : 0.125, 
+	Types.ICHOR : 0.0416,
+	Types.PHOSPHOR : 0.0416,
+	Types.AMBROSE : 0.0416
+}
+
 const IMAGE_DIM := Vector2i(1024, 512)
 const GRID_DIM := Vector2i(10, 10)
 
@@ -13,6 +64,18 @@ const GRID_DIM := Vector2i(10, 10)
 var _resource_veins: Dictionary[Vector2i, ResourceVein]
 
 var _last_mouse_hover: ResourceVein
+
+static func get_weighted_random_type() -> Types:
+	const EPSILON := 0.001
+	var point := randf()
+	var sum := 0.0
+	
+	for i in range(len(GENERATION_WEIGHTS)):
+		sum += GENERATION_WEIGHTS.values()[i]
+		if (point <= sum + EPSILON):
+			return GENERATION_WEIGHTS.keys()[i]
+	assert(false, "Weights in table didn't add to 1.0! Perhaps EPSILON needs adjusting?")
+	return Types.NOTHING
 
 func get_resource_at(local_pos: Vector2) -> ResourceVein:
 	if (local_pos.x < 0 or local_pos.x > IMAGE_DIM.x or local_pos.y < 0 or local_pos.y > IMAGE_DIM.y):
@@ -43,7 +106,7 @@ func _ready() -> void:
 	
 	_generate_resources()
 	for vein in _resource_veins.values():
-		if (vein.type == "nothing"):
+		if (vein.type == Types.NOTHING):
 			continue
 		add_child(vein)
 
@@ -57,14 +120,14 @@ func _generate_resources() -> void:
 	for y in range(GRID_DIM.y):
 		for x in range(GRID_DIM.x):
 			var vein = ResourceVein.new()
-			vein.type = RandomHelper.get_weighted_random_key(ResourceVein.WEIGHT_TABLE)
+			vein.type = get_weighted_random_type()
 			vein.origin = Vector2i(
 				randi_range(x * chunk_size.x, x * chunk_size.x + chunk_size.x),
 				randi_range(y * chunk_size.y, y * chunk_size.y + chunk_size.y)
 			)
 			_resource_veins[Vector2i(x, y)] = vein
 			
-			if (vein.type == "nothing"):
+			if (vein.type == Types.NOTHING):
 				continue
 			
 			vein.image = Image.create_empty(IMAGE_DIM.x, IMAGE_DIM.y, false, Image.FORMAT_RGBA8)
@@ -78,7 +141,7 @@ func _generate_resources() -> void:
 		for x in range(IMAGE_DIM.x):
 			var vein = _get_containing_resource_vein(Vector2i(x, y))
 			
-			if (vein.type == "nothing"):
+			if (vein.type == Types.NOTHING):
 				continue
 			
 			var normalized_richness = clamp(snapped(noise.get_noise_2d(x,y) + 0.75, 0.25), 0.0, 1.0)
