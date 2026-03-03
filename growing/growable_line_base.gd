@@ -13,7 +13,30 @@ var previous_displacement: Vector2:
 	get:
 		return points[-1] - points[-2]
 
-var cost_string := "Free! :P"
+var cost: Dictionary[SoilResources.Types, int] = {}
+
+var cost_string:
+	get:
+		if (len(cost) == 0):
+			return "Free! :P"
+		
+		var ret = "%d[color=%s]%s" % [
+			cost.values()[0], 
+			SoilResources.COLORS[cost.keys()[0]].to_html(false),
+			SoilResources.SYMBOLS[cost.keys()[0]]
+		]
+		
+		if (len(cost) == 1):
+			return ret
+		
+		for idx in range(1, len(cost)):
+			ret += "[/color], %d[color=%s]%s" % [
+				cost.values()[idx],
+				SoilResources.COLORS[cost.keys()[idx]].to_html(false),
+				SoilResources.SYMBOLS[cost.keys()[idx]]
+			]
+		
+		return ret
 
 func grow_to(location: Vector2) -> void:
 	assert(is_inside_tree(), "Must be inside tree!")

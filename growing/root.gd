@@ -35,5 +35,5 @@ func _on_next_phase() -> void:
 func _ready() -> void:
 	super._ready()
 	
-	cost_string = " 1[color=red]@"
+	cost[SoilResources.Types.PHOSPHOR] = 1
 	$DirtParticles.position = endpoint_position
