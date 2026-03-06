@@ -54,6 +54,8 @@ func _on_next_phase() -> void:
 	if (GameState.phase_name != "Dusk"):
 		return
 	
+	await get_tree().process_frame
+	
 	if ($GrowthHandle.was_moved):
 		grow_to($GrowthHandle.position)
 		$GrowthHandle.was_moved = false

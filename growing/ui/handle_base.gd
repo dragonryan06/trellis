@@ -13,9 +13,21 @@ var was_moved := false:
 		_update_cost_display()
 		if (was_moved):
 			get_parent().add_to_group(&"to_be_grown")
+			
+			var resources: Dictionary[SoilResources.Types, int] = {}
+			for growable: GrowableLineBase in get_tree().get_nodes_in_group(&"to_be_grown"):
+				for type: SoilResources.Types in growable.cost:
+					resources[type] = resources.get_or_add(type, 0) + growable.cost[type]
+			
+			var player = get_node(GlobalLookups.player) as Player
+			if (!player.can_afford(resources)):
+				cant_afford = true
+			else:
+				cant_afford = false
 		else:
 			get_parent().remove_from_group(&"to_be_grown")
 
+## NOTE: Yeah this validation system isn't great but it works so long as you dont directly set invalid.
 var invalid := false:
 	get:
 		return invalid
@@ -33,6 +45,28 @@ var invalid := false:
 			$AnimatedSprite2D.play(&"active")
 		
 		_update_cost_display()
+
+var bad_position := false:
+	get:
+		return bad_position
+	set(value):
+		bad_position = value
+		
+		if (bad_position):
+			invalid = true
+		elif (!cant_afford and !bad_position):
+			invalid = false
+
+var cant_afford := false:
+	get:
+		return cant_afford
+	set(value):
+		cant_afford = value
+		
+		if (cant_afford):
+			invalid = true
+		elif (!bad_position and !cant_afford):
+			invalid = false
 
 var mouse_hover := false:
 	get:
@@ -100,7 +134,7 @@ func _process(_delta: float) -> void:
 		position -= displacement - clamped_displacement
 		displacement = clamped_displacement
 	
-	invalid = displacement.dot(parent.previous_displacement) <= 0
+	bad_position = displacement.dot(parent.previous_displacement) <= 0
 
 func _unhandled_input(event: InputEvent) -> void:
 	if (!(event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT)):
@@ -131,7 +165,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 		MOUSE_BUTTON_RIGHT when event.is_pressed():
 			position = origin
 			displacement = Vector2.ZERO
-			invalid = false
+			bad_position = false
+			cant_afford = false
 			was_moved = false
 
 func _on_mouse_entered() -> void:

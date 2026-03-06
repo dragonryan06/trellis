@@ -16,6 +16,8 @@ func modify_stored_resource(type: SoilResources.Types, by: int) -> void:
 	_stored_resources[type] += by
 	resources_changed.emit()
 	
+	print("%s: %d -> %d" % [SoilResources.NAMES[type], _stored_resources[type] - by, _stored_resources[type]])
+	
 	get_parent().get_node(^"HUD/ResourceInfo").modify_resource_particles(type, by)
 
 func count_stored_resource(type: SoilResources.Types) -> int:
@@ -23,6 +25,12 @@ func count_stored_resource(type: SoilResources.Types) -> int:
 
 func get_stored_resources() -> Array[int]:
 	return _stored_resources.values()
+
+func can_afford(cost: Dictionary[SoilResources.Types, int]) -> bool:
+	for type: SoilResources.Types in cost:
+		if (count_stored_resource(type) - cost[type] < 0):
+			return false
+	return true
 
 func _ready() -> void:
 	GlobalLookups.player = get_path()
@@ -35,17 +43,17 @@ func _ready() -> void:
 	modify_stored_resource(SoilResources.Types.PHOSPHOR, 5)
 
 func _on_next_phase() -> void:
-	if (GameState.phase_name != "Noon"):
-		return
+	if (GameState.phase_name == "Noon"):
+		if (count_stored_resource(SoilResources.Types.WATER) > 0):
+			modify_stored_resource(SoilResources.Types.WATER, -1)
+		else:
+			get_parent().spawn_floaty_hint("[WIP] You are dehydrated!!", Color("Red"))
 	
-	if (count_stored_resource(SoilResources.Types.WATER) > 0):
-		modify_stored_resource(SoilResources.Types.WATER, -1)
-	else:
-		get_parent().spawn_floaty_hint("[WIP] You are dehydrated!!", Color("Red"))
-	
-	for growable: GrowableLineBase in get_tree().get_nodes_in_group(&"to_be_grown"):
-		
-		growable.remove_from_group(&"to_be_grown")
+	if (GameState.phase_name == "Dusk"):
+		for growable: GrowableLineBase in get_tree().get_nodes_in_group(&"to_be_grown"):
+			for type: SoilResources.Types in growable.cost:
+				modify_stored_resource(type, -growable.cost[type])
+			growable.remove_from_group(&"to_be_grown")
 
 func _on_child_entered_tree(node: Node) -> void:
 	if (node is not Root):
