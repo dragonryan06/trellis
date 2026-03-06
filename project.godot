@@ -19,6 +19,7 @@ config/icon="uid://c62mlv2o0ndlw"
 
 GameState="*uid://qsji6mfua05b"
 GlobalLookups="*uid://bia0ustu5gan0"
+DebugConsole="*uid://cq5tvinwu6y0g"
 
 [display]
 
