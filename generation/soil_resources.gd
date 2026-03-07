@@ -100,6 +100,15 @@ func _process(_delta: float) -> void:
 func _ready() -> void:
 	GlobalLookups.soil_resources = get_path()
 	
+	DebugConsole.register_command(&"resource replenish", func():
+		var modified := 0
+		for vein: ResourceVein in _resource_veins.values():
+			if (vein.remaining != vein.volume):
+				modified += 1
+			vein.remaining = vein.volume
+		return "Replenished %d resource veins" % modified
+	)
+	
 	# Just set SoilResources invisible if you dont want to wait on it generating.
 	if (!visible):
 		return

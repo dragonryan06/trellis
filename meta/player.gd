@@ -36,6 +36,17 @@ func _ready() -> void:
 	GlobalLookups.player = get_path()
 	GameState.next_phase.connect(_on_next_phase)
 	
+	DebugConsole.register_command(&"resource add", func(type: String, amount: String):
+		var idx = SoilResources.NAMES.values().find(type.to_lower().capitalize())
+		if (idx == -1):
+			return "[color=red]add: Unknown resource type: %s[/color]" % type
+		
+		if (int(amount) == 0):
+			return "[color=red]add: Invalid quantity: %s[/color]" % amount
+		
+		modify_stored_resource(SoilResources.Types.values()[idx], int(amount))
+	)
+	
 	# Wait for the whole resources system to ready before setting gamestart resources
 	await get_tree().process_frame
 	

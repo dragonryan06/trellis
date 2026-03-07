@@ -33,8 +33,24 @@ func _unhandled_input(event: InputEvent) -> void:
 func _evaluate_command(command: String) -> void:
 	var result
 	
-	if (_command_registry.has(command)):
-		result = _command_registry[command].call()
+	var found_command := &""
+	for registered in _command_registry:
+		if (command.begins_with(registered)):
+			found_command = registered
+			break
+	
+	if (found_command != &""):
+		var callable := _command_registry[found_command]
+		var args := command.trim_prefix(found_command).split(" ", false) 
+		
+		if (len(args) != callable.get_argument_count()):
+			result = "[color=red]%s: Expected %d args, got %d[/color]" % [
+				found_command.split(" ", false)[-1],
+				callable.get_argument_count(),
+				len(args)
+			]
+		else:
+			result = _command_registry[found_command].callv(args)
 	else:
 		var arbitrary := Expression.new()
 		
