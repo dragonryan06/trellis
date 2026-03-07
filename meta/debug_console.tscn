@@ -14,6 +14,7 @@ script = ExtResource("1_nvb44")
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=637020330]
 anchors_preset = 10
 anchor_right = 1.0
+offset_top = -151.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvb44")
 
@@ -29,14 +30,8 @@ theme_override_constants/margin_right = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer/MarginContainer" unique_id=1377383523]
 layout_mode = 2
-size_flags_vertical = 8
 focus_mode = 2
 bbcode_enabled = true
-text = "> resource add water 20
-Added 20 [color=blue]Water[/color].
-> resource replenish
-Replenished all resource nodes."
-fit_content = true
 scroll_following = true
 selection_enabled = true
 
