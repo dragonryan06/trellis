@@ -10,7 +10,9 @@ func grow_to(location: Vector2) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property($DirtParticles, ^"position", location, 1.0)
 	tween.tween_callback($DirtParticles.set.bind(&"emitting", false))
-	$ResourceTap.position = location
+	
+	if has_node(^"ResourceTap"):
+		$ResourceTap.position = location
 
 func _on_next_phase() -> void:
 	super._on_next_phase()

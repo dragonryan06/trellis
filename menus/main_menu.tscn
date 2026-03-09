@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://da70v7p668p2k"]
+
+[ext_resource type="Texture2D" uid="uid://dkyja5sv2j55t" path="res://backdrop/test-dirt.png" id="1_8gy84"]
+[ext_resource type="Script" uid="uid://cppo6tk2ssj10" path="res://menus/main_menu.gd" id="1_ij7vn"]
+[ext_resource type="PackedScene" uid="uid://fik761ryvm1k" path="res://menus/main_menu_root.tscn" id="4_rqbgu"]
+
+[sub_resource type="FontVariation" id="FontVariation_8gy84"]
+baseline_offset = 0.1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8gy84"]
+
+[node name="MainMenu" type="Node2D" unique_id=2024836824]
+script = ExtResource("1_ij7vn")
+
+[node name="AmbientLighting" type="CanvasModulate" parent="." unique_id=818467223]
+
+[node name="Backdrop" type="Parallax2D" parent="." unique_id=1042280835]
+z_index = -1
+repeat_size = Vector2(128, 128)
+repeat_times = 6
+
+[node name="TestDirt" type="Sprite2D" parent="Backdrop" unique_id=158406813]
+texture_repeat = 2
+position = Vector2(296, 192)
+texture = ExtResource("1_8gy84")
+
+[node name="Root" parent="." unique_id=1816036020 instance=ExtResource("4_rqbgu")]
+position = Vector2(144, -8)
+points = PackedVector2Array(0, 0, -8, 16)
+
+[node name="Root2" parent="." unique_id=406766431 instance=ExtResource("4_rqbgu")]
+position = Vector2(288, -8)
+points = PackedVector2Array(0, 0, 0, 16)
+
+[node name="Root3" parent="." unique_id=1410343100 instance=ExtResource("4_rqbgu")]
+position = Vector2(432, -8)
+points = PackedVector2Array(0, 0, 8, 16)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=87202146]
+
+[node name="Center" type="VBoxContainer" parent="UI" unique_id=1446967308]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.5
+offset_top = -5.5
+offset_right = 19.5
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Title" type="RichTextLabel" parent="UI/Center" unique_id=1413746061]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_8gy84")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = " [shake rate=5 level=10]Trellis "
+fit_content = true
+autowrap_mode = 0
+
+[node name="Subtitle" type="Label" parent="UI/Center" unique_id=518228770]
+layout_mode = 2
+text = "A game by Ryan!"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Center" unique_id=943114498]
+layout_mode = 2
+theme_override_constants/separation = 48
+theme_override_styles/separator = SubResource("StyleBoxEmpty_8gy84")
+
+[node name="Play" type="Button" parent="UI/Center" unique_id=430906656]
+layout_mode = 2
+text = "Play"
+
+[node name="Options" type="Button" parent="UI/Center" unique_id=63951480]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="UI/Center" unique_id=25102358]
+layout_mode = 2
+text = "Quit"
+
+[node name="RepoLink" type="LinkButton" parent="UI" unique_id=1505975807]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -15.0
+offset_right = 274.0
+offset_bottom = -4.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "https://github.com/dragonryan06/REPO_NAME"
+uri = "scrote.org"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1027088279]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Version" type="Label" parent="UI/VBoxContainer" unique_id=1182245370]
+layout_mode = 2
+text = "Trellis v0.1.0"
+horizontal_alignment = 2
+
+[node name="GodotVersion" type="Label" parent="UI/VBoxContainer" unique_id=100661527]
+layout_mode = 2
+text = "Godot Game Engine v4.6.stable"
+horizontal_alignment = 2

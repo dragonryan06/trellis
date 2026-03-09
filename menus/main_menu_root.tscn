@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://fik761ryvm1k"]
+
+[ext_resource type="Script" uid="uid://hf53vgmcm0o2" path="res://menus/main_menu_root.gd" id="1_wqd15"]
+[ext_resource type="Texture2D" uid="uid://drr0b5v5v8f2r" path="res://growing/dirt_crumbles.png" id="2_m6tcy"]
+
+[sub_resource type="Curve" id="Curve_gy3sr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.75280905), 0.0, 0.0, 0, 0, Vector2(1, 0.25), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_gy3sr"]
+colors = PackedColorArray(0.2, 0.14333335, 0, 1, 0.6, 0.43000004, 0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_441om"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 4
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_t6j0r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1478261, 1), 0.0, 0.0, 0, 0, Vector2(0.7478261, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_kwewk"]
+curve = SubResource("Curve_t6j0r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ff14e"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 5.0
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kwewk")
+anim_offset_max = 1.0
+
+[node name="Root" type="Line2D" unique_id=1816036020]
+show_behind_parent = true
+points = PackedVector2Array(0, 0, 16, 16)
+width = 8.0
+width_curve = SubResource("Curve_gy3sr")
+default_color = Color(0.53, 0.37983334, 0, 1)
+gradient = SubResource("Gradient_gy3sr")
+joint_mode = 2
+end_cap_mode = 2
+round_precision = 16
+script = ExtResource("1_wqd15")
+metadata/_custom_type_script = "uid://fsrspbj0b0vo"
+
+[node name="DirtParticles" type="GPUParticles2D" parent="." unique_id=61776375]
+material = SubResource("CanvasItemMaterial_441om")
+emitting = false
+amount = 64
+texture = ExtResource("2_m6tcy")
+lifetime = 8.0
+speed_scale = 5.0
+process_material = SubResource("ParticleProcessMaterial_ff14e")
