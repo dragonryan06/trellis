@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Trellis"
-run/main_scene="uid://b060chk8lvhk"
+run/main_scene="uid://da70v7p668p2k"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://c62mlv2o0ndlw"
 

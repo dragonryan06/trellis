@@ -9,6 +9,7 @@ signal finished
 func _ready() -> void:
 	# Give the loading hint a frame to draw
 	# TODO: Generation needs to happen in a separate thread so there can be a throbber instead
+	# Or maybe not a throbber maybe another movie is showing like "no ai!!" "made using freeware! :)" during loading
 	await get_tree().process_frame
 	$Loading.queue_free()
 	
