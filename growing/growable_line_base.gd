@@ -43,7 +43,6 @@ func grow_to(location: Vector2) -> void:
 	add_point(endpoint_position)
 	var grow_tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	grow_tween.tween_property(self, "endpoint_position", location, 1.0)
-	grow_tween.tween_property(self, "width", width + 0.5, 1.0)
 	shape_changed.emit()
 	if (has_node("GrowthHandle")):
 		$GrowthHandle.position = location
