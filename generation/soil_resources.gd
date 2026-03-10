@@ -85,9 +85,11 @@ func get_resource_at(local_pos: Vector2) -> ResourceVein:
 
 func _process(_delta: float) -> void:
 	var mouse_pos = get_local_mouse_position()
-	$Label.position = mouse_pos
 	var vein = get_resource_at(mouse_pos)
-	$Label.text = "(%d, %d): %s" % [mouse_pos.x, mouse_pos.y, vein]
+	
+	if $Label.visible:
+		$Label.position = mouse_pos
+		$Label.text = "(%d, %d): %s" % [mouse_pos.x, mouse_pos.y, vein]
 	
 	if (vein == null):
 		return
@@ -108,6 +110,8 @@ func _ready() -> void:
 			vein.remaining = vein.volume
 		return "Replenished %d resource veins" % modified
 	)
+	
+	DebugConsole.register_command(&"resource debug", func(): $Label.visible = !$Label.visible)
 	
 	# Just set SoilResources invisible if you dont want to wait on it generating.
 	if (!visible):
