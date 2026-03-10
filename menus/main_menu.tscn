@@ -121,4 +121,5 @@ text = "Godot Game Engine v4.6.stable"
 horizontal_alignment = 2
 
 [connection signal="pressed" from="UI/Center/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI/Center/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="UI/Center/Quit" to="." method="_on_quit_pressed"]

@@ -26,5 +26,8 @@ func _on_play_pressed() -> void:
 	
 	get_tree().change_scene_to_file("res://story_scenes/story_mode.tscn")
 
+func _on_options_pressed() -> void:
+	add_sibling(load("res://menus/options_menu.tscn").instantiate())
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()

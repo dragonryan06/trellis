@@ -15,5 +15,8 @@ func _on_main_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
 	queue_free()
 
+func _on_options_pressed() -> void:
+	add_sibling(load("res://menus/options_menu.tscn").instantiate())
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()

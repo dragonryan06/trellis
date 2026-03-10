@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://dix428iw7jmpk"]
+
+[ext_resource type="Script" uid="uid://k4ktlalce308" path="res://menus/options_menu.gd" id="1_6r3ve"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d52kq"]
+bg_color = Color(0.19607843, 0.078431375, 0.19607843, 1)
+
+[sub_resource type="InputEventKey" id="InputEventKey_d52kq"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_6r3ve"]
+events = [SubResource("InputEventKey_d52kq")]
+
+[node name="OptionsMenu" type="CanvasLayer" unique_id=1130463983]
+layer = 3
+script = ExtResource("1_6r3ve")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1296307680]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d52kq")
+
+[node name="Content" type="MarginContainer" parent="PanelContainer" unique_id=2016469563]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/Content" unique_id=131596858]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+current_tab = 0
+
+[node name="Game" type="MarginContainer" parent="PanelContainer/Content/TabContainer" unique_id=1927083119]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Content/TabContainer/Game" unique_id=827443976]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Content/TabContainer/Game/VBoxContainer" unique_id=278417754]
+layout_mode = 2
+text = "No game settings yet!"
+
+[node name="Controls" type="MarginContainer" parent="PanelContainer/Content/TabContainer" unique_id=15508308]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Content/TabContainer/Controls" unique_id=891959888]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="PanelContainer/Content/TabContainer/Controls/VBoxContainer" unique_id=1321228317]
+layout_mode = 2
+text = "This is just a read-only view for now."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Content/TabContainer/Controls/VBoxContainer" unique_id=1444058482]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Names" type="Label" parent="PanelContainer/Content/TabContainer/Controls/VBoxContainer/HBoxContainer" unique_id=1729840670]
+layout_mode = 2
+
+[node name="Values" type="Label" parent="PanelContainer/Content/TabContainer/Controls/VBoxContainer/HBoxContainer" unique_id=1901439012]
+layout_mode = 2
+
+[node name="Video" type="MarginContainer" parent="PanelContainer/Content/TabContainer" unique_id=2114225617]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Content/TabContainer/Video" unique_id=633837640]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Content/TabContainer/Video/VBoxContainer" unique_id=200512961]
+layout_mode = 2
+text = "No video settings yet!"
+
+[node name="Audio" type="MarginContainer" parent="PanelContainer/Content/TabContainer" unique_id=825583784]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+metadata/_tab_index = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Content/TabContainer/Audio" unique_id=1873339754]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Content/TabContainer/Audio/VBoxContainer" unique_id=1668850903]
+layout_mode = 2
+text = "No audio settings yet!"
+
+[node name="TopMargin" type="MarginContainer" parent="PanelContainer" unique_id=1434068587]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 4
+
+[node name="Label" type="Label" parent="PanelContainer/TopMargin" unique_id=416265006]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Options"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/TopMargin" unique_id=1110578804]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+
+[node name="Back" type="Button" parent="PanelContainer/TopMargin/MarginContainer" unique_id=1692858743]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+shortcut = SubResource("Shortcut_6r3ve")
+text = "Back"
+
+[connection signal="pressed" from="PanelContainer/TopMargin/MarginContainer/Back" to="." method="_on_back_pressed"]
