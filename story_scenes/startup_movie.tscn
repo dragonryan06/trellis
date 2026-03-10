@@ -1,19 +1,95 @@
 [gd_scene format=3 uid="uid://c37iygpjpjrj1"]
 
 [ext_resource type="Script" uid="uid://ha8rhbaqy1ey" path="res://story_scenes/startup_movie.gd" id="1_wyb0r"]
+[ext_resource type="Shader" uid="uid://dbdnslk1ok0i2" path="res://backdrop/vignette.gdshader" id="2_7gxej"]
 
-[node name="StartupMovie" type="Control" unique_id=110414407]
-layout_mode = 3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6h632"]
+shader = ExtResource("2_7gxej")
+shader_parameter/alpha = 1.0
+shader_parameter/inner_radius = -3.0
+shader_parameter/outer_radius = 0.0
+
+[sub_resource type="Animation" id="Animation_xn40e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/inner_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/outer_radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ys6ti"]
+resource_name = "eyes_opening"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/inner_radius")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 0.51763225, 10.196478),
+"update": 0,
+"values": [-3.0, 0.25, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/outer_radius")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.20306315),
+"update": 0,
+"values": [0.0, 1.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1llk"]
+_data = {
+&"RESET": SubResource("Animation_xn40e"),
+&"eyes_opening": SubResource("Animation_ys6ti")
+}
+
+[node name="StartupMovie" type="CanvasLayer" unique_id=649550134]
+layer = 2
+script = ExtResource("1_wyb0r")
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=460201848]
+material = SubResource("ShaderMaterial_6h632")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wyb0r")
+size_flags_horizontal = 4
+mouse_filter = 2
+color = Color(1, 0, 1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Vignette" unique_id=872532767]
+libraries/ = SubResource("AnimationLibrary_l1llk")
 
 [node name="Message1" type="RichTextLabel" parent="." unique_id=577314040]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -32,7 +108,6 @@ vertical_alignment = 1
 
 [node name="Message2" type="RichTextLabel" parent="." unique_id=1504168405]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -51,7 +126,6 @@ vertical_alignment = 1
 
 [node name="Message3" type="RichTextLabel" parent="." unique_id=606712682]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -70,7 +144,6 @@ vertical_alignment = 1
 
 [node name="Message4" type="RichTextLabel" parent="." unique_id=256628027]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -86,3 +159,10 @@ bbcode_enabled = true
 text = "By the leaves of [color=dark_orange]Helia[/color] and the flowers of [color=dark_violet]Selene[/color], root yourself here, child. This is good earth. Form yourself wisely, and in soft rains may you grow beyond regret."
 scroll_active = false
 vertical_alignment = 1
+
+[node name="Loading" type="Label" parent="." unique_id=1799697101]
+offset_right = 437.0
+offset_bottom = 39.0
+text = "Generating resources... 
+
+Sorry no loading screen yet the process is literally just frozen rn lol"

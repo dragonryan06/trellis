@@ -14,6 +14,11 @@ func _on_play_pressed() -> void:
 	
 	await ftb.finished
 	
+	add_sibling(load("res://story_scenes/startup_movie.tscn").instantiate())
+	
+	# Give the "loading screen" a frame to draw.
+	await get_tree().process_frame
+	
 	get_tree().change_scene_to_file("res://story_scenes/story_mode.tscn")
 
 func _on_quit_pressed() -> void:
