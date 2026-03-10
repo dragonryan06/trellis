@@ -14,7 +14,12 @@ func _on_play_pressed() -> void:
 	
 	await ftb.finished
 	
-	add_sibling(load("res://story_scenes/startup_movie.tscn").instantiate())
+	var startup_movie = load("res://story_scenes/startup_movie.tscn").instantiate()
+	var pause_menu = load("res://menus/pause_menu.tscn").instantiate()
+	add_sibling(startup_movie)
+	add_sibling(pause_menu)
+	pause_menu.enabled = false
+	startup_movie.finished.connect(func(): pause_menu.enabled = true)
 	
 	# Give the "loading screen" a frame to draw.
 	await get_tree().process_frame

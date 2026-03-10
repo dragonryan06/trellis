@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bch46agekwb3c"]
+
+[ext_resource type="Script" uid="uid://c8rn8t7sj24r8" path="res://menus/pause_menu.gd" id="1_s0u37"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s0u37"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=2082697028]
+script = ExtResource("1_s0u37")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=697344226]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -270.5
+offset_right = 48.0
+offset_bottom = -163.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2023498933]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1476368357]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=500242837]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1768338957]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxEmpty_s0u37")
+
+[node name="MainMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1698495108]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Options" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=383954866]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1667797245]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
