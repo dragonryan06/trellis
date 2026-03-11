@@ -1,0 +1,58 @@
+[gd_scene format=4 uid="uid://bd80hhm5hcgtg"]
+
+[ext_resource type="Script" uid="uid://bis3wnxj4dw71" path="res://growing/leaf.gd" id="1_rnrd8"]
+[ext_resource type="Texture2D" uid="uid://8t7cpkft333t" path="res://icon.svg" id="2_vdbhs"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jbtp0"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Curve" id="Curve_vdbhs"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.49285716, 0.5393259), -2.5692885, -2.5692885, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_dgls7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.8314607), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_7o0e7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.33, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vdbhs"]
+_surfaces = [{
+"aabb": AABB(-1.5, -1, 0, 3, 2, 1e-05),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAAAAAACAPwAAAD4AAAAAAAAAPgAAgD8AAIA+AAAAAAAAgD4AAIA/AADAPgAAAAAAAMA+AACAPwAAAD8AAAAAAAAAPwAAgD8AACA/AAAAAAAAID8AAIA/AABAPwAAAAAAAEA/AACAPwAAYD8AAAAAAABgPwAAgD8AAIA/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAAD4AAAAAAAAAPgAAgD8AAIA+AAAAAAAAgD4AAIA/AADAPgAAAAAAAMA+AACAPwAAAD8AAAAAAAAAPwAAgD8AACA/AAAAAAAAID8AAIA/AABAPwAAAAAAAEA/AACAPwAAYD8AAAAAAABgPwAAgD8AAIA/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAAD4AAAAAAAAAPgAAgD8AAIA+AAAAAAAAgD4AAIA/AADAPgAAAAAAAMA+AACAPwAAAD8AAAAAAAAAPwAAgD8AACA/AAAAAAAAID8AAIA/AABAPwAAAAAAAEA/AACAPwAAYD8AAAAAAABgPwAAgD8AAIA/AAAAAAAAgD8AAIA/"),
+"format": 34359742487,
+"index_count": 54,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEgATABQAFQAWABcAGAAZABoAGwAcAB0AHgAfACAAIQAiACMAJAAlACYAJwAoACkAKgArACwALQAuAC8AMAAxADIAMwA0ADUA"),
+"primitive": 4,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 54,
+"vertex_data": PackedByteArray("AADAvwAAAIAAAAAAAADAvwAAAAAAAAAAAACwv/bOFr4AAAAAAACwv/bOFj4AAAAAAACgv8ZE374AAAAAAACgv8ZE3z4AAAAAAACQvxQJI78AAAAAAACQvxQJIz8AAAAAAACAv/yRBb8AAAAAAACAv/yRBT8AAAAAAABgvy7J3L4AAAAAAABgvy7J3D4AAAAAAABAv88tHb8AAAAAAABAv88tHT8AAAAAAAAgv57EXr8AAAAAAAAgv57EXj8AAAAAAAAAvwAAgL8AAAAAAAAAvwAAgD8AAAAAAAAAvwAAgL8AAAAAAAAAvwAAgD8AAAAAAADAvihCeb8AAAAAAADAvihCeT8AAAAAAACAvk5tar8AAAAAAACAvk5taj8AAAAAAAAAvnSYW78AAAAAAAAAvnSYWz8AAAAAAAAAAJzaVL8AAAAAAAAAAJzaVD8AAAAAAAAAPnSYW78AAAAAAAAAPnSYWz8AAAAAAACAPk5tar8AAAAAAACAPk5taj8AAAAAAADAPihCeb8AAAAAAADAPihCeT8AAAAAAAAAPwAAgL8AAAAAAAAAPwAAgD8AAAAAAAAAPwAAgL8AAAAAAAAAPwAAgD8AAAAAAAAgPxvRVr8AAAAAAAAgPxvRVj8AAAAAAABAP5TrEr8AAAAAAABAP5TrEj8AAAAAAABgP86w/L4AAAAAAABgP86w/D4AAAAAAACAP4jr1r4AAAAAAACAP4jr1j4AAAAAAACQPwDRlr4AAAAAAACQPwDRlj4AAAAAAACgP3eoIL4AAAAAAACgP3eoID4AAAAAAACwP9NBO70AAAAAAACwP9NBOz0AAAAAAADAPwAAAIAAAAAAAADAPwAAAAAAAAAA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA")
+}]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgls7"]
+albedo_texture = ExtResource("2_vdbhs")
+
+[node name="Leaf" type="Sprite2D" unique_id=175633809]
+texture = SubResource("ViewportTexture_jbtp0")
+script = ExtResource("1_rnrd8")
+begin_curve = SubResource("Curve_vdbhs")
+middle_curve = SubResource("Curve_dgls7")
+end_curve = SubResource("Curve_7o0e7")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=270105716]
+transparent_bg = true
+size = Vector2i(384, 384)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport" unique_id=1221775905]
+mesh = SubResource("ArrayMesh_vdbhs")
+surface_material_override/0 = SubResource("StandardMaterial3D_dgls7")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1459745594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=923787260]
+transform = Transform3D(1, 0, 0, 0, 0.9238795, 0.38268346, 0, -0.38268346, 0.9238795, 0, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=528701043]
