@@ -14,7 +14,7 @@ func _ready() -> void:
 	$Loading.queue_free()
 	
 	for child in get_children():
-		if (!child.name.begins_with("Message")):
+		if (child == null or !child.name.begins_with("Message")):
 			continue
 		
 		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
