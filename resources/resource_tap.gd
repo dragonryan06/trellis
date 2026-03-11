@@ -33,6 +33,7 @@ func _on_next_phase() -> void:
 	pellet.material.light_mode = CanvasItemMaterial.LIGHT_MODE_UNSHADED
 	pellet.texture = pellet_texture
 	pellet.modulate = vein.color
+	pellet.position = position
 	get_parent().add_child(pellet)
 	
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
