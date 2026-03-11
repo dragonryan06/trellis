@@ -47,7 +47,15 @@ func remove_particle() -> void:
 		if (_sim_state[image_size.y - 1][x] != 0):
 			nonzero_cols.append(x)
 	
-	_sim_state[image_size.y - 1][nonzero_cols.pick_random()] = 0
+	if nonzero_cols.is_empty():
+		for y in range(image_size.y):
+			for x in range(image_size.x):
+				if _sim_state[y][x] != 0:
+					_sim_state[y][x] = 0
+					break
+	else:
+		_sim_state[image_size.y - 1][nonzero_cols.pick_random()] = 0
+	
 	_dirty = true
 
 ## Add 'count' particles to the queue, to be removed a tick at a time.
@@ -98,7 +106,7 @@ func _process(_delta: float) -> void:
 	_queue_removed_this_frame = false
 
 func _tick() -> void:
-	if (_add_queue > 0):
+	if (_add_queue > 0 and _sim_state[0].has(0)):
 		add_particle()
 		_add_queue -= 1
 	
