@@ -11,6 +11,8 @@ var begin_curve: Curve
 var middle_curve: Curve
 @export
 var end_curve: Curve
+@export
+var z_curve: Curve
 
 func _ready() -> void:
 	_generate_mesh()
@@ -47,7 +49,9 @@ func _generate_mesh() -> void:
 func _draw_curve(st: SurfaceTool, curve: Curve, x_offset: float) -> void:
 	for point in range(0, edge_points + 1):
 		var x := float(point) / edge_points
-		st.set_uv(Vector2(x, 0))
-		st.add_vertex(Vector3(x + x_offset, -curve.sample(x), 0))
+		var global_x := (x + x_offset) / (2 + middle_tiles) + 0.5
+		
 		st.set_uv(Vector2(x, 1))
-		st.add_vertex(Vector3(x + x_offset, curve.sample(x), 0))
+		st.add_vertex(Vector3(x + x_offset, -curve.sample(x), z_curve.sample(global_x)))
+		st.set_uv(Vector2(x, 0))
+		st.add_vertex(Vector3(x + x_offset, curve.sample(x), z_curve.sample(global_x)))
