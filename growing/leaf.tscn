@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bd80hhm5hcgtg"]
+[gd_scene format=4 uid="uid://bd80hhm5hcgtg"]
 
 [ext_resource type="Script" uid="uid://bis3wnxj4dw71" path="res://growing/leaf.gd" id="1_rnrd8"]
-[ext_resource type="Texture2D" uid="uid://8t7cpkft333t" path="res://icon.svg" id="2_vdbhs"]
+[ext_resource type="Texture2D" uid="uid://brfn5qkbtddw7" path="res://growing/leaf.png" id="2_vdbhs"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jbtp0"]
 viewport_path = NodePath("SubViewport")
@@ -22,13 +22,112 @@ point_count = 3
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.6292135), -1.3764045, -1.3764045, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="BoxMesh" id="BoxMesh_vdbhs"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_vdbhs"]
+_surfaces = [{
+"aabb": AABB(-1.5, -1, 0, 3, 2, 1),
+"attribute_data": PackedByteArray("AAAAAAAAgD8AAAAAAAAAAKuqKj0AAIA/q6oqPQAAAACrqqo9AACAP6uqqj0AAAAAAAAAPgAAgD8AAAA+AAAAAKuqKj4AAIA/q6oqPgAAAABVVVU+AACAP1VVVT4AAAAAAACAPgAAgD8AAIA+AAAAAFVVlT4AAIA/VVWVPgAAAACrqqo+AACAP6uqqj4AAAAAAADAPgAAgD8AAMA+AAAAAFVV1T4AAIA/VVXVPgAAAACrquo+AACAP6uq6j4AAAAAAAAAPwAAgD8AAAA/AAAAAKuqCj8AAIA/q6oKPwAAAABVVRU/AACAP1VVFT8AAAAAAAAgPwAAgD8AACA/AAAAAKuqKj8AAIA/q6oqPwAAAABVVTU/AACAP1VVNT8AAAAAAABAPwAAgD8AAEA/AAAAAKuqSj8AAIA/q6pKPwAAAABVVVU/AACAP1VVVT8AAAAAAABgPwAAgD8AAGA/AAAAAKuqaj8AAIA/q6pqPwAAAABVVXU/AACAP1VVdT8AAAAAAACAPwAAgD8AAIA/AAAAAA=="),
+"format": 34359742487,
+"index_count": 54,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgACQAKAAsADAANAA4ADwAQABEAEAARABIAEwAUABUAFgAXABgAGQAaABsAHAAdAB4AHwAgACEAIAAhACIAIwAkACUAJgAnACgAKQAqACsALAAtAC4ALwAwADEA"),
+"primitive": 4,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 50,
+"vertex_data": PackedByteArray("AADAvwAAAIAAAIA/AADAvwAAAAAAAIA/AACwv/bOFr6J7H8/AACwv/bOFj6J7H8/AACgv8ZE374YpX8/AACgv8ZE3z4YpX8/AACQvxQJI78MFn8/AACQvxQJIz8MFn8/AACAv/yRBb/TK34/AACAv/yRBT/TK34/AABgvy7J3L7J0nw/AABgvy7J3D7J0nw/AABAv88tHb9e93o/AABAv88tHT9e93o/AAAgv57EXr/1hXg/AAAgv57EXj/1hXg/AAAAvwAAgL/tanU/AAAAvwAAgD/tanU/AADAvihCeb+yknE/AADAvihCeT+yknE/AACAvk5tar+r6Ww/AACAvk5taj+r6Ww/AAAAvnSYW785XGc/AAAAvnSYWz85XGc/AAAAAJzaVL/G1mA/AAAAAJzaVD/G1mA/AAAAPnSYW7+1RVk/AAAAPnSYWz+1RVk/AACAPk5tar9wlVA/AACAPk5taj9wlVA/AADAPihCeb9WskY/AADAPihCeT9WskY/AAAAPwAAgL/TiDs/AAAAPwAAgD/TiDs/AAAgPxvRVr9MBS8/AAAgPxvRVj9MBS8/AABAP5TrEr8jFCE/AABAP5TrEj8jFCE/AABgP86w/L6I8wo/AABgP86w/D6I8wo/AACAP4jr1r7MiNQ+AACAP4jr1j7MiNQ+AACQPwDRlr5iDos+AACQPwDRlj5iDos+AACgP3eoIL6b8Qw+AACgP3eoID6b8Qw+AACwP9NBO71FSB49AACwP9NBOz1FSB49AADAPwAAAIAAAAAAAADAPwAAAAAAAAAA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgP9//3//fwCA/3//f/9/AID/f/9//38AgA==")
+}]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgls7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdbhs"]
 albedo_texture = ExtResource("2_vdbhs")
+texture_filter = 0
+
+[sub_resource type="Animation" id="Animation_vdbhs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.8901179, -0.2722714, 0.022689281)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(60.085, 22.745)]
+}
+
+[sub_resource type="Animation" id="Animation_dgls7"]
+resource_name = "wiggle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.17453292, -0.08726646]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/MeshInstance3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.8901179, -0.2722714, 0.022689281), Vector3(-0.6981317, -0.27227136, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(60.085, 22.745), Vector2(64.855, 19.125)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7o0e7"]
+_data = {
+&"RESET": SubResource("Animation_vdbhs"),
+&"wiggle": SubResource("Animation_dgls7")
+}
 
 [node name="Leaf" type="Sprite2D" unique_id=175633809]
 texture = SubResource("ViewportTexture_jbtp0")
+offset = Vector2(60.085, 22.745)
 script = ExtResource("1_rnrd8")
 begin_curve = SubResource("Curve_vdbhs")
 middle_curve = SubResource("Curve_dgls7")
@@ -36,17 +135,24 @@ end_curve = SubResource("Curve_7o0e7")
 z_curve = SubResource("Curve_3r8it")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=270105716]
+own_world_3d = true
 transparent_bg = true
-size = Vector2i(384, 384)
+size = Vector2i(128, 128)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport" unique_id=1221775905]
-mesh = SubResource("BoxMesh_vdbhs")
-surface_material_override/0 = SubResource("StandardMaterial3D_dgls7")
+transform = Transform3D(0.9676561, 0.18708459, -0.16923676, 0.0142776035, 0.6291585, 0.7771459, 0.25186878, -0.7544263, 0.6061379, 0, 0, 0)
+mesh = SubResource("ArrayMesh_vdbhs")
+surface_material_override/0 = SubResource("StandardMaterial3D_vdbhs")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1459745594]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 2.5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=923787260]
 transform = Transform3D(1, 0, 0, 0, 0.9238795, 0.38268346, 0, -0.38268346, 0.9238795, 0, 0, 0)
+light_energy = 0.75
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=528701043]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1662085770]
+libraries/ = SubResource("AnimationLibrary_7o0e7")
+autoplay = &"wiggle"
