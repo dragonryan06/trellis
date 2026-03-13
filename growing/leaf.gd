@@ -1,5 +1,7 @@
 extends Sprite2D
 
+const VIEWPORT_DIM_BASE := Vector2(128, 128)
+
 @export
 var middle_tiles := 1
 @export
@@ -13,6 +15,8 @@ var middle_curve: Curve
 var end_curve: Curve
 @export
 var z_curve: Curve
+
+var size := 1.0
 
 func _ready() -> void:
 	_generate_mesh()
@@ -28,7 +32,10 @@ func _ready() -> void:
 		#$SubViewport/MeshInstance3D.rotate_x(-delta)
 
 func _input(event: InputEvent) -> void:
-	if (event is InputEventKey and event.is_pressed() and event.keycode == Key.KEY_ENTER):
+	if (event is InputEventKey and event.is_pressed() and event.keycode == Key.KEY_SLASH):
+		size = randf()
+		print(size)
+		$SubViewport.size.x = (size * VIEWPORT_DIM_BASE).x
 		_generate_mesh()
 
 func _generate_mesh() -> void:
@@ -52,6 +59,6 @@ func _draw_curve(st: SurfaceTool, curve: Curve, x_offset: float) -> void:
 		var global_x := (x + x_offset) / (2 + middle_tiles) + 0.5
 		
 		st.set_uv(Vector2(global_x, 1))
-		st.add_vertex(Vector3(x + x_offset, -curve.sample(x), z_curve.sample(global_x)))
+		st.add_vertex(Vector3(size * (x + x_offset), -curve.sample(x), z_curve.sample(global_x)))
 		st.set_uv(Vector2(global_x, 0))
-		st.add_vertex(Vector3(x + x_offset, curve.sample(x), z_curve.sample(global_x)))
+		st.add_vertex(Vector3(size * (x + x_offset), curve.sample(x), z_curve.sample(global_x)))
