@@ -8,11 +8,7 @@
 resource_name = "Leaf"
 render_priority = 0
 shader = ExtResource("2_agulj")
-shader_parameter/scene_x = 0
-shader_parameter/scene_y = 1
-shader_parameter/crossfader = 0.0
 shader_parameter/texture0 = ExtResource("3_rki4e")
-shader_parameter/texture1 = ExtResource("3_rki4e")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7ag07"]
 resource_name = "TomatoLeaf_Plane_001"

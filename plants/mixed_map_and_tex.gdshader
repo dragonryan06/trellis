@@ -11,11 +11,11 @@ shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx;
 
 // Scenes are specified by index, so like 0 is the first UV map and the first texture, etc.
-uniform int scene_x : hint_range(0, 9) = 0;
-uniform int scene_y : hint_range(0, 9) = 1;
+instance uniform int scene_x : hint_range(0, 9) = 0;
+instance uniform int scene_y : hint_range(0, 9) = 1;
 
 // Fades the texture and interpolates the UV map between scenes X & Y
-uniform float crossfader : hint_range(0.0f, 1.0f) = 0.0f;
+instance uniform float crossfader : hint_range(0.0f, 1.0f) = 0.0f;
 
 // The textures to use, in scene order.
 group_uniforms Textures;
