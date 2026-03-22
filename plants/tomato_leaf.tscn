@@ -2,13 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://duu8td303xpyj" path="res://plants/TomatoLeaf.glb" id="1_pb6f5"]
 [ext_resource type="Shader" uid="uid://c0w4ipsto1xh5" path="res://plants/mixed_map_and_tex.gdshader" id="2_agulj"]
-[ext_resource type="Texture2D" uid="uid://vqalpov85t68" path="res://plants/TomatoLeaf_MatureLeaf.png" id="3_rki4e"]
+[ext_resource type="Texture2D" uid="uid://cnmoo40g7mgk6" path="res://plants/TomatoLeaf_Baby.png" id="3_rki4e"]
+[ext_resource type="Texture2D" uid="uid://nbo8dyadoaxu" path="res://plants/TomatoLeaf_Young.png" id="4_thy2k"]
+[ext_resource type="Texture2D" uid="uid://bwpidfgt0y5e1" path="res://plants/TomatoLeaf_Mature.png" id="5_7ag07"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_thy2k"]
 resource_name = "Leaf"
 render_priority = 0
 shader = ExtResource("2_agulj")
 shader_parameter/texture0 = ExtResource("3_rki4e")
+shader_parameter/texture1 = ExtResource("4_thy2k")
+shader_parameter/texture2 = ExtResource("5_7ag07")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7ag07"]
 resource_name = "TomatoLeaf_Plane_001"
@@ -35,4 +39,7 @@ metadata/extras = {
 [node name="TomatoLeaf" unique_id=760385107 instance=ExtResource("1_pb6f5")]
 
 [node name="Leaf" parent="." index="0" unique_id=542035112]
+instance_shader_parameters/crossfader = 0.0
+instance_shader_parameters/scene_x = 0
+instance_shader_parameters/scene_y = 1
 mesh = SubResource("ArrayMesh_7ag07")
