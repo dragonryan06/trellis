@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://j0a2ggokrtd4" path="res://meta/test_world.gd" id="1_1lwx6"]
 [ext_resource type="Texture2D" uid="uid://dkyja5sv2j55t" path="res://backdrop/test-dirt.png" id="1_dxppu"]
 [ext_resource type="Script" uid="uid://jieklw1gf8ax" path="res://effects/ambient_lighting.gd" id="2_jvck6"]
-[ext_resource type="PackedScene" uid="uid://dgqsxm6vmlr5g" path="res://plants/player_core.tscn" id="3_1lwx6"]
+[ext_resource type="PackedScene" uid="uid://dgqsxm6vmlr5g" path="res://plant_parts/player_core.tscn" id="3_1lwx6"]
 [ext_resource type="Script" uid="uid://b31wlpyc00bk6" path="res://meta/player_camera.gd" id="3_dsnr4"]
 [ext_resource type="Texture2D" uid="uid://cmxnj3c8a1xvt" path="res://backdrop/sky.png" id="3_lf0gk"]
 [ext_resource type="Texture2D" uid="uid://btyfaptwwurb5" path="res://backdrop/sun.png" id="3_ud3vi"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://is0paf2w24vv" path="res://generation/soil_resources.tscn" id="11_5457m"]
 [ext_resource type="PackedScene" uid="uid://bnmy137bcgfqg" path="res://hud/next_turn_button.tscn" id="12_ivea3"]
 [ext_resource type="PackedScene" uid="uid://cpl4cwub4nj87" path="res://hud/resource_info.tscn" id="13_07jwy"]
-[ext_resource type="PackedScene" uid="uid://cetsjss7672uf" path="res://plants/leaf.tscn" id="15_urhrq"]
 
 [sub_resource type="Animation" id="Animation_ivea3"]
 resource_name = "dawn"
@@ -215,9 +214,6 @@ _data = {
 &"RESET": SubResource("Animation_jvck6")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_urhrq"]
-viewport_path = NodePath("SubViewport")
-
 [node name="TestWorld" type="Node2D" unique_id=1425755023]
 script = ExtResource("1_1lwx6")
 
@@ -298,7 +294,6 @@ texture = ExtResource("4_cnaw2")
 script = ExtResource("3_dsnr4")
 
 [node name="SoilResources" parent="." unique_id=1074567782 instance=ExtResource("11_5457m")]
-visible = false
 position = Vector2(-512, 0)
 
 [node name="PlayerCore" parent="." unique_id=435886559 instance=ExtResource("3_1lwx6")]
@@ -308,9 +303,5 @@ position = Vector2(-512, 0)
 [node name="ResourceInfo" parent="HUD" unique_id=1159859721 instance=ExtResource("13_07jwy")]
 
 [node name="NextTurnButton" parent="HUD" unique_id=1448396172 instance=ExtResource("12_ivea3")]
-
-[node name="Leaf" parent="." unique_id=1127169622 instance=ExtResource("15_urhrq")]
-position = Vector2(81, -106)
-texture = SubResource("ViewportTexture_urhrq")
 
 [connection signal="pressed" from="HUD/NextTurnButton" to="." method="_on_next_turn_button_pressed"]

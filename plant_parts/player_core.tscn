@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://dgqsxm6vmlr5g"]
 
-[ext_resource type="Texture2D" uid="uid://crx3gigsc3i5i" path="res://plants/seed_whole.png" id="1_kvdd2"]
+[ext_resource type="Texture2D" uid="uid://crx3gigsc3i5i" path="res://plant_parts/seed_whole.png" id="1_kvdd2"]
 [ext_resource type="Script" uid="uid://fsrspbj0b0vo" path="res://growing/root.gd" id="2_kvdd2"]
 [ext_resource type="Script" uid="uid://cxu14kpjyrqet" path="res://meta/player.gd" id="2_kwewk"]
-[ext_resource type="Script" uid="uid://cesqwx18015de" path="res://growing/stem.gd" id="2_xyx62"]
+[ext_resource type="Script" uid="uid://cesqwx18015de" path="res://growing/above_ground/main_stem.gd" id="2_xyx62"]
 [ext_resource type="Texture2D" uid="uid://dq7oyd34ucsih" path="res://growing/ui/grow_handle.png" id="3_kvdd2"]
 [ext_resource type="Script" uid="uid://djqqtsj1hf21w" path="res://growing/ui/handle_base.gd" id="3_ky63x"]
-[ext_resource type="Texture2D" uid="uid://bfqv4wk176lro" path="res://plants/seed_root_cover.png" id="5_ky63x"]
-[ext_resource type="Texture2D" uid="uid://ne8ul6110gl" path="res://plants/seed_sprout_cover.png" id="6_0u8kd"]
+[ext_resource type="Texture2D" uid="uid://bfqv4wk176lro" path="res://plant_parts/seed_root_cover.png" id="5_ky63x"]
+[ext_resource type="Texture2D" uid="uid://ne8ul6110gl" path="res://plant_parts/seed_sprout_cover.png" id="6_0u8kd"]
 [ext_resource type="Texture2D" uid="uid://drr0b5v5v8f2r" path="res://growing/dirt_crumbles.png" id="6_x5cou"]
 [ext_resource type="PackedScene" uid="uid://b17i1t0ysbjky" path="res://resources/resource_tap.tscn" id="7_gyadc"]
 
@@ -16,7 +16,8 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50299394, 1), 0.0, 0.0, 0, 0, 
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_gy3sr"]
-colors = PackedColorArray(0.007843138, 0.5294118, 0, 1, 0.47966498, 0.69, 0.4761, 1)
+offsets = PackedFloat32Array(0.50993377, 1)
+colors = PackedColorArray(0, 0.5568628, 0, 1, 0.36862746, 0.62352943, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsw62"]
 
@@ -285,11 +286,11 @@ anim_offset_max = 1.0
 texture = ExtResource("1_kvdd2")
 script = ExtResource("2_kwewk")
 
-[node name="Stem" type="Line2D" parent="." unique_id=171563387]
+[node name="MainStem" type="Line2D" parent="." unique_id=171563387]
 points = PackedVector2Array(12, -26, 16, -32)
 width = 8.0
 width_curve = SubResource("Curve_gy3sr")
-default_color = Color(0.008833325, 0.53, 0, 1)
+default_color = Color(0, 0.5568628, 0, 1)
 gradient = SubResource("Gradient_gy3sr")
 joint_mode = 2
 end_cap_mode = 2
@@ -297,23 +298,23 @@ round_precision = 16
 script = ExtResource("2_xyx62")
 metadata/_custom_type_script = "uid://cesqwx18015de"
 
-[node name="GrowthHandle" type="Area2D" parent="Stem" unique_id=2062171075]
+[node name="GrowthHandle" type="Area2D" parent="MainStem" unique_id=2062171075]
 position = Vector2(16, -32)
 script = ExtResource("3_ky63x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stem/GrowthHandle" unique_id=2005075403]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainStem/GrowthHandle" unique_id=2005075403]
 shape = SubResource("CircleShape2D_wsw62")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Stem/GrowthHandle" unique_id=1741486146]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainStem/GrowthHandle" unique_id=1741486146]
 material = SubResource("CanvasItemMaterial_q38kt")
 sprite_frames = SubResource("SpriteFrames_d8a3x")
 
-[node name="PointLight2D" type="PointLight2D" parent="Stem/GrowthHandle" unique_id=781616667]
+[node name="PointLight2D" type="PointLight2D" parent="MainStem/GrowthHandle" unique_id=781616667]
 enabled = false
 color = Color(0, 1, 0.01666665, 1)
 texture = SubResource("GradientTexture2D_ft56i")
 
-[node name="CostDisplay" type="RichTextLabel" parent="Stem/GrowthHandle" unique_id=737094568]
+[node name="CostDisplay" type="RichTextLabel" parent="MainStem/GrowthHandle" unique_id=737094568]
 modulate = Color(1, 1, 1, 0)
 offset_top = -13.0
 offset_right = 24.0
@@ -382,9 +383,9 @@ texture = ExtResource("6_0u8kd")
 centered = false
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="input_event" from="Stem/GrowthHandle" to="Stem/GrowthHandle" method="_on_input_event"]
-[connection signal="mouse_entered" from="Stem/GrowthHandle" to="Stem/GrowthHandle" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Stem/GrowthHandle" to="Stem/GrowthHandle" method="_on_mouse_exited"]
+[connection signal="input_event" from="MainStem/GrowthHandle" to="MainStem/GrowthHandle" method="_on_input_event"]
+[connection signal="mouse_entered" from="MainStem/GrowthHandle" to="MainStem/GrowthHandle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MainStem/GrowthHandle" to="MainStem/GrowthHandle" method="_on_mouse_exited"]
 [connection signal="input_event" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_input_event"]
 [connection signal="mouse_entered" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_mouse_exited"]

@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ne8ul6110gl"
-path="res://.godot/imported/seed_sprout_cover.png-7d3ae0d3eb4b8474f7ac837500bb9ce0.ctex"
+uid="uid://ci0owycr7t7qm"
+path.s3tc="res://.godot/imported/TomatoLeaf_Baby.png-604e2a647c123b4107429fd76759061a.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://plants/seed_sprout_cover.png"
-dest_files=["res://.godot/imported/seed_sprout_cover.png-7d3ae0d3eb4b8474f7ac837500bb9ce0.ctex"]
+source_file="res://plant_parts/TomatoLeaf_Baby.png"
+dest_files=["res://.godot/imported/TomatoLeaf_Baby.png-604e2a647c123b4107429fd76759061a.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

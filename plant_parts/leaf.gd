@@ -27,13 +27,19 @@ var _growth := 0.0:
 			leaf.set_instance_shader_parameter(&"crossfader", 0.0)
 
 func _ready() -> void:
-	while true:
-		await _test_grow_up()
-
-func _test_grow_up() -> void:
-	_growth = 0.0
-	
+	scale = Vector2(0.0, 0.0)
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
-	tween.tween_property(self, ^"_growth", 2.0, 3.0)
-	
-	await tween.finished
+	tween.tween_property(self, ^"scale", Vector2(0.5, 0.5), 1.0)
+
+#func _ready() -> void:
+	#_growth = 0.0
+	#while true:
+		#await _test_grow_up()
+#
+#func _test_grow_up() -> void:
+	#_growth = 0.0
+	#
+	#var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
+	#tween.tween_property(self, ^"_growth", 2.0, 3.0)
+	#
+	#await tween.finished

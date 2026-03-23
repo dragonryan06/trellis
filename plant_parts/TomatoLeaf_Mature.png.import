@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nbo8dyadoaxu"
-path.s3tc="res://.godot/imported/TomatoLeaf_Young.png-5d37fc9c6f91232dcc274f2368bba902.s3tc.ctex"
+uid="uid://bjw376kwvvulg"
+path.s3tc="res://.godot/imported/TomatoLeaf_Mature.png-fbdb8bf218adf1180ded44e05c997c98.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://plants/TomatoLeaf_Young.png"
-dest_files=["res://.godot/imported/TomatoLeaf_Young.png-5d37fc9c6f91232dcc274f2368bba902.s3tc.ctex"]
+source_file="res://plant_parts/TomatoLeaf_Mature.png"
+dest_files=["res://.godot/imported/TomatoLeaf_Mature.png-fbdb8bf218adf1180ded44e05c997c98.s3tc.ctex"]
 
 [params]
 

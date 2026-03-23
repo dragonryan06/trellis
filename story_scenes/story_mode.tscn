@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://j0a2ggokrtd4" path="res://meta/test_world.gd" id="1_1lwx6"]
 [ext_resource type="Texture2D" uid="uid://dkyja5sv2j55t" path="res://backdrop/test-dirt.png" id="1_dxppu"]
 [ext_resource type="Script" uid="uid://jieklw1gf8ax" path="res://effects/ambient_lighting.gd" id="2_jvck6"]
-[ext_resource type="PackedScene" uid="uid://dgqsxm6vmlr5g" path="res://plants/player_core.tscn" id="3_1lwx6"]
+[ext_resource type="PackedScene" uid="uid://dgqsxm6vmlr5g" path="res://plant_parts/player_core.tscn" id="3_1lwx6"]
 [ext_resource type="Script" uid="uid://b31wlpyc00bk6" path="res://meta/player_camera.gd" id="3_dsnr4"]
 [ext_resource type="Texture2D" uid="uid://cmxnj3c8a1xvt" path="res://backdrop/sky.png" id="3_lf0gk"]
 [ext_resource type="Texture2D" uid="uid://btyfaptwwurb5" path="res://backdrop/sun.png" id="3_ud3vi"]
