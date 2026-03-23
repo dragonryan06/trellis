@@ -3,6 +3,19 @@ extends Line2D
 
 signal shape_changed
 
+## Enforced only on user entries (See handle_base.gd).
+@export
+var max_segment_length := 64.0:
+	get:
+		return max_segment_length
+	set(value):
+		max_segment_length = value
+		
+		if !is_inside_tree():
+			return
+		
+		$GrowthHandle.max_displacement = max_segment_length
+
 var endpoint_position: Vector2:
 	get:
 		return points[-1]
@@ -49,6 +62,7 @@ func grow_to(location: Vector2) -> void:
 
 func _ready() -> void:
 	GameState.next_phase.connect(_on_next_phase)
+	$GrowthHandle.max_displacement = max_segment_length
 
 func _on_next_phase() -> void:
 	if (GameState.phase_name != "Dusk"):

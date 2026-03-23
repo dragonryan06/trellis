@@ -1,7 +1,6 @@
 class_name HandleBase
 extends Area2D
 
-const MAX_DISPLACEMENT := 64.0
 const INVALID_COLOR := Color("#ff0000")
 const VALID_COLOR := Color("#00ff00")
 
@@ -103,6 +102,7 @@ var mouse_drag := false:
 
 var origin := Vector2(0.0, 0.0)
 var displacement := Vector2(0.0, 0.0)
+var max_displacement: float = INF
 
 func _ready() -> void:
 	top_level = true
@@ -129,8 +129,8 @@ func _process(_delta: float) -> void:
 	position = parent.get_local_mouse_position()
 	displacement = position - origin
 	
-	if (displacement.length() > MAX_DISPLACEMENT):
-		var clamped_displacement = displacement.limit_length(MAX_DISPLACEMENT)
+	if (displacement.length() > max_displacement):
+		var clamped_displacement = displacement.limit_length(max_displacement)
 		position -= displacement - clamped_displacement
 		displacement = clamped_displacement
 	

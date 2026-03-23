@@ -150,6 +150,7 @@ width_curve = SubResource("Curve_80a1x")
 default_color = Color(0.3764706, 0.61960787, 0, 1)
 gradient = SubResource("Gradient_nurpp")
 script = ExtResource("1_80a1x")
+max_segment_length = 12.0
 metadata/_custom_type_script = "uid://q6trjhpnaeg7"
 
 [node name="GrowthHandle" type="Area2D" parent="." unique_id=577932624]

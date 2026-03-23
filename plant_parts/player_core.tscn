@@ -296,6 +296,7 @@ joint_mode = 2
 end_cap_mode = 2
 round_precision = 16
 script = ExtResource("2_xyx62")
+max_segment_length = 32.0
 metadata/_custom_type_script = "uid://cesqwx18015de"
 
 [node name="GrowthHandle" type="Area2D" parent="MainStem" unique_id=2062171075]

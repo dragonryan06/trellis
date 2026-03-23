@@ -41,6 +41,7 @@ func _on_next_phase() -> void:
 	if ((len(points) + 1) % 2 == 0):
 		var new_handle = BranchHandleScene.instantiate()
 		new_handle.position = points[len(points) - 2]
+		new_handle.max_displacement = max_segment_length
 		add_child(new_handle)
 
 func _ready() -> void:
