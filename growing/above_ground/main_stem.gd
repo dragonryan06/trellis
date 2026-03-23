@@ -10,9 +10,6 @@ func _ready() -> void:
 func _on_next_phase() -> void:
 	super._on_next_phase()
 	
-	if (GameState.phase_name != "Dusk"):
-		return
-	
 	for child in get_children():
 		if (!(child is BranchHandle and child.was_moved)):
 			continue
@@ -25,6 +22,9 @@ func _on_next_phase() -> void:
 		
 		branch.grow_to(child.position)
 		remove_child(child)
+
+func _post_growth_callback() -> void:
+	super._post_growth_callback()
 	
 	if (len(points) % 2 == 1):
 		var new_handle = load("res://growing/ui/branch_handle.tscn").instantiate()

@@ -26,7 +26,7 @@ func grow_thicker() -> void:
 func _on_next_phase() -> void:
 	super._on_next_phase()
 	
-	if (GameState.phase_name != "Dusk"):
+	if GameState.phase_name != "Dusk":
 		return
 	
 	for child in get_children():
@@ -37,6 +37,9 @@ func _on_next_phase() -> void:
 		add_child(branch)
 		branch.grow_to(child.position)
 		remove_child(child)
+
+func _post_growth_callback() -> void:
+	super._post_growth_callback()
 	
 	if ((len(points) + 1) % 2 == 0):
 		var new_handle = BranchHandleScene.instantiate()

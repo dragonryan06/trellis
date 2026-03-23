@@ -56,9 +56,8 @@ func grow_to(location: Vector2) -> void:
 	add_point(endpoint_position)
 	var grow_tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	grow_tween.tween_property(self, "endpoint_position", location, 1.0)
+	grow_tween.tween_callback(_post_growth_callback)
 	shape_changed.emit()
-	if (has_node("GrowthHandle")):
-		$GrowthHandle.position = location
 
 func _ready() -> void:
 	GameState.next_phase.connect(_on_next_phase)
@@ -73,3 +72,6 @@ func _on_next_phase() -> void:
 	if (has_node("GrowthHandle") and $GrowthHandle.was_moved):
 		grow_to($GrowthHandle.position)
 		$GrowthHandle.was_moved = false
+
+func _post_growth_callback() -> void:
+	$GrowthHandle.position = endpoint_position
