@@ -51,6 +51,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	
 	modify_stored_resource(SoilResources.Types.WATER, 5)
+	modify_stored_resource(SoilResources.Types.ICHOR, 5)
 	modify_stored_resource(SoilResources.Types.PHOSPHOR, 5)
 
 func _on_next_phase() -> void:

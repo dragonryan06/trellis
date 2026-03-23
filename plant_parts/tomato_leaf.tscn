@@ -44,12 +44,51 @@ shader_parameter/texture0 = ExtResource("3_5sjbq")
 shader_parameter/texture1 = ExtResource("4_s8rcg")
 shader_parameter/texture2 = ExtResource("5_i3f5w")
 
+[sub_resource type="Animation" id="Animation_v8pjn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/TomatoLeaf/Leaf:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c6tcg"]
+resource_name = "gentle_wind"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/TomatoLeaf/Leaf:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.27925268, 0), Vector3(-0.13962634, 0.09250245, 0), Vector3(0, -0.21816616, -0.13962634), Vector3(0, -0.06632251, 0.13962634), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5sjbq"]
+_data = {
+&"RESET": SubResource("Animation_v8pjn"),
+&"gentle_wind": SubResource("Animation_c6tcg")
+}
+
 [node name="TomatoLeaf" type="Sprite2D" unique_id=1127169622]
 scale = Vector2(0.5, 0.5)
 texture = SubResource("ViewportTexture_1fivo")
 centered = false
 offset = Vector2(-35, -128)
 script = ExtResource("1_v8pjn")
+mirror_offset = Vector2(-221, -128)
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=435689150]
 own_world_3d = true
@@ -70,3 +109,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_6wlp2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 2.171)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport" unique_id=1716414101]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=177263456]
+libraries/ = SubResource("AnimationLibrary_5sjbq")
+autoplay = &"gentle_wind"

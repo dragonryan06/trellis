@@ -1,5 +1,9 @@
 extends Sprite2D
 
+## The Sprite2D.offset to use when flip_h is true.
+@export
+var mirror_offset := Vector2(0.0, 0.0)
+
 # 0.0: Baby, 1.0: Young, 2.0: Mature
 var _growth := 0.0:
 	get():
@@ -25,6 +29,10 @@ var _growth := 0.0:
 			leaf.set_blend_shape_value(1, 0.0)
 			leaf.set_instance_shader_parameter(&"scene_x", 2)
 			leaf.set_instance_shader_parameter(&"crossfader", 0.0)
+
+func mirror_sprite() -> void:
+	flip_h = true
+	offset = mirror_offset
 
 func _ready() -> void:
 	scale = Vector2(0.0, 0.0)

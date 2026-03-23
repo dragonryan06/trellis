@@ -17,9 +17,14 @@ func _on_next_phase() -> void:
 		var branch = load("res://growing/above_ground/leaf_branch.tscn").instantiate()
 		branch.add_point(child.origin)
 		add_child(branch)
+		
+		if child.displacement.dot(Vector2.RIGHT) < 0.0:
+			branch.get_node(^"EndLeaf").mirror_sprite()
+		
+		branch.grow_to(child.position)
 		remove_child(child)
 	
-	if (len(points) == 3):
+	if (len(points) % 2 == 1):
 		var new_handle = load("res://growing/ui/branch_handle.tscn").instantiate()
 		new_handle.position = points[-1]
 		add_child(new_handle)
