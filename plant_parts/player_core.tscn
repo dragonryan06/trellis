@@ -385,8 +385,4 @@ centered = false
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="input_event" from="MainStem/GrowthHandle" to="MainStem/GrowthHandle" method="_on_input_event"]
-[connection signal="mouse_entered" from="MainStem/GrowthHandle" to="MainStem/GrowthHandle" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="MainStem/GrowthHandle" to="MainStem/GrowthHandle" method="_on_mouse_exited"]
 [connection signal="input_event" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_input_event"]
-[connection signal="mouse_entered" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Taproot/GrowthHandle" to="Taproot/GrowthHandle" method="_on_mouse_exited"]

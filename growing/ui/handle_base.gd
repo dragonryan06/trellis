@@ -4,6 +4,8 @@ extends Area2D
 const INVALID_COLOR := Color("#ff0000")
 const VALID_COLOR := Color("#00ff00")
 
+static var hover_candidates: Array[HandleBase] = []
+
 var was_moved := false:
 	get():
 		return was_moved
@@ -109,6 +111,9 @@ func _ready() -> void:
 	var update_visibility = func(): visible = GameState.phase_name == "Noon"
 	GameState.next_phase.connect(update_visibility)
 	update_visibility.call()
+	
+	mouse_entered.connect(_on_mouse_entered_instance.bind(self))
+	mouse_exited.connect(_on_mouse_exited_instance.bind(self))
 
 func _draw() -> void:
 	if (!was_moved):
@@ -156,7 +161,7 @@ func _update_cost_display() -> void:
 		tween.tween_property($CostDisplay, ^"modulate:a", 0.0, 0.25)
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if (!(event is InputEventMouseButton)):
+	if (!mouse_hover or !(event is InputEventMouseButton)):
 		return
 	
 	match (event.button_index):
@@ -169,8 +174,38 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			cant_afford = false
 			was_moved = false
 
-func _on_mouse_entered() -> void:
-	mouse_hover = true
+static func _update_mouse_hover() -> void:
+	var nearest := hover_candidates[0]
+	if len(hover_candidates) > 1:
+		var compute_distance := func(idx: int) -> float:
+			return hover_candidates[idx].position.distance_squared_to(
+				hover_candidates[idx].get_local_mouse_position()
+			)
+		var nearest_distance = compute_distance.call(0)
+		
+		for i in range(1, len(hover_candidates)):
+			var dist = compute_distance.call(i)
+			if dist < nearest_distance:
+				nearest = hover_candidates[i]
+				nearest_distance = dist
+	
+	for c in hover_candidates:
+		c.mouse_hover = false
+	
+	nearest.mouse_hover = true
 
-func _on_mouse_exited() -> void:
-	mouse_hover = false
+static func _on_mouse_entered_instance(which: HandleBase) -> void:
+	hover_candidates.append(which)
+	
+	await which.get_tree().process_frame
+	
+	_update_mouse_hover()
+
+static func _on_mouse_exited_instance(which: HandleBase) -> void:
+	hover_candidates.erase(which)
+	which.mouse_hover = false
+	
+	await which.get_tree().process_frame
+	
+	if !hover_candidates.is_empty():
+		_update_mouse_hover()

@@ -183,5 +183,3 @@ metadata/_edit_use_anchors_ = true
 texture = SubResource("ViewportTexture_80a1x")
 
 [connection signal="input_event" from="GrowthHandle" to="GrowthHandle" method="_on_input_event"]
-[connection signal="mouse_entered" from="GrowthHandle" to="GrowthHandle" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="GrowthHandle" to="GrowthHandle" method="_on_mouse_exited"]
