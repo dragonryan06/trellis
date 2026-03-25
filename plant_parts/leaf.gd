@@ -38,8 +38,6 @@ func _ready() -> void:
 	scale = Vector2(0.0, 0.0)
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, ^"scale", Vector2(0.5, 0.5), 1.0)
-
-#func _ready() -> void:
 	#_growth = 0.0
 	#while true:
 		#await _test_grow_up()

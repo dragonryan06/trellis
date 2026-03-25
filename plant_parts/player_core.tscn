@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b17i1t0ysbjky" path="res://resources/resource_tap.tscn" id="7_gyadc"]
 
 [sub_resource type="Curve" id="Curve_gy3sr"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50299394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.15730333), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.75), 0.0, 0.0, 0, 0, Vector2(0.50299394, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.15), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_gy3sr"]
@@ -288,7 +288,7 @@ script = ExtResource("2_kwewk")
 
 [node name="MainStem" type="Line2D" parent="." unique_id=171563387]
 points = PackedVector2Array(12, -26, 16, -32)
-width = 8.0
+width = 5.0
 width_curve = SubResource("Curve_gy3sr")
 default_color = Color(0, 0.5568628, 0, 1)
 gradient = SubResource("Gradient_gy3sr")

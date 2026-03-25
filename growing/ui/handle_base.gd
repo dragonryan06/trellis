@@ -6,6 +6,12 @@ const VALID_COLOR := Color("#00ff00")
 
 static var hover_candidates: Array[HandleBase] = []
 
+## Force hide this handle
+var disabled := false:
+	set(value):
+		disabled = value
+		_update_visibility()
+
 var was_moved := false:
 	get():
 		return was_moved
@@ -108,9 +114,8 @@ var max_displacement: float = INF
 
 func _ready() -> void:
 	top_level = true
-	var update_visibility = func(): visible = GameState.phase_name == "Noon"
-	GameState.next_phase.connect(update_visibility)
-	update_visibility.call()
+	GameState.next_phase.connect(_update_visibility)
+	_update_visibility()
 	
 	mouse_entered.connect(_on_mouse_entered_instance.bind(self))
 	mouse_exited.connect(_on_mouse_exited_instance.bind(self))
@@ -147,6 +152,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if (mouse_drag and !event.is_pressed()):
 		mouse_drag = false
+
+func _update_visibility() -> void:
+	visible = !disabled and GameState.phase_name == "Noon"
 
 func _update_cost_display() -> void:
 	var display_string := "[shake][color=#990000] " if invalid else " "
