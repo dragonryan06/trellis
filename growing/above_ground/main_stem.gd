@@ -23,11 +23,11 @@ func _on_next_phase() -> void:
 			continue
 		var branch = load("res://growing/above_ground/leaf_branch.tscn").instantiate()
 		branch.add_point(child.origin)
-		add_child(branch)
 		
 		if child.displacement.dot(Vector2.RIGHT) < 0.0:
-			branch.get_node(^"EndLeaf").mirror_sprite()
+			branch.get_node(^"EndLeaf").flip = true
 		
+		add_child(branch)
 		branch.grow_to(child.position)
 		remove_child(child)
 		awaiting_branch = false
